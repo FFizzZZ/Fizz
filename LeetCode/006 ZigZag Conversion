@@ -1,0 +1,39 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if numRows == 1 or numRows >= len(s):
+            return s
+
+        L = [''] * numRows
+        index, step = 0, 1
+
+        for x in s:
+            L[index] += x
+            if index == 0:
+                step = 1
+            elif index == numRows -1:
+                step = -1
+            index += step
+
+        return ''.join(L)
+        
+        
+# My solution
+class Solution:
+    def convert(self, s: 'str', numRows: 'int') -> 'str':
+        if numRows == 1 or len(s) <= 1: return s
+        if numRows == 2:
+            n = len(s)
+            res = s[slice(0, n, 2)] + s[slice(1, n, 2)]
+            return res
+        t = ['' for i in range(numRows)]
+        index = list(range(numRows)) + list(range(numRows - 2, 0, -1))
+        for i, j in enumerate(s):
+            k = i % (2 * numRows - 2)
+            t[index[k]] += j
+        res = ''.join(t)
+        return res
