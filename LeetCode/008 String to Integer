@@ -1,0 +1,23 @@
+class Solution:
+    def myAtoi(self, str: 'str') -> 'int':
+        s = str.lstrip(' ')
+        res = 0
+        if len(s) == 0:
+            return res
+        positive = 1
+        if s[0] == '+' or s[0] == '-':
+            if s[0] == '-':
+                positive = -1
+            s = s[1:]
+        for i in s:
+            if '0' <= i <= '9':
+                res = res * 10 + ord(i) - ord('0')
+            else:
+                break
+        t = 2 ** 31 - 1
+        if positive == 1 and res > t:
+            return t
+        if positive == -1 and res > t + 1:
+            return -t-1
+        return positive * res
+            
