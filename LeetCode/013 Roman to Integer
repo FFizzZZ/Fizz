@@ -1,0 +1,21 @@
+class Solution:
+    def romanToInt(self, s: 'str') -> 'int':
+        dic = {'I' : 1, 'V' : 5, 'X' : 10, 'L' : 50, 'C' : 100, 'D' : 500, 'M' : 1000}
+        res = 0
+        n = len(s)
+        for i in range(n - 1):
+            if dic[s[i]] < dic[s[i+1]]:
+                res -= dic[s[i]]
+            else:
+                res += dic[s[i]]
+        return res + dic[s[n-1]]
+
+
+
+###
+d = {'M':1000, 'D':500, 'C':100, 'L':50, 'X':10, 'V':5, 'I':1}
+def romanToInt(self, s):
+    res, p = 0, 'I'
+    for c in s[::-1]:
+        res, p = res - d[c] if d[c] < d[p] else res + d[c], c
+    return res
