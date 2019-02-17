@@ -1,0 +1,45 @@
+class Solution:
+    def generateParenthesis(self, n: 'int') -> 'List[str]':
+        count = 0
+        output = []
+        def f(s, count, p):
+            if count == 2 * n:
+                output.append(s)
+            else:
+                if p == count - p:
+                    f(s + '(', count + 1, p + 1)
+                else:
+                    f(s + ')', count + 1, p)
+                    if p < n:
+                        f(s + '(', count + 1, p + 1)
+        f('', 0, 0)
+        return output
+        
+        
+# Solution, similar
+class Solution(object):
+    def generateParenthesis(self, N):
+        ans = []
+        def backtrack(S = '', left = 0, right = 0):
+            if len(S) == 2 * N:
+                ans.append(S)
+                return
+            if left < N:
+                backtrack(S+'(', left+1, right)
+            if right < left:
+                backtrack(S+')', left, right+1)
+
+        backtrack()
+        return ans
+        
+        
+ # Closure Number
+ class Solution(object):
+    def generateParenthesis(self, N):
+        if N == 0: return ['']
+        ans = []
+        for c in xrange(N):
+            for left in self.generateParenthesis(c):
+                for right in self.generateParenthesis(N-1-c):
+                    ans.append('({}){}'.format(left, right))
+        return ans
