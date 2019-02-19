@@ -28,6 +28,32 @@ class Solution(object):
 ###
 class Solution(object):
     def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 3:
+            return []
+        nums.sort()
+        res = []
+        for i, v in enumerate(nums[:-2]):
+            if i >= 1 and v == nums[i-1]:
+                continue
+            d = {}
+            log = []
+            for x in nums[i+1:]:
+                if x not in d:
+                    d[-v-x] = 1
+                else:
+                    if x not in log:
+                        res.append([v, -v-x, x])
+                        log.append(x)
+        return res
+        
+        
+###
+class Solution(object):
+    def threeSum(self, nums):
         res = []
         nums.sort()
         for i in range(len(nums)-2):
