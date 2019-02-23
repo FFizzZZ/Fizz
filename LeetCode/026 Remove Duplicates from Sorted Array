@@ -13,20 +13,6 @@ class Solution:
         return count
 
 
-###     
-class Solution(object):
-    def removeDuplicates(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        idx = 0
-        for num in nums:
-            if idx < 1 or num != nums[idx-1]:
-                nums[idx] = num
-                idx += 1
-        return idx
-
 
 ###
 class Solution:
@@ -42,3 +28,32 @@ class Solution:
                 i += 1
                 j += 1
         return i + 1
+        
+###        
+class Solution:
+    def removeDuplicates(self, nums: 'List[int]') -> 'int':
+        if not nums:
+            return 0
+        i = 0
+        for j in range(len(nums)):
+            if nums[j] != nums[i]:
+                nums[i+1] = nums[j]
+                i += 1           
+        return i + 1
+        
+        
+###     
+class Solution(object):
+    def removeDuplicates(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        idx = 0
+        for num in nums:
+            if idx < 1 or num != nums[idx-1]:
+                nums[idx] = num
+                idx += 1
+        return idx
+
+
