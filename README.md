@@ -9,6 +9,7 @@ UNFINISHED\
 015 3Sum & ...Sum   Not fast enough\
 018 4Sum\
 022 Closure NUmber (3) Closure Number
+KMP
 
 
 POINTS\
