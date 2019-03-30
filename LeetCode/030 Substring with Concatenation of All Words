@@ -1,0 +1,83 @@
+class Solution:
+    def findSubstring(self, s: str, words: List[str]) -> List[int]:
+        if not words: return []
+        d1 = {}
+        for i in range(len(words)):
+            if words[i] not in d1:
+                d1[words[i]] = 1
+            else:
+                d1[words[i]] += 1
+        m = len(words[0])
+        n = len(words)
+        res = []
+        i = 0
+        while i <= len(s) - n * m:
+            d2 = {}
+            for j in range(1, len(words)+1):
+                word = s[i+m*(j-1):i+j*m]
+                if word not in d1:
+                    break
+                else:
+                    if word not in d2:
+                        d2[word] = 1
+                    else:
+                        d2[word] += 1
+                if d2[word] > d1[word]:
+                    break
+                if j == n:
+                    res.append(i)
+            i += 1
+        return res
+
+
+
+
+----------------------------------------
+
+
+class Solution(object):
+    def findSubstring(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        if len(words) == 0 or len(s) < len(words) * len(words[0]):
+            return []
+        
+        res, n, m, word_len = [], len(s), len(words), len(words[0])
+        maps = collections.Counter(words)
+        
+        for i in range(word_len):
+            cur_map, count, start, cur = {}, 0, i, i
+            while cur + word_len <= n:
+                cur_str = s[cur:cur+word_len]
+                if cur_str in maps:
+                    cur_map[cur_str] = cur_map.get(cur_str, 0) + 1     
+                    if cur_map[cur_str] <= maps[cur_str]:
+                        count += 1
+                    while cur_map[cur_str] > maps[cur_str]:
+                        begin_str = s[start:start+word_len]
+                        cur_map[begin_str] -= 1
+                        start += word_len
+                        if cur_map[begin_str] < maps[begin_str]:
+                            count -= 1
+                    if count == m:
+                        res.append(start)
+                        begin_str = s[start:start+word_len]
+                        cur_map[begin_str] -= 1
+                        start += word_len
+                        count -= 1
+                else:
+                    cur_map, count, start = {}, 0, cur + word_len
+                cur += word_len
+                
+        return res
+
+
+
+
+
+
+
+
