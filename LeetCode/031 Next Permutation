@@ -1,0 +1,40 @@
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        flag = 1
+        for i in range(len(nums)-1, 0, -1):
+            temp = sorted(nums[i:len(nums)])
+            for j in range(len(temp)):
+                if temp[j] > nums[i-1]:
+                    temp[j], nums[i-1] = nums[i-1], temp[j]
+                    nums[i:len(nums)] = sorted(temp)
+                    flag = 0
+                    break
+            if flag == 0: break
+        if flag: nums.sort()
+        
+
+
+
+---------------------------------------------------------------
+
+
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        flag = 1
+        for i in range(len(nums)-1, 0, -1):
+            if nums[i] > nums[i-1]:
+                for j in range(len(nums)-1, i-1, -1):
+                    if nums[j] > nums[i-1]:
+                        nums[j], nums[i-1] = nums[i-1], nums[j]
+                        nums[i:len(nums)] = nums[i:len(nums)][::-1]
+                        flag = 0
+                        break
+            if flag == 0: break
+        if flag: nums.sort()
+        
