@@ -10,7 +10,7 @@ UNFINISHED
 * 018 4Sum\
 * 022 Closure NUmber (3) Closure Number\
 * KMP Algorithm\
-* 033 Binary Search
+* 033&034 Binary Search
 
 
 POINTS\
