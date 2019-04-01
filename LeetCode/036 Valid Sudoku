@@ -1,0 +1,24 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        for i in board:
+            counts = [i.count(x) for x in i if x != '.']
+            if sum(counts) != len(counts):
+                return False
+        for i in range(9):
+            col = [x[i] for x in board]
+            counts = [col.count(x) for x in col if x != '.']
+            if sum(counts) != len(counts):
+                return False
+        for i in range(3):
+            row = board[3*i:3*(i+1)]
+            for j in range(3):
+                temp = [x[3*j:3*(j+1)] for x in row]
+                square = temp[0] + temp[1] + temp[2]
+                counts = [square.count(x) for x in square if x != '.']
+                if sum(counts) != len(counts):
+                    return False
+        return True
+            
+                    
+                
+--------------------------------
