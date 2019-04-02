@@ -15,6 +15,9 @@ class Solution:
         return res[n-1]
 
 
+How to prove that the following sequence will never contains number greater than 3:
+https://math.stackexchange.com/questions/1409062/how-to-prove-that-the-following-sequence-will-never-contains-number-greater-than?newreg=30914ceb78ca4f38aa31de4416e3efdf
+
 -------------------------------
 
 * Solution 1 ... using a regular expression
