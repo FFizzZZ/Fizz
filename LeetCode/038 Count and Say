@@ -1,0 +1,18 @@
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        res = ['1', '11', '21', '1211']
+        for i in range(4, n):
+            last = res[i-1]
+            cur = ''
+            index = 0
+            for j in range(1, len(last)):
+                if last[j] != last[j-1]:
+                    cur += str(j - index) + last[j-1]
+                    index = j
+                if j == len(last) - 1:
+                    cur += str(j - index + 1) + last[j]
+            res.append(cur)
+        return res[n-1]
+
+
+-------------------------------
