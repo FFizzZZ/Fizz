@@ -1,0 +1,38 @@
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates.sort()
+        n = len(candidates)
+        def f(stack, target, index):
+            if target == 0:
+                if stack not in res:
+                    res.append(stack)
+                return
+            for i in range(index+1, n):
+                temp = candidates[i]
+                if temp > target: break
+                f(stack+[temp], target-temp, i)
+        f([], target, -1)
+        return res
+        
+_________________
+
+
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates.sort()
+        n = len(candidates)
+        def help(target, i, stack):
+            if target == 0:
+                res.append(stack)
+                return 
+            for j in range(i, n):
+                if j > i and candidates[j] == candidates[j - 1]: continue
+                if candidates[j] > target: break
+                if stack and candidates[j] < stack[-1]: continue
+                else:
+                    help(target - candidates[j], j + 1, stack + [candidates[j]])
+
+        help(target, 0, [])
+        return res
