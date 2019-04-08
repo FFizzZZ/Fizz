@@ -1,0 +1,16 @@
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        nums.sort()
+        index = sum([i <= 0 for i in nums])
+        temp = []
+        for i in nums[index:]:
+            if i not in temp:
+                temp.append(i)
+        res = [i + 1 - j for i, j in enumerate(temp)]
+        if any(res):
+            return [i != 0 for i in res].index(1) + 1
+        else:
+            return len(res) + 1
+        
+-------------------
+
