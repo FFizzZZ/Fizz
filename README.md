@@ -12,6 +12,7 @@ UNFINISHED
 * KMP Algorithm
 * 033&034 Binary Search
 * 037 Sudoku Solver
+* 042 Trapping Rain Water
 
 
 POINTS\
