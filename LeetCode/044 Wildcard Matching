@@ -1,0 +1,21 @@
+# exceeded time limit
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        def f(string, pattern):
+            if not string:
+                if not pattern: return True
+                elif pattern[0] == '*': return f(string, pattern[1:])
+                else: return False
+            if not pattern:
+                if string: return False
+                else: return True
+            if pattern[0] == string[0]:
+                return f(string[1:], pattern[1:])
+            elif pattern[0] == '?':
+                return f(string[1:], pattern[1:])
+            elif pattern[0] == '*':
+                return f(string[1:], pattern) or f(string, pattern[1:])
+            else:
+                return False
+        return f(s, p)
+------------------------------------
