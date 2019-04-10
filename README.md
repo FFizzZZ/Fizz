@@ -13,6 +13,7 @@ UNFINISHED
 * 033&034 Binary Search
 * 037 Sudoku Solver
 * 042 Trapping Rain Water
+* 043 Multiply Strings
 
 
 POINTS\
