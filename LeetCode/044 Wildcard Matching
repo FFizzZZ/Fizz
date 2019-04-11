@@ -18,4 +18,27 @@ class Solution:
             else:
                 return False
         return f(s, p)
+        
+# I can't figure out why this one doesn't work!!!
+class Solution(object):
+    def isMatch(self, text, pattern):
+        dp = {}
+        def f(i, j):
+            if (i, j) in dp:
+                return dp[(i, j)]
+            if j == len(pattern):
+                res = i == len(text)
+            else:
+                first_match = i < len(text) and pattern[j] in ['.', text[i]]
+                if j < len(pattern) - 1 and pattern[j+1] == '*':
+                    res = f(i, j+2) or first_match and f(i+1, j)
+                else:
+                    res = first_match and f(i+1, j+1)
+                dp[(i, j)] = res
+            return res
+        return f(0, 0)
+                
 ------------------------------------
+
+
+
