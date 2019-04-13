@@ -17,4 +17,16 @@ class Solution:
         return min(res)
     
 -----------------------------------------------------
+# 顺藤摸瓜
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        step = 0
+        temp = 0
+        end = 0
+        for i in range(len(nums)-1):
+            temp = max(temp, nums[i] + i)
+            if i == end:
+                end = temp
+                step += 1
+        return step
 
