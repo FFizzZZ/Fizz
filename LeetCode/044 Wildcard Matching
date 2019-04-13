@@ -20,6 +20,7 @@ class Solution:
                 
 ------------------------------------
 # 99%, fast
+# use two pointers, one for string and one for pattern
 class Solution(object):
     def isMatch(self, s, p):
         """
