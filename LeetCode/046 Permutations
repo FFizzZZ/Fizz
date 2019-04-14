@@ -12,3 +12,13 @@ class Solution:
         
 -----------------------------------------------
 
+class Solution(object):
+    def permute(self, nums):
+        res = [[]]
+        for i in nums:
+            new = []
+            for j in res:
+                for k in range(len(j)+1):
+                    new.append(j[:k]+[i]+j[k:])
+            res = new
+        return res
