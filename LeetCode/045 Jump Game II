@@ -30,3 +30,16 @@ class Solution:
                 step += 1
         return step
 
+# 顺挂摸藤，最后两个cases不通过
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        p = len(nums) - 1
+        leftmost = len(nums) - 1
+        steps = 0
+        while p > 0:
+            for i in range(len(nums)):
+                if i + nums[i] >= p:
+                    p = i
+                    steps += 1
+                    break
+        return steps
