@@ -30,9 +30,10 @@ class Solution:
                 step += 1
         return step
 
-# 顺挂摸藤，最后两个cases不通过
+# 顺挂摸藤，必须排掉较差的情况，否则超过时间限制
 class Solution:
     def jump(self, nums: List[int]) -> int:
+        if all([x == 1 for x in nums]): return len(nums) - 1
         p = len(nums) - 1
         leftmost = len(nums) - 1
         steps = 0
