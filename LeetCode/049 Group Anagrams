@@ -1,0 +1,13 @@
+# 注意字典的key不能是可变的，所以用tuple
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = {}
+        for i in strs:
+            temp = tuple(sorted(i))
+            if temp not in res:
+                res[temp] = [i]
+            else:
+                res[temp].append(i)
+        return list(res.values())
+
+--------------------------------------
