@@ -39,6 +39,21 @@ class Solution:
             ans.setdefault(tuple(count), []).append(s)
         return list(ans.values())
         
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        anas = {}
+        for string in strs:
+            s = ''.join(sorted(string))
+            if s in anas:
+                anas[s].append(string)
+            else:
+                anas[s] = [string]
+        return list(anas.values())
+        
         
         
 算术基本定理，又称为正整数的唯一分解定理，即：每个大于1的自然数，要么本身就是质数，要么可以写为2个以上的质数的积，而且这些质因子按大小排列之后，写法仅有一种方式。
