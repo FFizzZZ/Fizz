@@ -1,0 +1,22 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        count = 0
+        d = []
+        res = 1
+        while count < abs(n):
+            if not d:
+                res *= x
+                count += 1
+                d.append([1, res])
+            else:
+                i = len(d) - 1
+                while d[i][0] > abs(n) - count:
+                    i -= 1
+                count += d[i][0]
+                res *= d[i][1]
+                if count > d[-1][0]:
+                    d.append([count, res])
+        if n < 0: res = 1 / res
+        return res
+--------------------------
+
