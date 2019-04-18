@@ -18,6 +18,26 @@ class Solution:
                     d.append([count, res])
         if n < 0: res = 1 / res
         return res
+        
+        
+class Solution:
+    def myPow(self, x, n):
+        if n == 0: return 1
+        elif abs(n) == 1:
+            if n == 1: return x
+            else: return 1 / x
+        else:   
+            l = bin(abs(n))[2:]
+            component = [x]
+            for i in range(len(l)):
+                component.append(component[-1] * component[-1])
+            res = 1
+            for i in range(len(l)):
+                if l[i] == '1':
+                    res *= component[len(l)-1-i]
+            if n < 0: res = 1 / res
+            return res
+                
 --------------------------
 
 Recursive:
