@@ -1,0 +1,31 @@
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        res = []
+        def f(path, remain):
+            if not remain:
+                res.append(path)
+                return
+            for i in range(len(remain)):
+                l = len(path)
+                t = remain[i]
+                flag = 1
+                for j in range(l):
+                    if path[~j] in (t+j+1, t-j-1):
+                        flag = 0
+                        break
+                if flag:
+                    f(path+[t], remain[:i] + remain[i+1:])
+        f([], [i for i in range(n)])
+        ans = []
+        for i in res:
+            temp = []
+            for j in i:
+                t = ['.'] * n
+                t[j] = 'Q'
+                temp.append(''.join(t))
+            ans.append(temp)
+        return ans
+                        
+                
+            
+            
