@@ -15,6 +15,7 @@ UNFINISHED
 * 042 Trapping Rain Water
 * 043 Multiply Strings
 * 044 Wildcard Matching: cannot understand the third method.
+* 054 Spiral Matrix: haven't coded it by myself
 
 POINTS\
 the 32-bit signed integer range: [−2^31,  2^31 − 1].\
