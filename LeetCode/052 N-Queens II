@@ -1,0 +1,15 @@
+class Solution:
+    def totalNQueens(self, n: int) -> int:
+        res = [0]
+        def dfs(queens, ddiff, ssum):
+            p = len(queens)
+            if p == n:
+                res[0] += 1
+                return
+            for q in range(n):
+                if q in queens or p - q in ddiff or p + q in ssum: continue
+                dfs(queens + [q],
+                    ddiff + [p - q],
+                    ssum + [p + q])
+        dfs([], [], [])
+        return res[0]
