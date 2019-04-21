@@ -31,20 +31,18 @@ class Solution:
 # Morris Traversal
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        cur = root
         res = []
+        cur = root
         while cur:
             if not cur.left:
                 res.append(cur.val)
                 cur = cur.right
             else:
-                t = cur.left
-                while t.right:
-                    t = t.right
-                t.right = cur
-                temp = cur
-                cur = cur.left
-                temp.left = None
+                left = temp = cur.left
+                while left.right:
+                    left = left.right
+                cur.left = None        # pay attention!
+                left.right, cur = cur, temp
         return res
         
         
