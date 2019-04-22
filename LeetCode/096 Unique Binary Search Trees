@@ -28,7 +28,8 @@ class Solution:
         return res[n]
 
 
-# Catalan Number  (2n)!/((n+1)!*n!)  
+# Catalan Number  (2n)!/((n+1)!*n!) 
+https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%A1%94%E5%85%B0%E6%95%B0
 class Solution:
     def numTrees(self, n):
         return math.factorial(2*n)/(math.factorial(n)*math.factorial(n+1))
