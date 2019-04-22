@@ -1,0 +1,18 @@
+# slow
+class Solution:
+    def numTrees(self, n: int) -> int:
+        memo = {}
+        if n == 0: return 0
+        def f(start, end):
+            if (start, end) in memo:
+                return memo[(start, end)]
+            if start >= end : return 1
+            count = 0
+            for i in range(start, end+1):
+                left, right = f(start, i-1), f(i+1, end)
+                count += left * right
+            memo[(start, end)] = count
+            return count
+        return f(1, n)
+        
+-------------------------------------------------------------
