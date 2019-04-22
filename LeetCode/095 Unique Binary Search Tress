@@ -39,7 +39,7 @@ class Solution:
 
 ---------------------------
 
-# 
+# I don't understand
 class Solution:
     def generateTrees(self, n):
         if n == 0:
