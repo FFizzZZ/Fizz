@@ -17,7 +17,7 @@ UNFINISHED
 * 044 Wildcard Matching: cannot understand the third method.
 * 054 Spiral Matrix: haven't coded it by myself
 
-POINTS\
+POINTS
 * the 32-bit signed integer range: [−2^31,  2^31 − 1].\
 * or < and < not  (Test case: 1 or 5 and 4  v.s (1 or 5) and 4)
 * global and nonlocal: https://m.pythontab.com/article/1359
