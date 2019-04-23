@@ -1,0 +1,32 @@
+```
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if not head: return None
+        if not head.next: return head
+        node = ListNode(0)
+        node.next = head
+        tail = node
+        tail = tail.next
+        while tail.next:
+            temp = node.next
+            node.next = tail.next
+            tail.next = tail.next.next
+            node.next.next = temp
+        return node.next
+```
+        
+-----------------------------------------------------
+ 
+# Iterative
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        pre = None
+        cur = head
+        while cur:
+            temp = cur.next
+            cur.next = pre
+            pre = cur
+            cur = temp
+        return pre
+        
+# Recursive
