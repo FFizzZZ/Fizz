@@ -16,3 +16,4 @@ POINTS
 * or < and < not  (Test case: 1 or 5 and 4  v.s (1 or 5) and 4)
 * global and nonlocal: https://m.pythontab.com/article/1359
 * sys.maxsize, float('inf')
+* Euclidean algorithm: 辗转相除法 http://www.voidcn.com/article/p-gkmtgvkr-hd.html
