@@ -7,7 +7,7 @@ class Solution(object):
         return self.isValidBST(root.left, root.val, right) and self.isValidBST(root.right, left, root.val)
 ```
     
----------------------------------------
+---------------------------
 
 ## 检验中序排序是否严格递增
 ```
