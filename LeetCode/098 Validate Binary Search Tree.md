@@ -10,7 +10,8 @@ class Solution(object):
     
 ---------------------------------------
 
-# 检验中序排序是否严格递增
+## 检验中序排序是否严格递增
+```
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         inorder = []
@@ -25,3 +26,4 @@ class Solution:
             if inorder[i-1] >= inorder[i]:
                 return False
         return True
+```
