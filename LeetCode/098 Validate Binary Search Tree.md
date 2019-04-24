@@ -30,13 +30,8 @@ class Solution:
 ```
 class Solution:
     def isValidBST(self, root):
-        """
-        :type root: TreeNode
-        :rtype: bool
-        """
         if not root:
-            return True
-            
+            return True     
         stack = [(root, -sys.maxsize, sys.maxsize), ] 
         while stack:
             root, lower_limit, upper_limit = stack.pop()
