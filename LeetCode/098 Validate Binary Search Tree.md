@@ -4,8 +4,7 @@ class Solution(object):
         if not root: return True
         if root.val >= left or root.val <= right:
             return False
-        return self.isValidBST(root.left, min(left, root.val), right) and \
-    self.isValidBST(root.right, left, max(right, root.val))
+        return self.isValidBST(root.left, root.val, right) and self.isValidBST(root.right, left, root.val)
 ```
     
 ---------------------------------------
