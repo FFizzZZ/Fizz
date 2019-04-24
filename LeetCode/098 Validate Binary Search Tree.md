@@ -1,3 +1,4 @@
+```
 class Solution(object):
     def isValidBST(self, root, left = float('inf'), right = float('-inf')):
         if not root: return True
@@ -5,6 +6,7 @@ class Solution(object):
             return False
         return self.isValidBST(root.left, min(left, root.val), right) and \
     self.isValidBST(root.right, left, max(right, root.val))
+```
     
 ---------------------------------------
 
