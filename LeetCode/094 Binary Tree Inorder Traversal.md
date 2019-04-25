@@ -30,8 +30,9 @@ class Solution:
             cur = cur.right
         return res
 ```
-```
+
 ## Morris Traversal
+```
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
