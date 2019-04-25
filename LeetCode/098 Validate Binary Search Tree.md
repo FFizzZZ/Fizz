@@ -26,7 +26,7 @@ class Solution:
                 return False
         return True
 ```
-## Inorder with stack
+## 上一个方法的改进，只需记录最后一个inorder值即可
 ```
 class Solution:
     def isValidBST(self, root):
