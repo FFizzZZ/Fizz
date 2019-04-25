@@ -1,4 +1,5 @@
-# Recursive
+## Recursive
+```
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -11,9 +12,10 @@ class Solution:
                 f(x.right)
         f(root)
         return res
-        
+```
 ------------------------------------------------
-# Stack
+## Stack
+```
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -27,8 +29,9 @@ class Solution:
             res.append(cur.val)
             cur = cur.right
         return res
-        
-# Morris Traversal
+```
+```
+## Morris Traversal
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         res = []
@@ -44,5 +47,5 @@ class Solution:
                 cur.left = None        # pay attention!
                 left.right, cur = cur, temp
         return res
-        
+```
         
