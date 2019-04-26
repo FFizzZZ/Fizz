@@ -1,0 +1,13 @@
+```
+class Solution:
+    def replaceSpace(self, s):
+        # write code here
+        l = list(s)
+        i = 0
+        while i < len(l):
+            if l[i] == ' ':
+                l = l[:i] + list('%20') + l[i+1:]
+                i += 2
+            i += 1
+        return ''.join(l)
+```
