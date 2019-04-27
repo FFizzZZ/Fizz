@@ -1,4 +1,5 @@
 ## Binary Search
+left指向前面的数组，right指向后面的数组。当mid, left, right的数值相同时，无法判断。
 ```
 class Solution:
     def findMin(self, nums: List[int]) -> int:
