@@ -1,3 +1,4 @@
+## Binary Search
 ```
 class Solution(object):
     def findMin(self, nums):
