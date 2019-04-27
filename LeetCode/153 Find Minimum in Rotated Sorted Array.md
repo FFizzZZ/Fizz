@@ -1,3 +1,18 @@
+```
+class Solution(object):
+    def findMin(self, nums):
+        left, right = 0, len(nums) - 1
+        if nums[right] > nums[0]:
+            return nums[0]
+        while right > left:
+            mid = (right + left) // 2
+            if nums[mid] >= nums[0]:
+                left = mid + 1
+            else:
+                right = mid
+        return nums[right]
+```
+
 ## Binary Search
 ```
 class Solution(object):
