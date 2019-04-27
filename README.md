@@ -10,6 +10,7 @@ UNFINISHED
 * 043 Multiply Strings
 * 044 Wildcard Matching: cannot understand the third method.
 * 054 Spiral Matrix: haven't coded it by myself
+* 154 Find Minimum in Rotated Sorted Array: duplicate
 
 POINTS
 * the 32-bit signed integer range: [−2^31,  2^31 − 1].\
