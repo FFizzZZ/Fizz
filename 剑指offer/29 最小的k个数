@@ -1,0 +1,29 @@
+## Partition
+```
+class Solution:
+    def GetLeastNumbers_Solution(self, tinput, k):
+        if k > len(tinput) or k < 1: return []
+        def partition(start, end):
+            if start == end: return start
+            mid = (start + end) // 2
+            tinput[end], tinput[mid] = tinput[mid], tinput[end]
+            small = start - 1
+            for i in range(start, end):
+                if tinput[i] < tinput[end]:
+                    small += 1
+                    if i != small:
+                        tinput[small], tinput[i] = tinput[i], tinput[small]
+            small += 1
+            tinput[small], tinput[end] = tinput[end], tinput[small]
+            return small 
+        start, end = 0, len(tinput)-1
+        index = partition(start, end)
+        while index != k-1:
+            if index > k-1:
+                end = index - 1
+                index = partition(start, end)
+            else:
+                start = index + 1
+                index = partition(start, end)
+        return sorted(tinput[:k])
+```
