@@ -16,4 +16,4 @@ def k(nums):
     return k([x % m for x in nums if x != m and x != 0] + [m])
 ```
 
-最小公倍数 = $\times$
+最小公倍数 = 两数乘积 ➗ 最大公约数
