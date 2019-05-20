@@ -21,4 +21,5 @@ POINTS
 * sys.maxsize, float('inf')
 * Euclidean algorithm 辗转相除法 http://www.voidcn.com/article/p-gkmtgvkr-hd.html  
   最小公倍数=两整数的乘积÷最大公约数
+* 0 ^ n = n
   
