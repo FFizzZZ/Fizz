@@ -1,4 +1,5 @@
 # Recursion
+```
 class Solution:
     def isMatch(self, s: 'str', p: 'str') -> 'bool':
         if not p: return not s
@@ -8,8 +9,10 @@ class Solution:
             return (self.isMatch(s, p[2:]) or first_match and self.isMatch(s[1:], p))
         else:
             return first_match and self.isMatch(s[1:], p[1:])
+```
             
-# Dynamic Programming           
+# Dynamic Programming
+```
 class Solution(object):
     def isMatch(self, text, pattern):
         log = {}
@@ -28,7 +31,7 @@ class Solution(object):
                     log[(i,j)] = res
             return res
         return dp(0, 0)
-            
+```
             
 # Solutions
 # Dynamic Programming
@@ -36,6 +39,7 @@ class Solution(object):
 # text[i:] and pattern[j:] match? We can describe our answer in terms of answers to questions involving smaller strings.
 #
 # Top-down Variation
+```
 class Solution(object):
     def isMatch(self, text, pattern):
         memo = {}
@@ -54,9 +58,11 @@ class Solution(object):
             return memo[i, j]
 
         return dp(0, 0)
+```
 #
 #
 # Bottom-up
+```
 class Solution(object):
     def isMatch(self, text, pattern):
         dp = [[False] * (len(pattern) + 1) for _ in range(len(text) + 1)]
@@ -71,3 +77,4 @@ class Solution(object):
                     dp[i][j] = first_match and dp[i+1][j+1]
 
         return dp[0][0]
+```
