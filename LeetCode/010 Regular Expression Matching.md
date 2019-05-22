@@ -34,10 +34,9 @@ class Solution(object):
 ```
             
 # Solutions
-# Dynamic Programming
-# As the problem has an optimal substructure, it is natural to cache intermediate results. We ask the question dp(i, j): does 
-# text[i:] and pattern[j:] match? We can describe our answer in terms of answers to questions involving smaller strings.
-#
+Dynamic Programming
+As the problem has an optimal substructure, it is natural to cache intermediate results. We ask the question dp(i, j): does 
+text[i:] and pattern[j:] match? We can describe our answer in terms of answers to questions involving smaller strings.
 # Top-down Variation
 ```
 class Solution(object):
