@@ -25,3 +25,22 @@ def heapsort(A):
         heap_size -= 1
         max_heapify(A, heap_size, 0)
 ```
+
+## max_heapify 的非递归写法 
+```
+def MaxHeap(alist):
+    length = len(alist)
+    if length <= 1: return alist
+    for i in range(length//2-1, -1, -1):
+        print(alist)
+        k = i; temp = alist[k]; heap = False
+        while not heap and 2*k < length-1:
+            index = 2*k+1
+            if index < length - 1:
+                if alist[index] < alist[index + 1]: index += 1
+            if temp >= alist[index]: heap = True
+            else:
+                alist[k] = alist[index]
+                k = index
+        alist[k] = temp
+```
