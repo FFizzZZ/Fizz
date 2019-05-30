@@ -28,19 +28,19 @@ def heapsort(A):
 
 ## max_heapify 的非递归写法 
 ```
-def MaxHeap(alist):
-    length = len(alist)
-    if length <= 1: return alist
-    for i in range(length//2-1, -1, -1):
-        print(alist)
-        k = i; temp = alist[k]; heap = False
-        while not heap and 2*k < length-1:
-            index = 2*k+1
-            if index < length - 1:
-                if alist[index] < alist[index + 1]: index += 1
-            if temp >= alist[index]: heap = True
+def maxheapify(A):
+    length = len(A)
+    if length <= 1: return A
+    for i in range(length//2, -1, -1):
+        index = i; val = A[i]; flag = 0
+        while not flag and 2 * index + 1 < length:
+            temp = 2 * index + 1
+            if temp + 1 < length and A[temp+1] > A[temp]: 
+                temp += 1
+            if A[temp] <= val: 
+                flag = 1
             else:
-                alist[k] = alist[index]
-                k = index
-        alist[k] = temp
+                A[index] = A[temp]
+                index = temp
+        A[index] = val
 ```
