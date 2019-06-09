@@ -22,6 +22,22 @@ class Solution:
         return left + [[s, e]] + right
 ```
 
+```
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        left, right = [], []
+        l, r = newInterval
+        for i in intervals:
+            if i[1] < l:
+                left.append(i)
+            elif i[0] > r:
+                right.append(i)
+            else:
+                l = min(l, i[0])
+                r = max(r, i[1])
+        return left + [[l, r]] + right
+```
+
 ## too complicated, written by myself
 ```
 class Solution:
