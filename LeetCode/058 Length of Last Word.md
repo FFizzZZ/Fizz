@@ -1,3 +1,4 @@
+## left to right
 ```
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
@@ -14,13 +15,14 @@ class Solution:
                 count += 1
         return count
 ```
-
+## Built-in
 ```
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
         return len(s.rstrip(' ').split(' ')[-1])
 ```
 
+## right to left
 ```
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
