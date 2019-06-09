@@ -9,7 +9,20 @@ class Solution:
             e = max(e, intervals[~len(right)][1])
         return left + [[s, e]]+ right
 ```
+```
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        s, e = newInterval
+        parts = merge, left, right = [], [], []
+        for i in intervals:
+            parts[(i[1] < s) - (i[0] > e)].append(i)
+        if merge:
+            s = min(s, merge[0][0])
+            e = max(e, merge[-1][1])
+        return left + [[s, e]] + right
+```
 
+## too complicated, written by myself
 ```
 class Solution:
     def insert(self, intervals, newInterval):
