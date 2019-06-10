@@ -1,20 +1,20 @@
 ```
 class Solution:
-    def rotateRight(self, head: ListNode, k: int) -> ListNode:
-        if not head: return None
-        end = head
-        count = 1
-        while end.next:
-            end = end.next
-            count += 1
-        end.next = head
-        p = head
-        k = k % count
-        for _ in range(count - k - 1):
-            p = p.next
-        ans = p.next
-        p.next = None
-        return ans
+    def uniquePaths(self, m: int, n: int) -> int:
+        d = {}
+        def move(i, j):
+            if (i, j) in d: return d[(i, j)]
+            if i == m and j == n:
+                return 1
+            else:
+                ans = 0
+                if i + 1 <= m:
+                    ans += move(i+1, j)
+                if j + 1 <= n:
+                    ans += move(i, j+1)
+                d[(i, j)] = ans
+                return ans
+        return move(1, 1)
 ```
 
 ## math
