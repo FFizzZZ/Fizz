@@ -1,4 +1,24 @@
 ```
+class Solution(object):
+    def uniquePathsWithObstacles(self, A):
+        m, n = len(A), len(A[0])
+        d = {}
+        if A[0][0] == 1 or A[-1][-1] == 1: return 0
+        def move(i, j):
+            if (i, j) in d: return d[(i, j)]
+            if i == m - 1 and j == n - 1: return 1
+            if A[i][j] == 1: return 0
+            temp = 0
+            if i + 1 < m:
+                temp += move(i+1, j)
+            if j + 1 < n:
+                temp += move(i, j+1)
+            d[(i, j)] = temp
+            return temp
+        return move(0, 0)
+```
+
+```
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid):
         m, n = len(obstacleGrid), len(obstacleGrid[0])
