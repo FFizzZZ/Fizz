@@ -2,10 +2,6 @@
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid):
         m, n = len(obstacleGrid), len(obstacleGrid[0])
-        if m == 1:
-            return 1 if all([x == 0 for x in obstacleGrid[0]]) else 0
-        if n == 1:
-            return 1 if all([obstacleGrid[i][0] == 0 for i in range(m)]) else 0
         temp = obstacleGrid[-1][::-1]
         if 1 in temp:
             index = temp.index(1)
