@@ -58,3 +58,22 @@ class Solution(object):
                     obstacleGrid[i][j] = 0
         return obstacleGrid[-1][-1]
 ```
+
+```
+class Solution(object):
+    def uniquePathsWithObstacles(self, A):
+        m, n = len(A), len(A[0])
+        if A[0][0] == 1 or A[-1][-1] == 1: return 0
+        A[-1][-1] = 1
+        for i in range(m-2, -1, -1):
+            A[i][-1] = int(A[i+1][-1] and A[i][-1] == 0)
+        for i in range(n-2, -1, -1):
+            A[-1][i] = int(A[-1][i+1] and A[-1][i] == 0)
+        for i in range(m-2, -1, -1):
+            for j in range(n-2, -1, -1):
+                if A[i][j] == 1:
+                    A[i][j] = 0
+                else:
+                    A[i][j] = A[i+1][j] + A[i][j+1]
+        return A[0][0]
+```
