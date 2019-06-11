@@ -13,6 +13,7 @@ UNFINISHED
 * 056 Merge Intervals: haven't inspected the Connected Components Method 
 * 065 
 * 068
+* 069
 * 154 Find Minimum in Rotated Sorted Array: duplicate
 
 
