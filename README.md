@@ -14,6 +14,7 @@ UNFINISHED
 * 065 
 * 068
 * 069
+* 071
 * 154 Find Minimum in Rotated Sorted Array: duplicate
 
 
