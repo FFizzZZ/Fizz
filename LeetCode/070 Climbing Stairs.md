@@ -24,3 +24,23 @@ class Solution:
         d[n] = self.f(n-1, d) + self.f(n-2, d)
         return d[n]
 ```
+
+## Fibonacci Number
+```
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n == 1: return 1
+        first, second = 1, 2
+        for i in range(3, n+1):
+            first, second = second, first + second
+        return second
+```
+
+## Fibonacci Formula
+```
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        return int((((1 + 5 ** 0.5) / 2) ** (n + 1) - ((1 - 5 ** 0.5) / 2) ** (n + 1)) / 5 ** 0.5)
+```
+
+
