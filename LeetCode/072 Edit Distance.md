@@ -14,6 +14,6 @@ class Solution:
                     cur[j] = pre[j-1]
                 else:
                     cur[j] = 1 + min(cur[j-1], pre[j], pre[j-1])
-            pre = cur
-        return cur[-1]
+            pre = cur[:]        # pay attention to [:] !!!!
+        return pre[-1]
 ```
