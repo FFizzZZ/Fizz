@@ -3,15 +3,29 @@
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
         zero, second = -1, len(nums)
-        for i in range(len(nums):
+        for i in range(len(nums)):
+            if i == second: break
             while nums[i] == 2 and i < second:
                 second -= 1
                 nums[i], nums[second] = nums[second], nums[i]
-            while nums[i] == 0 and i > zero:
+            if nums[i] == 0:
                 zero += 1
                 nums[i], nums[zero] = nums[zero], nums[i]
 ```
-
+```
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        zero, second = -1, len(nums)
+        i = 0
+        while i < second:
+            while nums[i] == 2 and i < second:
+                second -= 1
+                nums[i], nums[second] = nums[second], nums[i]
+            if nums[i] == 0 and i > zero:
+                zero += 1
+                nums[i], nums[zero] = nums[zero], nums[i]
+            i += 1
+```
 ```
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
@@ -33,20 +47,6 @@ class Solution:
                 z += 1
                 nums[z] = 2
 ```
-## some change by myself
-```
-class Solution:
-    def sortColors(self, nums: List[int]) -> None:
-        zero, second = -1, len(nums)
-        i = 0
-        while i < second:
-            while nums[i] == 2 and i < second:
-                second -= 1
-                nums[i], nums[second] = nums[second], nums[i]
-            if nums[i] == 0 and i > zero:
-                zero += 1
-                nums[i], nums[zero] = nums[zero], nums[i]
-            i += 1
-```
+
         
             
