@@ -2,32 +2,32 @@
 ```
 from collections import Counter
 class Solution:
-    def minWindow(self, s, t):
-        if not t or not s:
-            return ""
+    def minWindow(self, s: str, t: str) -> str:
         dict_t = Counter(t)
         required = len(dict_t)
         l, r = 0, 0
-        formed = 0
-        window_counts = {}
-        ans = float("inf"), None, None
+        w = {}
+        count = 0
+        ans = len(s) + 1, None, None
         while r < len(s):
-            character = s[r]
-            window_counts[character] = window_counts.get(character, 0) + 1
-            if character in dict_t and window_counts[character] == dict_t[character]:
-                formed += 1
-            while l <= r and formed == required:
-                character = s[l]
+            val = s[r]
+            if val in dict_t:
+                w[val] = w.get(val, 0) + 1
+                if w[val] == dict_t[val]:
+                    count += 1
+            while count == required and l <= r:
+                val = s[l]
                 if r - l + 1 < ans[0]:
-                    ans = (r - l + 1, l, r)
-                window_counts[character] -= 1
-                if character in dict_t and window_counts[character] < dict_t[character]:
-                    formed -= 1
-                l += 1    
-            r += 1    
-        return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
+                    ans = r - l + 1, l, r
+                if val in dict_t:
+                    w[val] -= 1
+                    if w[val] < dict_t[val]:
+                        count -= 1
+                l += 1
+            r += 1
+        return '' if ans[0] == len(s) + 1 else s[ans[1]: ans[2]+1]
 ```
-Optimized version (actually it runs more slowly.....)
+Optimized version：remove all the elements not present in T. (actually it runs more slowly.....)
 ```
 from collections import Counter
 class Solution:
