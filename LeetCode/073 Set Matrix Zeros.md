@@ -14,7 +14,7 @@ class Solution(object):
                 if i in rows or j in cols:
                     matrix[i][j] = 0
 ```
-
+## 用第一行，第一列标记
 ```
 class Solution(object):
     def setZeroes(self, matrix):
@@ -41,4 +41,22 @@ class Solution(object):
         if is_col:
             for i in range(R):
                 matrix[i][0] = 0
+```
+```
+class Solution(object):
+    def setZeroes(self, matrix):
+        r, c = len(matrix), len(matrix[0])
+        flag = 0
+        for i in range(r):
+            if matrix[i][0] == 0:
+                flag = 1
+            for j in range(1, c):
+                if matrix[i][j] == 0:
+                    matrix[i][0] = 0
+                    matrix[0][j] = 0
+        for i in range(r-1, -1, -1):
+            for j in range(c-1, 0, -1):
+                if not matrix[i][0] or not matrix[0][j]:
+                    matrix[i][j] = 0
+            if flag: matrix[i][0] = 0
 ```
