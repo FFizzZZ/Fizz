@@ -25,11 +25,9 @@ class Solution:
             while nums[i] == 2 and i < second:
                 second -= 1
                 nums[i], nums[second] = nums[second], nums[i]
-            while nums[i] == 0 and i > zero:
+            if nums[i] == 0 and i > zero:
                 zero += 1
                 nums[i], nums[zero] = nums[zero], nums[i]
-            while i < zero:
-                i += 1
             i += 1
 ```
         
