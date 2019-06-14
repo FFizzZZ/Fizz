@@ -60,7 +60,7 @@ class Solution:
             r += 1    
         return "" if ans[0] == float("inf") else s[ans[1] : ans[2] + 1]
 ```
-
+## shorter
 ```
 class Solution:
     def minWindow(self, s, t):
