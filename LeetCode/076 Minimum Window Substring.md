@@ -15,10 +15,10 @@ class Solution:
                 w[val] = w.get(val, 0) + 1
                 if w[val] == dict_t[val]:
                     count += 1
-            while count == required and l <= r:
-                val = s[l]
+            while count == required:
                 if r - l + 1 < ans[0]:
                     ans = r - l + 1, l, r
+                val = s[l]
                 if val in dict_t:
                     w[val] -= 1
                     if w[val] < dict_t[val]:
