@@ -42,3 +42,22 @@ class Solution:
             return [[]]
         return [pre + [i] for i in range(k, n + 1) for pre in self.combine(i - 1, k - 1)]
 ```
+
+## interesting
+```
+class Solution:
+    def combine(self, n, k):
+        result = []
+        i = 0
+        p = [0] * k
+        while i >= 0:
+            p[i] += 1
+            if p[i] > n:
+                i -= 1
+            elif i == k - 1:
+                result.append(p[:])
+            else:
+                i += 1
+                p[i] = p[i - 1]
+        return result
+```
