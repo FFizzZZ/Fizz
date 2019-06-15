@@ -9,6 +9,22 @@ class Solution:
                     ans.append(temp + [j])
         return ans
 ```
+```
+class Solution:
+    def combine(self, n, k):
+        ans = []
+        self.f(1, n, k, [], ans)
+        return ans
+    def f(self, start, n, k, path, ans):
+        if len(path) == k:
+            ans.append(path[:])      ## pay attention to [:] here !!!
+            return
+        else:
+            for i in range(start, n - k + len(path) + 2):
+                path.append(i)
+                self.f(i + 1, n, k, path, ans)
+                path.pop()           ## save memory usage 
+```
 
 ## bulit-in
 ```
