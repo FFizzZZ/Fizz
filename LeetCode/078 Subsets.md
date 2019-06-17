@@ -16,9 +16,8 @@ Iterative
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         ans = [[]]
-        for x in nums:
-            for i in range(len(ans)):
-                ans.append(ans[i] + [x])
+        for i in nums:
+            ans += [x + [i] for x in ans]
         return ans
 ```
 Recursive (Backtracking)
