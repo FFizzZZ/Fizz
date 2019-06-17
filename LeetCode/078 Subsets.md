@@ -35,3 +35,17 @@ class Solution:
             self.f(i + 1, nums, path, ans)
             path.pop()
 ```
+
+bit manipulation
+```
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        p =  1 << n
+        ans = [[] for _ in range(p)]
+        for i in range(p):
+            for j in range(n):
+                if (i >> j) & 1:
+                    ans[i].append(nums[j])
+        return ans
+```
