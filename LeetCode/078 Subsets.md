@@ -11,6 +11,17 @@ class Solution:
 ```
 
 ## leetcode
+Iterative
+```
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans = [[]]
+        for x in nums:
+            for i in range(len(ans)):
+                ans.append(ans[i] + [x])
+        return ans
+```
+Recursive (Backtracking)
 ```
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
