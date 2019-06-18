@@ -48,3 +48,18 @@ class Solution:
                     ans[i].append(nums[j])
         return ans
 ```
+```
+class Solution:
+    def subsets(self, nums):
+        ans = []
+        for i in range(2 ** len(nums)):
+            temp = []
+            index = 0
+            while i > 0:
+                if i & 1:
+                    temp.append(nums[index])
+                index += 1
+                i >>= 1
+            ans.append(temp)
+        return ans
+```
