@@ -36,14 +36,13 @@ class Solution:
 ------------------------------
 ```
 class Solution:
-    def permuteUnique(self, nums):
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         ans = [[]]
-        for n in nums:
-            new_ans = []
-            for l in ans:
-                for i in range(len(l)+1):
-                    new_ans.append(l[:i]+[n]+l[i:])
-                    if i<len(l) and l[i]==n: break     #handles duplication
-            ans = new_ans
+        for i in nums:
+            for _ in range(len(ans)):
+                temp = ans.pop(0)
+                for j in range(len(temp) + 1):
+                    ans.append(temp[:j] + [i] + temp[j:])
+                    if j < len(temp) and temp[j] == i: break     # handle duplication
         return ans
 ```
