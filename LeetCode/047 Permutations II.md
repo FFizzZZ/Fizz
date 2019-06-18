@@ -17,8 +17,24 @@ class Solution:
                     self.f(nums[:i] + nums[i+1:], path, ans)
                     path.pop()
 ```
+```
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        self.f(nums, [], ans)
+        return ans
+    def f(self, nums, path, ans):
+        if not nums:
+            ans.append(path[:])
+        else:
+            for i in range(len(nums)):
+                if nums[i] not in nums[:i]:
+                    path.append(nums[i])
+                    self.f(nums[:i] + nums[i+1:], path, ans)
+                    path.pop()
+```
 ------------------------------
-
+```
 class Solution:
     def permuteUnique(self, nums):
         ans = [[]]
@@ -30,3 +46,4 @@ class Solution:
                     if i<len(l) and l[i]==n: break     #handles duplication
             ans = new_ans
         return ans
+```
