@@ -35,6 +35,22 @@ class Solution:
 
 
 ## Manacher’s Algorithm
+```class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        t = '#'.join('$' + s + '^')
+        n = len(t)
+        p = [0] * n
+        c, r = -1, -1
+        for i in range(1, n - 1):
+            p[i] = c + r + 1 > i and min(c + r - i, p[2 * c - i])
+            while t[i + 1 + p[i]] == t[i - 1 - p[i]]:
+                p[i] += 1
+            if i + 1 + p[i] > c + 1 + r:
+                c, r = i, p[i]
+        r = max(p)
+        c = p.index(r)
+        return s[(c - r) // 2 : (c + r) // 2]
+```
 ```
 class Solution:
     #Manacher algorithm
@@ -62,41 +78,4 @@ class Solution:
         # Find the maximum element in P.
         maxLen, centerIndex = max((n, i) for i, n in enumerate(P))
         return s[(centerIndex  - maxLen)//2: (centerIndex  + maxLen)//2]
-```
-        
-```
-class Solution:
-    def longestPalindrome(self, s: 'str') -> 'str':
-        if not s: return ''
-        
-        string = ['#']
-        for i in s:
-            string.append(i)
-            string.append('#')
-        n = len(string)
-        P = [0] * n
-        P[1] = 1
-        c, r = 1, 2
-        for i in range(2, n):
-            i1 = 2 * c - i
-            if P[i1] < r - i:
-                P[i] = P[i1]
-            else:
-                length = r - i
-                P[i] = length
-                u = i + length + 1
-                l = i - length - 1
-                while u <= n-1 and l >= 0:
-                    if string[l] == string[u]:
-                        P[i] += 1
-                        u += 1
-                        l -= 1
-                    else: break
-                c = i
-                r = u - 1
-        index = P.index(max(P))
-        l = (index - P[index]) // 2
-        u = (index + P[index] - 2) // 2
-        res = s[l : u + 1]
-        return res
 ```
