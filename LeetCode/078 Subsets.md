@@ -10,6 +10,23 @@ class Solution:
         return ans + [[]]
 ```
 
+```
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        ans = [[]]
+        temp = [[x] for x in nums]
+        for _ in range(len(nums)):
+            for _ in range(len(temp)):
+                val = temp.pop(0)
+                ans.append(val)
+                index = nums.index(val[-1])
+                for j in range(index + 1, len(nums)):
+                    temp.append(val + [nums[j]])
+        return ans
+```
+
+
+
 ## leetcode
 Iterative
 ```
