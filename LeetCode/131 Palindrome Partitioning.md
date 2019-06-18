@@ -20,8 +20,8 @@ class Solution(object):
         if start in d:
             return d[start]
         ans = []
-        for i in range(start + 1, len(s) + 1):
-            if s[start:i] == s[i-1:start:-1] + s[start]:
+        for i in range(start + 1, len(s) + 1):             # temp = s[start:i]
+            if s[start:i] == s[i-1:start:-1] + s[start]:   # if temp == temp[::-1]
                 for j in self.f(s, i, d):
                     ans.append([s[start:i]] + j)
         ans = ans if ans else [[]]
