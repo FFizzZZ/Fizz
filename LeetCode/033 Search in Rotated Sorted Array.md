@@ -55,6 +55,34 @@ class Solution:
                 r = mid - 1
         return -1
 ```
+another version from others
+```
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        if not nums: return -1
+        n = len(nums)
+        l, r = 0, n - 1
+        if nums[l] > nums[r]:
+            while l < r:
+                mid = (l + r) // 2
+                val = nums[mid]
+                if val >= nums[0]:
+                    l = mid + 1
+                else:
+                    r = mid
+        l, r, temp = 0, n - 1, l
+        while l <= r:
+            mid = (l + r) // 2
+            realmid = (mid + temp) % n
+            val = nums[realmid]
+            if val == target:
+                return realmid
+            elif val < target:
+                l = mid + 1
+            else:
+                r = mid - 1
+        return -1
+```
                 
 
 ## change some elements into inf or -inf
