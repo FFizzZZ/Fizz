@@ -113,21 +113,22 @@ class Solution:
 ```
 class Solution:
     def search(self, nums, target):
-            lo, hi = 0, len(nums)
-            while lo < hi:
-                mid = (lo + hi) // 2
-                if (nums[mid] < nums[0]) == ( target < nums[0]):
-                    if (nums[mid] < target):
-                        lo = mid + 1
-                    elif (nums[mid] > target):
-                        hi = mid
-                    else:
-                        return mid
-                elif target < nums[0]:
-                    lo = mid + 1
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            val = nums[mid]
+            if val == target:
+                return mid
+            if (val < nums[0]) == (target < nums[0]):
+                if val < target:
+                    l = mid + 1
                 else:
-                    hi = mid
-            return -1
+                    r = mid - 1
+            elif target < nums[0]:
+                l = mid + 1
+            else:
+                r = mid - 1
+        return -1
 ```
 
 ## 数组从任意位置劈开后，至少有一半是有序的
