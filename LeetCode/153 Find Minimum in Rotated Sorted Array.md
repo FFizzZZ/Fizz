@@ -15,6 +15,20 @@ class Solution(object):
 
 ## Binary Search
 ```
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
+        while l < r:
+            mid = (l + r) // 2
+            val = nums[mid]
+            if val > nums[-1]:
+                l = mid + 1
+            else:
+                r = mid
+        return nums[r]
+```
+
+```
 class Solution(object):
     def findMin(self, nums):
         if len(nums) == 1:
