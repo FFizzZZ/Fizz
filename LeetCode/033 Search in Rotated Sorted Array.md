@@ -134,26 +134,24 @@ class Solution:
 ```
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        if not nums: return -1
         l, r = 0, len(nums) - 1
         while l <= r:
             mid = (l + r) // 2
-            val = nums[mid]
-            if val == target:
+            if target == nums[mid]:
                 return mid
-            if nums[l] <= nums[mid]:
-                if nums[l] <= target <= nums[mid]:
+            if nums[0] <= nums[mid]:
+                if nums[0] <= target <= nums[mid]:
                     r = mid - 1
                 else:
                     l = mid + 1
             else:
-                if nums[mid] < target <= nums[r]:
+                if nums[mid] <= target <= nums[-1]:
                     l = mid + 1
                 else:
                     r = mid - 1
         return -1
 ```
-
+简化
 ```
 class Solution:
     def search(self, nums, target):
