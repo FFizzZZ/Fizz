@@ -27,6 +27,8 @@ class Solution:
             elif val < nums[r]:
                 r = mid
             else:
+                # add the following one can make sure we find the index of the turning point.
+                # if nums[r] < nums[r - 1]: break
                 r -= 1
         return nums[r]
 ```
