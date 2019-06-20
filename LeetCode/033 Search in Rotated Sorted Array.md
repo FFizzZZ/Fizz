@@ -26,24 +26,22 @@ class Solution:
 ## find the minimum and then use binary search
 ```
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
-        if not nums: return -1
-        if nums[0] < nums[-1]: r = 0
-        else:
-            l, r = 0, len(nums) - 1
-            while l < r:
-                mid = (l + r) // 2
-                val = nums[mid]
-                if val >= nums[0]:
-                    l = mid + 1
-                else:
-                    r = mid
-        if r == 0:
-            l, r = 0, len(nums) - 1
+    def search(self, nums, target):
+        n = len(nums)
+        l, r = 0, n - 1
+        while l < r:
+            mid = (l + r) // 2
+            val = nums[mid]
+            if val > nums[-1]:
+                l = mid + 1
+            else:
+                r = mid
+        if r <= 0:
+            l, r = 0, n - 1
         elif target >= nums[0]:
             l, r = 0, r - 1
         else:
-            l, r = r, len(nums) - 1
+            l, r = r, n - 1
         while l <= r:
             mid = (l + r) // 2
             val = nums[mid]
@@ -58,19 +56,17 @@ class Solution:
 another version from others
 ```
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
-        if not nums: return -1
+    def search(self, nums, target):
         n = len(nums)
         l, r = 0, n - 1
-        if nums[l] > nums[r]:
-            while l < r:
-                mid = (l + r) // 2
-                val = nums[mid]
-                if val >= nums[0]:
-                    l = mid + 1
-                else:
-                    r = mid
-        l, r, temp = 0, n - 1, l
+        while l < r:
+            mid = (l + r) // 2
+            val = nums[mid]
+            if val > nums[-1]:
+                l = mid + 1
+            else:
+                r = mid
+        l, r, temp = 0, n - 1, r
         while l <= r:
             mid = (l + r) // 2
             realmid = (mid + temp) % n
@@ -113,6 +109,27 @@ class Solution:
                 r = mid - 1
         return -1
 ```
+## 判断target和mid是否在同一段上
+```
+class Solution:
+    def search(self, nums, target):
+            lo, hi = 0, len(nums)
+            while lo < hi:
+                mid = (lo + hi) // 2
+                if (nums[mid] < nums[0]) == ( target < nums[0]):
+                    if (nums[mid] < target):
+                        lo = mid + 1
+                    elif (nums[mid] > target):
+                        hi = mid
+                    else:
+                        return mid
+                elif target < nums[0]:
+                    lo = mid + 1
+                else:
+                    hi = mid
+            return -1
+```
+
 
 ## 数组从任意位置劈开后，至少有一半是有序的
 ```
