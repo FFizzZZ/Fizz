@@ -12,7 +12,7 @@ class Solution:
             elif val > nums[r]:
                 l = mid + 1
             else:
-                if nums[r] < nums[r - 1]: break     # in order to find the index of the turning point
+                if nums[r] < nums[r - 1]: break   # in order to find the index of the turning point
                 r -= 1
         if r == 0:
             l, r = 0, n - 1
