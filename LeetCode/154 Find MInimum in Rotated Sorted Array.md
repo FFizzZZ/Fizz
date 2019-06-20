@@ -28,5 +28,5 @@ class Solution:
                 r = mid
             else:
                 r -= 1
-        return nums[l]
+        return nums[r]
 ```
