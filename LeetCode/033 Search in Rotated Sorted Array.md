@@ -109,6 +109,25 @@ class Solution:
                 r = mid - 1
         return -1
 ```
+改进：在二分的时候改变mid的值
+```
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            val= nums[mid]
+            if val == target:
+                return mid
+            if (nums[mid] < nums[0]) != (target < nums[0]):
+                val = float('-inf') if target < nums[0] else float('inf')
+            if val < target:
+                l = mid + 1
+            else:
+                r = mid - 1
+        return -1
+```
+
 ## 判断target和mid是否在同一段上
 ```
 class Solution:
