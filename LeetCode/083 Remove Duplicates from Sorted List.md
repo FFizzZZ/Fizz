@@ -15,6 +15,18 @@ class Solution:
         return head
 ```
 
+```
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        p = head
+        while p and p.next:
+            if p.val == p.next.val:
+                p.next = p.next.next
+            else:
+                p = p.next
+        return head
+```
+
 ## recurse
 ```
 class Solution:
@@ -26,4 +38,16 @@ class Solution:
         head.next = self.deleteDuplicates(head.next)
         return head
 ```
+
+```
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        if not head or not head.next: return head
+        if head.val == head.next.val:
+            return self.deleteDuplicates(head.next)
+        else:  
+            head.next = self.deleteDuplicates(head.next)
+            return head
+```
+
 
