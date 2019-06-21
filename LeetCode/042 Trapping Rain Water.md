@@ -20,8 +20,8 @@ class Solution:
 ```
 class Solution:
     def trap(self, height: List[int]) -> int:
-        ans = 0; cur = 0; stack = []
-        while cur < len(height):
+        ans = 0; stack = []
+        for cur in range(len(height)):
             while stack and height[stack[-1]] < height[cur]:
                 top = stack.pop()
                 if not stack:
@@ -30,7 +30,6 @@ class Solution:
                 h = min(height[cur], height[stack[-1]]) - height[top]
                 ans += h * distance
             stack.append(cur)
-            cur += 1
         return ans
 ```
 
