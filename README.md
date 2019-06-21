@@ -14,6 +14,7 @@ UNFINISHED
 * 068
 * 069
 * 071
+* 084 some methods haven't been implemented
 * 131 Palindrome Partitioning: dynamic programming
 * 154 Find Minimum in Rotated Sorted Array: duplicate
 
