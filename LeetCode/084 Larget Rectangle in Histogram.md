@@ -21,3 +21,28 @@ class Solution:
             ans = max(ans, heights[i] * (r[i] - l[i] - 1))
         return ans
 ```
+## stack，与上一种方法思想类似
+```
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        stack = []
+        n = len(heights)
+        ans = 0
+        for i in range(n):
+            while stack and heights[stack[-1]] > heights[i]:
+                x = stack.pop()
+                if not stack:
+                    distance = i
+                else:
+                    distance = i - stack[-1] - 1
+                ans = max(ans, heights[x] * distance)
+            stack.append(i)
+        while stack:
+            h = heights[stack.pop()]
+            if stack:
+                distance = n - stack[-1] - 1
+            else:
+                distance = n
+            ans = max(ans, h * distance)
+        return ans
+```
