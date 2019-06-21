@@ -26,7 +26,8 @@ class Solution:
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         stack = []
-        n = len(heights)
+        heights.append(0)      # An excellent operation that makes code more concise!!
+        n = len(heights)       # we don't need to deal with the case where the stack is not empty after the loop.
         ans = 0
         for i in range(n):
             while stack and heights[stack[-1]] > heights[i]:
@@ -37,12 +38,5 @@ class Solution:
                     distance = i - stack[-1] - 1
                 ans = max(ans, heights[x] * distance)
             stack.append(i)
-        while stack:
-            h = heights[stack.pop()]
-            if stack:
-                distance = n - stack[-1] - 1
-            else:
-                distance = n
-            ans = max(ans, h * distance)
         return ans
 ```
