@@ -6,7 +6,6 @@ UNFINISHED
 * KMP Algorithm
 * 033&034 Binary Search
 * 037 Sudoku Solver
-* 042 Trapping Rain Water
 * 043 Multiply Strings
 * 044 Wildcard Matching: cannot understand the third method.
 * 054 Spiral Matrix: haven't coded it by myself
