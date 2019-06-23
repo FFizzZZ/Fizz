@@ -16,8 +16,8 @@ class Solution:
             ans.append(i ^ i >> 1)
         return ans
 ```
-"""
-How to prove?
+
+How to prove?  
 (1) we can prove that all generated numbers are unique.
 Say x = i ^ i >> 1, y = j ^ j >> 1. If x = y, then we have x ^ y = 0, so (i ^ j) ^ ( i >>1 ^ j >>1) = 0.
 Suppose i ^ j = a_1a_2...a_n, then i >> 1 ^ j >> 1 = 0a_1a_2...a_n-1.
