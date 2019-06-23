@@ -16,6 +16,7 @@ class Solution:
             ans.append(i ^ i >> 1)
         return ans
 ```
+"""
 How to prove?
 (1) we can prove that all generated numbers are unique.
 Say x = i ^ i >> 1, y = j ^ j >> 1. If x = y, then we have x ^ y = 0, so (i ^ j) ^ ( i >>1 ^ j >>1) = 0.
@@ -28,3 +29,4 @@ so i ^ j = 0 ---> i = j.
 As a result, we know that x = y <=> i = j.
 (2) we can prove that successive numbers have exact one bit that is different.
 Find the rightmost 0 in the sequence and compare i ^ i >> 1 and (i + 1) ^ (i + 1) >> 1, we can prove it.
+"""
