@@ -1,3 +1,4 @@
+## Recurse
 ```
 class Solution:
     def isScramble(self, s1, s2):
@@ -11,7 +12,7 @@ class Solution:
                 return True
         return False
 ```
-
+## Recurse with memorization
 ```
 class Solution:
     def __init__(self):
