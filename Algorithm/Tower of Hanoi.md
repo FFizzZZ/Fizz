@@ -17,3 +17,13 @@ K(n) = 2 * H(n) = 2^(n + 1) - 2
 (2)
 
 K(n) = 2^(n + 1) - 5
+
+## Code
+```
+def f(n, a, b, c):
+    if n == 0:
+        return
+    f(n - 1, a, c, b)
+    print(a, '-->', c)
+    f(n - 1, b, a, c)
+```
