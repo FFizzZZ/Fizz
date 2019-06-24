@@ -66,7 +66,7 @@ class Solution:
 ```
 
 
-## leetcode
+## Use Counter instead of Sort()
 ```
 from collections import Counter
 class Solution(object):
