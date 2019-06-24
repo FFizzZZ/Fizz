@@ -1,3 +1,4 @@
+## change the direction
 ```
 class Solution:
     def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
@@ -39,6 +40,23 @@ class Solution:
 ```
 
 ## Leetcode Solution
+## Insert nodes one by one
+```
+class Solution:
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        pre = node = ListNode(0)
+        node.next = head
+        for _ in range(m-1):
+            pre = pre.next
+        start = pre.next
+        then = start.next
+        for _ in range(n - m):
+            start.next = then.next
+            then.next = pre.next
+            pre.next = then
+            then = start.next
+        return node.next
+```
 ## Recursive
 ```
 class Solution:
