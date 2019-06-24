@@ -10,35 +10,34 @@ class Solution:
 ```
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        res = []
+        ans = []
         stack = []
-        cur = root
-        while  cur or stack:
-            while cur:
-                stack.append(cur)
-                cur = cur.left
-            cur = stack.pop()
-            res.append(cur.val)
-            cur = cur.right
-        return res
+        while stack or root:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            ans.append(root.val)
+            root = root.right
+        return ans
 ```
 
 ## Morris Traversal
 ```
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        res = []
-        cur = root
-        while cur:
-            if not cur.left:
-                res.append(cur.val)
-                cur = cur.right
+        ans = []
+        while root:
+            if not root.left:
+                ans.append(root.val)
+                root = root.right
             else:
-                left = temp = cur.left
-                while left.right:
-                    left = left.right
-                cur.left = None        # pay attention!
-                left.right, cur = cur, temp
-        return res
+                temp = p = root.left
+                while p.right:
+                    p = p.right
+                p.right = root
+                root.left = None   # Pay attention!
+                root = temp
+        return ans
 ```
         
