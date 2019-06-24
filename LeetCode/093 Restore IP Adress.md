@@ -52,8 +52,32 @@ class Solution:
         return True
 ```
         
+```
+class Solution:
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        ans = []
+        self.f(s, 0, [], ans)
+        return ans
+    def f(self, s, index, path, ans):
+        l = len(path)
+        if l > 4: return
+        if l == 4 and index == len(s): ans.append('.'.join(path))
+        for i in range(1, 4):
+            if index + i > len(s): break
+            temp = s[index:index+i]
+            if temp[0] == '0' and len(temp) > 1 or i == 3 and int(temp) > 255:
+                continue
+            path.append(temp)
+            self.f(s, index + i, path, ans)
+            path.pop()
+```
         
         
+        
+        
+        
+
+
      
         
         
