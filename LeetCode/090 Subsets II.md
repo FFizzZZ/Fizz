@@ -30,3 +30,30 @@ class Solution:
             self.f(i + 1, nums, path, ans)
             path.pop()
 ```
+
+## Bit manipulation
+```
+class Solution:
+    def subsetsWithDup(self, nums):
+        nums.sort()
+        ans = []
+        for i in range(2 ** len(nums)):
+            temp = []
+            index = 0
+            res = 0
+            while i > 0:
+                if i & 1:
+                    if index - 1 >= 0 and nums[index] == nums[index - 1] and not flag:
+                        res = 1
+                        break
+                    else:
+                        temp.append(nums[index])
+                        flag = 1
+                else:
+                    flag = 0
+                index += 1
+                i >>= 1
+            if not res:
+                ans.append(temp)
+        return ans
+```
