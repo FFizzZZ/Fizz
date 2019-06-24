@@ -66,7 +66,7 @@ class Solution:
 ```
 
 
-## Use Counter instead of Sort()
+## leetcode
 ```
 from collections import Counter
 class Solution(object):
@@ -78,4 +78,20 @@ class Solution(object):
                 for j in range(l):
                     res.append(res[j] + [num] * i)
         return res
+```
+
+```
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        ans = [[ ]]
+        nums.sort()
+        size = 0
+        for i in range(len(nums)):
+            j = size if i > 0 and (nums[i] == nums[i-1]) else 0
+            size = len(ans)
+            for k in range(j, size):
+                temp = ans[k][:]
+                temp.append(nums[i])
+                ans.append(temp)
+        return ans
 ```
