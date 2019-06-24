@@ -64,3 +64,18 @@ class Solution:
                 ans.append(temp)
         return ans
 ```
+
+
+## leetcode
+```
+from collections import Counter
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        res = [[]]
+        for num, freq in collections.Counter(nums).items():
+            l = len(res)
+            for i in range(1, freq+1):
+                for j in range(l):
+                    res.append(res[j] + [num] * i)
+        return res
+```
