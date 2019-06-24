@@ -17,26 +17,28 @@ class Solution:
         return start.next
 ```
 
-## https://leetcode.com/problems/reverse-linked-list-ii/discuss/30709/Talk-is-cheap-show-me-the-code-(and-DRAWING)
 ```
-class Solution(object):
-    def reverseBetween(self, head, m, n):
-        if m == n: return head
-        node = ListNode(0)
+class Solution:
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        p = node = ListNode(0)
         node.next = head
-        start, tail = node, node
-        for i in range(m-1):
-            start = start.next
-            tail = tail.next
-        tail = tail.next
-        for i in range(n-m):
-            temp = start.next
-            start.next = tail.next
-            tail.next = tail.next.next
-            start.next.next = temp
+        for _ in range(m - 1):
+            p = p.next
+        last = self.f(p.next, n - m)
+        last.next = self.r
+        p.next = self.head
         return node.next
+    def f(self, head, n):
+        if n == 0:
+            self.head = head
+            self.r = head.next
+            return head
+        node = self.f(head.next, n - 1)
+        node.next = head
+        return head
 ```
 
+## Leetcode Solution
 ## Recursive
 ```
 class Solution:
@@ -61,3 +63,25 @@ class Solution:
         recurseAndReverse(right, m, n)
         return head
 ```
+## An interesting method
+https://leetcode.com/problems/reverse-linked-list-ii/discuss/30709/Talk-is-cheap-show-me-the-code-(and-DRAWING)
+```
+class Solution(object):
+    def reverseBetween(self, head, m, n):
+        if m == n: return head
+        node = ListNode(0)
+        node.next = head
+        start, tail = node, node
+        for i in range(m-1):
+            start = start.next
+            tail = tail.next
+        tail = tail.next
+        for i in range(n-m):
+            temp = start.next
+            start.next = tail.next
+            tail.next = tail.next.next
+            start.next.next = temp
+        return node.next
+```
+
+
