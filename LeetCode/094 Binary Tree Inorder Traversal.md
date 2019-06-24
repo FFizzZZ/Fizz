@@ -2,20 +2,6 @@
 ```
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
-        res = []
-        def f(x):
-            if not x:
-                return
-            else:
-                f(x.left)
-                res.append(x.val)
-                f(x.right)
-        f(root)
-        return res
-```
-```
-class Solution:
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
         if not root: return []
         ans = self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right)
         return ans
