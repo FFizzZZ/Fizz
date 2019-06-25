@@ -1,18 +1,18 @@
+```
 class Solution:
     def generateTrees(self, n: int) -> List[TreeNode]:
-        def f(num):
-            ans = []
-            for i in range(len(num)):
-                left = f(num[:i])
-                right = f(num[i+1:])
-                for j in left:
-                    for k in right:
-                        node = TreeNode(num[i])
-                        node.left = j
-                        node.right = k
-                        ans.append(node)
-            return ans or [None]
-        return f(list(range(1,n+1))) if n else []
+        return self.f(1, n) if n else []
+    def f(self, l, r):
+        ans = []
+        for i in range(l, r + 1):
+            for j in self.f(l, i - 1):
+                for k in self.f(i + 1, r):
+                    node = TreeNode(i)
+                    node.left = j
+                    node.right = k
+                    ans.append(node)
+        return ans or [None]
+```
 
 # use memo to record, faster
 class Solution:
