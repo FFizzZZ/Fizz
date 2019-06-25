@@ -43,6 +43,25 @@ class Solution:
 ```
 class Solution:
     def generateTrees(self, n):
+        if n == 0: return []
+        dp = [[[None]] * (n + 2) for _ in range(n + 2)]
+        for i in range(n, 0, -1):
+            dp[i][i] = [TreeNode(i)]
+            for j in range(i + 1, n + 1):
+                dp[i][j] = []
+                for k in range(i, j + 1):
+                    for left in dp[i][k - 1]:
+                        for right in dp[k + 1][j]:
+                            node = TreeNode(k)
+                            node.left = left
+                            node.right = right
+                            dp[i][j].append(node)
+        return dp[1][n]
+```
+Another direction
+```
+class Solution:
+    def generateTrees(self, n):
         if n == 0:
             return []
         tree_list = [[[None]] * (n + 2) for i in range(n + 2)]
