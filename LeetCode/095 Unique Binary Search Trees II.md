@@ -39,7 +39,8 @@ class Solution:
 
 ---------------------------
 
-# I don't understand
+## dynamic programming
+```
 class Solution:
     def generateTrees(self, n):
         if n == 0:
@@ -56,3 +57,4 @@ class Solution:
                             (root.left, root.right) = (left, right)
                             tree_list[j][i].append(root)
         return tree_list[1][n]
+```
