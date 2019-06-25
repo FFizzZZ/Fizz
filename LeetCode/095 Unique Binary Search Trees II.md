@@ -14,26 +14,26 @@ class Solution:
         return ans or [None]
 ```
 
-# use memo to record, faster
+## use memo to record
+```
 class Solution:
     def generateTrees(self, n: int) -> List[TreeNode]:
-        memo = {}
-        def f(start, end):
-            if (start, end) in memo:
-                return memo[(start, end)]
-            ans = []
-            for i in range(start, end+1):
-                left = f(start, i-1)
-                right = f(i+1, end)
-                for j in left:
-                    for k in right:
-                        node = TreeNode(i)
-                        node.left = j
-                        node.right = k
-                        ans.append(node)
-            memo[(start, end)] = ans or [None]
-            return ans or [None]
-        return f(1, n) if n else []
+        d = {}
+        return self.f(1, n, d) if n else []
+    def f(self, l, r, d):
+        if (l, r) in d: return d[(l, r)]
+        ans = []
+        for i in range(l, r + 1):
+            for j in self.f(l, i - 1, d):
+                for k in self.f(i + 1, r, d):
+                    node = TreeNode(i)
+                    node.left = j
+                    node.right = k
+                    ans.append(node)
+        ans = ans or [None]
+        d[(l, r)] = ans
+        return ans
+```
 
 
 
