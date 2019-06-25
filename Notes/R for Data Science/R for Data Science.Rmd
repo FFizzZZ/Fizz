@@ -1,0 +1,988 @@
+---
+title: "R for Data Science"
+author: "Jiahao Luo"
+date: "2018/12/19"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,eval=FALSE)
+```
+
+
+https://r4ds.had.co.nz
+
+## Introduction
+```{r eval=FALSE}
+dput(mtcars)
+```
+
+
+## Data Visualisation
+
+In practice, ggplot2 will automatically group data for these geoms whenever you map an aesthetic to a discrete variable (as in the **linetype** example). It is convennient to rely on this feature because the group aesthetic by itself does not add a legend or distinguishing features to the geoms.
+\
+```{r eval=FALSE}
+linetype=drv
+group=drv
+facet_grid(. ~ cyl)
+
+filter(mpg,class=="subcompact")
+subset(airquality, Temp > 80, select = c(Ozone, Temp))
+
+ggplot(data = diamonds) + 
+  stat_count(mapping = aes(x = cut))
+
+ggplot(data = demo) +
+  geom_bar(mapping = aes(x = cut, y = freq), stat = "identity")
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1))
+
+ggplot(data = diamonds) + 
+  stat_summary(
+    mapping = aes(x = cut, y = depth),
+    fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median
+  )
+
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = clarity), position = "dodge")
+poistion="identity"
+poistion="fill"
+
+coord_flip()
+bar+coord_polar()
+```
+\
+\
+General pattern:
+```{r eval=FALSE}
+ggplot(data = <DATA>) + 
+  <GEOM_FUNCTION>(
+     mapping = aes(<MAPPINGS>),
+     stat = <STAT>, 
+     position = <POSITION>
+  ) +
+  <COORDINATE_FUNCTION> +
+  <FACET_FUNCTION>
+```
+
+
+## Workflow: basics
+
+use RStudio’s keyboard shortcut: Alt + - 
+```{r eval=FALSE}
+(y <- seq(1, 10, length.out = 5))
+```
+
+## Data Transformation
+
+1. Pick observations by their values **filter()**\
+2. Reorder the rows **arrange()**\
+3. Pick variables by their names **select()**\
+4. Create new variables with functions of existing variables **mutate()**\
+5. Collapse many values down to a single summary **summarise()**\
+\
+These can all be used in conjunction with **group_by()** which changes the scope of each function from operating on the entire dataset to operating on it group-by-group.
+
+```{r eval=FALSE}
+filter(flights, month == 1, day == 1)
+filter(flights, month == 11 | month == 12)
+nov_dec <- filter(flights, month %in% c(11, 12))
+```
+
+**filter()** only includes rows where the condition is TRUE; it excludes both FALSE and NA values. If you want to preserve missing values, ask for them explicitly:
+
+```{r eval=FALSE}
+filter(df, is.na(x) | x > 1)
+
+arrange(flights, year, month, day)
+arrange(flights, desc(dep_delay))
+```
+
+Missing values are always sorted at the end.
+
+```{r eval=FALSE}
+select(flights, year, month, day)
+select(flights, year:day)
+select(flights, -(year:day))
+```
+
+starts_with("abc"): matches names that begin with “abc”.
+
+ends_with("xyz"): matches names that end with “xyz”.
+
+contains("ijk"): matches names that contain “ijk”.
+
+matches("(.)\\1"): selects variables that match a regular expression. This one matches any variables that contain repeated characters. You’ll learn more about regular expressions in strings.
+
+num_range("x", 1:3): matches x1, x2 and x3.
+
+```{r eval=FALSE}
+rename(flights, tail_num = tailnum)
+select(flights, time_hour, air_time, everything())
+```
+
+
+mutate() always adds new columns at the end of your dataset so we’ll start by creating a narrower dataset so we can see the new variables. Remember that when you’re in RStudio, the easiest way to see all the columns is View().
+
+Note that you can refer to columns that you’ve just created:
+```{r eval=FALSE}
+mutate(flights_sml,
+  gain = dep_delay - arr_delay,
+  hours = air_time / 60,
+  gain_per_hour = gain / hours
+)
+```
+
+If you only want to keep the new variables, use transmute():
+```{r eval=FALSE}
+transmute(flights,
+  gain = dep_delay - arr_delay,
+  hours = air_time / 60,
+  gain_per_hour = gain / hours
+)
+```
+
+Modular arithmetic: %/% (integer division) and %% (remainder), where x == y * (x %/% y) + (x %% y).
+
+```{r eval=FALSE}
+lag(x)
+lead(x)
+cummean(x)
+
+min_rank(y)  # Ranking
+min_rank(desc(y))
+row_number(y)
+dense_rank(y)
+```
+
+Together **group_by()** and **summarise()** provide one of the tools that you’ll use most commonly when working with dplyr: grouped summaries.
+```{r eval=FALSE}
+by_day <- group_by(flights, year, month, day)
+summarise(by_day, delay = mean(dep_delay, na.rm = TRUE))
+
+by_dest <- group_by(flights, dest)
+delay <- summarise(by_dest,
+  count = n(),
+  dist = mean(distance, na.rm = TRUE),
+  delay = mean(arr_delay, na.rm = TRUE)
+)
+delay <- filter(delay, count > 20, dest != "HNL")
+
+ggplot(data = delays, mapping = aes(x = delay)) + 
+  geom_freqpoly(binwidth = 10)
+```
+
+
+Useful summary functions:
+```{r eval=FALSE}
+mad()
+first()
+last()
+nth(x,2)
+```
+
+Counts: You’ve seen **n()**, which takes no arguments, and returns the size of the current group. To count the number of non-missing values, use **sum(!is.na(x))**. To count the number of distinct (unique) values, use **n_distinct(x)**.
+
+Counts are so useful that dplyr provides a simple helper if all you want is a count. You can optionally provide a weight variable. For example, you could use this to “count” (sum) the total number of miles a plane flew:
+```{r eval=FALSE}
+not_cancelled %>% 
+  count(dest)
+not_cancelled %>% 
+  count(tailnum, wt = distance)
+```
+
+When you group by multiple variables, each summary peels off one level of the grouping. That makes it easy to progressively roll up a dataset.
+
+If you need to remove grouping, and return to operations on ungrouped data, use **ungroup()**.
+
+## Exploratory Data Analysis
+
+```{r eval=FALSE}
+diamonds %>% 
+  count(cut_width(carat, 0.5))
+
+ggplot(data = smaller, mapping = aes(x = carat, colour = cut)) +
+  geom_freqpoly(binwidth = 0.1)
+
+coord_cartesian(ylim=c(0,50))
+```
+
+ggplot2 also has **xlim()** and **ylim()** functions that work slightly differently: they throw away the data outside the limits.
+
+```{r eval=FALSE}
+filter(between(y, 3, 20))
+case_when()
+```
+
+The default appearance of **geom_freqpoly()** is not that useful for that sort of comparison because the height is given by the count. That means if one of the groups is much smaller than the others, it’s hard to see the differences in shape. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we’ll display density, which is the count standardised so that the area under each frequency polygon is one.
+```{r eval=FALSE}
+ggplot(data = diamonds, mapping = aes(x = price, y = ..density..)) + 
+  geom_freqpoly(mapping = aes(colour = cut), binwidth = 500)
+```
+
+Many categorical variables don’t have such an intrinsic order, so you might want to reorder them to make a more informative display. One way to do that is with the **reorder()** function.
+```{r eval=FALSE}
+ggplot(data = mpg) +
+  geom_boxplot(mapping = aes(x = reorder(class, hwy, FUN = median), y = hwy))+
+  coord_flip()
+```
+
+```{r eval=FALSE}
+ggplot(data = diamonds) +
+  geom_count(mapping = aes(x = cut, y = color))
+
+diamonds %>% 
+  count(color, cut) %>%  
+  ggplot(mapping = aes(x = color, y = cut)) +
+    geom_tile(mapping = aes(fill = n))
+```
+
+**geom_bin2d()** and **geom_hex()** divide the coordinate plane into 2d bins and then use a fill color to display how many points fall into each bin. 
+```{r eval=FALSE}
+ggplot(data = smaller) +
+  geom_bin2d(mapping = aes(x = carat, y = price))
+ggplot(data = smaller) +
+  geom_hex(mapping = aes(x = carat, y = price))
+```
+
+Another option is to bin one continuous variable so it acts like a categorical variable. Then you can use one of the techniques for visualising the combination of a categorical and a continuous variable that you learned about.
+```{r eval=FALSE}
+ggplot(data = smaller, mapping = aes(x = carat, y = price)) + 
+  geom_boxplot(mapping = aes(group = cut_width(carat, 0.1)))
+```
+
+One way to show that is to make the width of the boxplot proportional to the number of points with **varwidth = TRUE**. Another approach is to display approximately the same number of points in each bin. That’s the job of **cut_number()**:
+```{r eval=FALSE}
+ggplot(data = smaller, mapping = aes(x = carat, y = price)) + 
+  geom_boxplot(mapping = aes(group = cut_number(carat, 20)))
+```
+
+## Tibble
+
+You can explicitly print() the data frame and control the number of rows (n) and the width of the display.
+```{r eval=FALSE}
+nycflights13::flights %>% 
+  print(n = 10, width = Inf)
+
+nycflights13::flights %>% 
+  View()
+```
+
+## Data Import
+```{r eval=FALSE}
+read_csv(...,skip=2,comment="#",col_names = FALSE,col_names=c(...,...,...),na=".")
+```
+
+There are various types of data and their applications in this section.
+
+
+## Tidy Data
+
+Gathering and Spreading
+```{r eval=FALSE}
+table4a %>% 
+  gather(`1999`, `2000`, key = "year", value = "cases")
+left_join(tidy4a, tidy4b)
+
+table2 %>%
+    spread(key = type, value = count)
+```
+
+Separating and Uniting
+```{r eval=FALSE}
+table3 %>% 
+  separate(rate, into = c("cases", "population"), sep = "/",convert=TRUE)
+```
+
+You can also pass a vector of integers to sep. **separate()** will interpret the integers as positions to split at. Positive values start at 1 on the far-left of the strings; negative value start at -1 on the far-right of the strings. When using integers to separate strings, the length of sep should be one less than the number of names in into.
+
+```{r eval=FALSE}
+table5 %>% 
+  unite(new, century, year, sep = "")
+```
+
+**complete()** takes a set of columns, and finds all unique combinations. It then ensures the original dataset contains all those values, filling in explicit NAs where necessary.
+```{r eval=FALSE}
+stocks %>% 
+  complete(year, qtr)
+```
+
+You can fill in missing values with **fill()**. It takes a set of columns where you want missing values to be replaced by the most recent non-missing value (sometimes called last observation carried forward).
+```{r eval=FALSE}
+treatment %>% fill(person)
+```
+
+
+## Relational Data
+
+```{r eval=FALSE}
+flights2 %>%
+  select(-origin, -dest) %>% 
+  mutate(name = airlines$name[match(carrier, airlines$carrier)])   # match()
+```
+
+A left join keeps all observations in x.\
+A right join keeps all observations in y.\
+A full join keeps all observations in x and y.
+```{r eval=FALSE}
+x %>% inner_join(y, by = "key")
+full_join()
+left_join()
+right_join()
+```
+
+Filtering joins match observations in the same way as mutating joins, but affect the observations, not the variables. 
+```{r eval=FALSE}
+top_dest <- flights %>%
+  count(dest, sort = TRUE) %>% 
+  head(10)
+
+flights %>% 
+  filter(dest %in% top_dest$dest)
+
+flights %>% semi_join(top_dest)
+flights %>%
+  anti_join(planes, by = "tailnum")
+```
+
+Set Operations
+
+**intersect(x, y)**: return only observations in both x and y.\
+**union(x, y)**: return unique observations in x and y.\
+**setdiff(x, y)**: return observations in x, but not in y.
+```{r eval=FALSE}
+intersect(df1, df2)
+union(df1, df2)
+setdiff(df1, df2)
+```
+
+
+## Strings
+
+```{r eval=FALSE}
+library(stringi)
+writeLines(x)
+str_length(x)
+str_c(x,y,sep="",collapse="")  # combining strings
+str_replace_na(x)
+
+birthday<-FALSE
+str_c(
+  "Good ", time_of_day, " ", name,
+  if (birthday) " and HAPPY BIRTHDAY",
+  "."
+)
+
+str_sub(x, 1, 3)
+str_sub(x, 1, 1) <- str_to_lower(str_sub(x, 1, 1))
+
+str_to_lower(x)
+str_to_upper(x)
+str_to_title(x)
+
+str_view(x,"regular expressions")
+```
+
+
+Earlier, you learned about parentheses as a way to disambiguate complex expressions. Parentheses also create a numbered capturing group (number 1, 2 etc.). A capturing group stores the part of the string matched by the part of the regular expression inside the parentheses. You can refer to the same text as previously matched by a capturing group with backreferences, like \1, \2 etc. For example, the following regular expression finds all fruits that have a repeated pair of letters.
+```{r eval=FALSE}
+str_view(fruit, "(..)\\1", match = TRUE)
+```
+
+If \ is used as an escape character in regular expressions, how do you match a literal \? Well you need to escape it, creating the regular expression \\. To create that regular expression, you need to use a string, which also needs to escape \. That means to match a literal \ you need to write "\\\\" — you need four backslashes to match one!
+
+\d: matches any digit.\
+\s: matches any whitespace (e.g. space, tab, newline).\
+A character class containing a single character is a nice alternative to backslash escapes when you want to include a single metacharacter in a regex. Many people find this more readable.
+
+
+To determine if a character vector matches a pattern, use **str_detect()**. 
+```{r eval=FALSE}
+str_detect(x, "e")
+str_count(x,"a")
+str_subset(words, "x$")
+
+seq_along(words)
+
+df %>% 
+  mutate(
+    vowels = str_count(word, "[aeiou]"),
+    consonants = str_count(word, "[^aeiou]")
+  )
+```
+
+Note that matches never overlap. For example, in "abababa", how many times will the pattern "aba" match? Regular expressions say two, not three.
+
+```{r eval=FALSE}
+has_colour <- str_subset(sentences, colour_match)
+matches <- str_extract(has_colour, colour_match)
+
+str_view_all(more, colour_match)
+# To get all matches, use str_extract_all(). It returns a list:
+str_extract_all(more, colour_match)
+```
+
+If you use **simplify = TRUE**, **str_extract_all()** will return a matrix with short matches expanded to the same length as the longest:
+```{r eval=FALSE}
+x <- c("a", "a b", "a b c")
+str_extract_all(x, "[a-z]", simplify = TRUE)
+```
+
+**str_extract()** gives us the complete match; **str_match()** gives each individual component. Instead of a character vector, it returns a matrix, with one column for the complete match followed by one column for each group:
+```{r eval=FALSE}
+noun <- "(a|the) ([^ ]+)"
+has_noun <- sentences %>%
+  str_subset(noun) %>%
+  head(10)
+has_noun %>% 
+  str_extract(noun)
+
+has_noun %>% 
+  str_match(noun)
+```
+
+Replacing Matches & Spliting
+```{r eval=FALSE}
+x <- c("apple", "pear", "banana")
+str_replace(x, "[aeiou]", "-")
+str_replace_all(x, "[aeiou]", "-")
+
+x <- c("1 house", "2 cars", "3 people")
+str_replace_all(x, c("1" = "one", "2" = "two", "3" = "three"))
+
+sentences %>% 
+  str_replace("([^ ]+) ([^ ]+) ([^ ]+)", "\\3 \\1 \\2") %>% 
+  head(5)
+
+"a|b|c|d" %>% 
+  str_split("\\|",simplify=TRUE,n=2) %>% 
+  .[[1]]
+
+str_view_all(x, boundary("word")) # split up by character, line, sentence and word boundary()s
+str_split(x,boundary("word"))
+```
+
+Other Types of Pattern
+
+```{r eval=FALSE}
+# The regular call:
+str_view(fruit, "nana")
+# Is shorthand for
+str_view(fruit, regex("nana"))
+```
+
+You can use the other arguments of regex() to control details of the match:\
+
+**ignore_case = TRUE** allows characters to match either their uppercase or lowercase forms. This always uses the current locale.\
+**multiline = TRUE** allows ^ and $ to match the start and end of each line rather than the start and end of the complete string.
+```{r eval=FALSE}
+str_view(bananas, regex("banana", ignore_case = TRUE))
+
+str_extract_all(x, regex("^Line", multiline = TRUE))[[1]]
+```
+
+**fixed()**: matches exactly the specified sequence of bytes. It ignores all special regular expressions and operates at a very low level. This allows you to avoid complex escaping and can be much faster than regular expressions. 
+
+
+## Factors
+
+Sometimes you’d prefer that the order of the levels match the order of the first appearance in the data.
+```{r eval=FALSE}
+library(tidyverse)
+library(forcats)
+f1 <- factor(x1, levels = unique(x1))
+f2 <- x1 %>% factor() %>% fct_inorder()
+
+ggplot(gss_cat, aes(race)) +
+  geom_bar() +
+  scale_x_discrete(drop = FALSE)  # By default, ggplot2 will drop levels that don’t have any values
+```
+\
+\
+Modifying factor order
+
+It’s often useful to change the order of the factor levels in a visualisation.
+```{r eval=FALSE}
+relig_summary %>%
+  mutate(relig = fct_reorder(relig, tvhours))
+```
+
+You can use **fct_relevel()**. It takes a factor, f, and then any number of levels that you want to move to the front of the line.
+```{r eval=FALSE}
+ggplot(rincome_summary, aes(age, fct_relevel(rincome, "Not applicable"))) +
+  geom_point()
+```
+
+Another type of reordering is useful when you are colouring the lines on a plot. **fct_reorder2()** reorders the factor by the y values associated with the largest x values. This makes the plot easier to read because the line colours line up with the legend.
+```{r eval=FALSE}
+ggplot(by_age, aes(age, prop, colour = fct_reorder2(marital, age, prop))) +
+  geom_line() +
+  labs(colour = "marital")
+```
+
+Finally, for bar plots, you can use **fct_infreq()** to order levels in increasing frequency: this is the simplest type of reordering because it doesn’t need any extra variables. You may want to combine with **fct_rev()**.
+```{r eval=FALSE}
+gss_cat %>%
+  mutate(marital = marital %>% fct_infreq() %>% fct_rev()) %>%
+  ggplot(aes(marital)) +
+    geom_bar()
+```
+\
+\
+Modifying Factor Levels
+
+The most general and powerful tool is **fct_recode()**. It allows you to recode, or change, the value of each level.
+```{r eval=FALSE}
+gss_cat %>%
+  mutate(partyid = fct_recode(partyid,
+    "Republican, strong"    = "Strong republican",
+    "Republican, weak"      = "Not str republican",
+    "Independent, near rep" = "Ind,near rep",
+    "Independent, near dem" = "Ind,near dem",
+    "Democrat, weak"        = "Not str democrat",
+    "Democrat, strong"      = "Strong democrat"
+  ))
+```
+
+To combine groups, you can assign multiple old levels to the same new level:
+```{r eval=FALSE}
+gss_cat %>%
+  mutate(partyid = fct_recode(partyid,
+    "Republican, strong"    = "Strong republican",
+    "Republican, weak"      = "Not str republican",
+    "Independent, near rep" = "Ind,near rep",
+    "Independent, near dem" = "Ind,near dem",
+    "Democrat, weak"        = "Not str democrat",
+    "Democrat, strong"      = "Strong democrat",
+    "Other"                 = "No answer",
+    "Other"                 = "Don't know",
+    "Other"                 = "Other party"
+  ))
+```
+
+If you want to collapse a lot of levels, **fct_collapse()** is a useful variant of **fct_recode()**. For each new variable, you can provide a vector of old levels:
+```{r eval=FALSE}
+gss_cat %>%
+  mutate(partyid = fct_collapse(partyid,
+    other = c("No answer", "Don't know", "Other party"),
+    rep = c("Strong republican", "Not str republican"),
+    ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+    dem = c("Not str democrat", "Strong democrat")
+  ))
+```
+
+Sometimes you just want to lump together all the small groups to make a plot or table simpler. That’s the job of **fct_lump()**:
+```{r eval=FALSE}
+gss_cat %>%
+  mutate(relig = fct_lump(relig)) %>%
+  count(relig)
+
+gss_cat %>%
+  mutate(relig = fct_lump(relig, n = 10)) %>%
+  count(relig, sort = TRUE) %>%
+  print(n = Inf)
+```
+\
+\
+## Dates and Times
+
+From Strings
+```{r eval=FALSE}
+library(tidyverse)
+library(lubridate)
+ymd("2017-01-31")
+mdy("January 31st, 2017")
+dmy("31-Jan-2017")
+ymd(20170131)
+ymd_hms("2017-01-31 20:11:59")
+mdy_hm("01/31/2017 08:01")
+ymd(20170131, tz = "UTC")
+
+as_datetime(today())
+as_date(now())
+```
+
+From individual components
+```{r eval=FALSE}
+flights %>% 
+  select(year, month, day, hour, minute) %>% 
+  mutate(departure = make_datetime(year, month, day, hour, minute))
+```
+
+A case:
+```{r eval=FALSE}
+make_datetime_100 <- function(year, month, day, time) {
+  make_datetime(year, month, day, time %/% 100, time %% 100)
+}
+
+flights_dt <- flights %>% 
+  filter(!is.na(dep_time), !is.na(arr_time)) %>% 
+  mutate(
+    dep_time = make_datetime_100(year, month, day, dep_time),
+    arr_time = make_datetime_100(year, month, day, arr_time),
+    sched_dep_time = make_datetime_100(year, month, day, sched_dep_time),
+    sched_arr_time = make_datetime_100(year, month, day, sched_arr_time)
+  ) %>% 
+  select(origin, dest, ends_with("delay"), ends_with("time"))
+
+flights_dt %>% 
+  filter(dep_time < ymd(20130102)) %>% 
+  ggplot(aes(dep_time)) + 
+  geom_freqpoly(binwidth = 600) # 600 s = 10 minutes
+```
+
+Note that when you use date-times in a numeric context (like in a histogram), 1 means 1 second, so a binwidth of 86400 means one day. For dates, 1 means 1 day.
+\
+\
+Getting Components
+
+You can pull out individual parts of the date with the accessor functions year(), month(), mday() (day of the month), yday() (day of the year), wday() (day of the week), hour(), minute(), and second().
+```{r eval=FALSE}
+datetime <- ymd_hms("2016-07-08 12:34:56")
+
+year(datetime)
+month(datetime)
+mday(datetime)
+
+yday(datetime)
+wday(datetime)
+```
+
+For **month()** and **wday()** you can set **label = TRUE** to return the abbreviated name of the month or day of the week. Set **abbr = FALSE** to return the full name.
+```{r eval=FALSE}
+month(datetime, label = TRUE)
+#> [1] Jul
+#> 12 Levels: Jan < Feb < Mar < Apr < May < Jun < Jul < Aug < Sep < ... < Dec
+wday(datetime, label = TRUE, abbr = FALSE)
+#> [1] Friday
+#> 7 Levels: Sunday < Monday < Tuesday < Wednesday < Thursday < ... < Saturday
+```
+
+Rounding
+
+An alternative approach to plotting individual components is to round the date to a nearby unit of time, with **floor_date(), round_date(), and ceiling_date()**. Each function takes a vector of dates to adjust and then the name of the unit round down (floor), round up (ceiling), or round to.
+```{r eval=FALSE}
+floor_date(dep_time, "week")
+```
+
+You can also use each accessor function to set the components of a date/time:
+```{r eval=FALSE}
+year(datetime) <- 2020
+month(datetime) <- 01
+hour(datetime) <- hour(datetime) + 1
+
+update(datetime, year = 2020, month = 2, mday = 2, hour = 2)
+```
+
+Time Spans\
+durations, which represent an exact number of seconds.\
+periods, which represent human units like weeks and months.\
+intervals, which represent a starting and ending point.\
+
+Durations
+```{r eval=FALSE}
+h_age <- today() - ymd(19791014)
+as.duration(h_age)
+
+dseconds(15)
+#> [1] "15s"
+dminutes(10)
+#> [1] "600s (~10 minutes)"
+dhours(c(12, 24))
+#> [1] "43200s (~12 hours)" "86400s (~1 days)"
+ddays(0:5)
+#> [1] "0s"                "86400s (~1 days)"  "172800s (~2 days)"
+#> [4] "259200s (~3 days)" "345600s (~4 days)" "432000s (~5 days)"
+dweeks(3)
+#> [1] "1814400s (~3 weeks)"
+dyears(1)
+```
+
+Periods\
+Periods are time spans but don’t have a fixed length in seconds, instead they work with “human” times, like days and months. That allows them work in a more intuitive way:
+```{r eval=FALSE}
+seconds(15)
+#> [1] "15S"
+minutes(10)
+#> [1] "10M 0S"
+hours(c(12, 24))
+#> [1] "12H 0M 0S" "24H 0M 0S"
+days(7)
+#> [1] "7d 0H 0M 0S"
+months(1:6)
+#> [1] "1m 0d 0H 0M 0S" "2m 0d 0H 0M 0S" "3m 0d 0H 0M 0S" "4m 0d 0H 0M 0S"
+#> [5] "5m 0d 0H 0M 0S" "6m 0d 0H 0M 0S"
+weeks(3)
+#> [1] "21d 0H 0M 0S"
+years(1)
+#> [1] "1y 0m 0d 0H 0M 0S"
+```
+
+Intervals
+```{r eval=FALSE}
+next_year <- today() + years(1)
+(today() %--% next_year) / ddays(1)
+
+(today() %--% next_year) %/% days(1)
+```
+
+![](Summary.jpg)
+
+## Pipes
+
+```{r eval=FALSE}
+env <- environment()
+"x" %>% assign(100, envir = env)
+```
+
+When working with more complex pipes, it’s sometimes useful to call a function for its side-effects. Maybe you want to print out the current object, or plot it, or save it to disk. Many times, such functions don’t return anything, effectively terminating the pipe.
+
+To work around this problem, you can use the “tee” pipe. %T>% works like %>% except that it returns the left-hand side instead of the right-hand side. It’s called “tee” because it’s like a literal T-shaped pipe.
+```{r eval=FALSE}
+rnorm(100) %>%
+  matrix(ncol = 2) %T>%    # !!
+  plot() %>%
+  str()
+```
+
+If you’re working with functions that don’t have a data frame based API (i.e. you pass them individual vectors, not a data frame and expressions to be evaluated in the context of that data frame), you might find **%$%** useful. It “explodes” out the variables in a data frame so that you can refer to them explicitly.
+```{r eval=FALSE}
+library(magrittr)
+mtcars %$%
+  cor(disp, mpg)
+```
+
+For assignment magrittr provides the **%<>%** operator
+```{r eval=FALSE}
+mtcars %<>% transform(cyl = cyl * 2)
+```
+
+## Functions
+
+You can use || (or) and && (and) to combine multiple logical expressions. These operators are “short-circuiting”: as soon as || sees the first TRUE it returns TRUE without computing anything else. As soon as && sees the first FALSE it returns FALSE. You should never use | or & in an if statement: these are vectorised operations that apply to multiple values (that’s why you use them in filter()). If you do have a logical vector, you can use any() or all() to collapse it to a single value.
+
+Be careful when testing for equality. == is vectorised, which means that it’s easy to get more than one output. Either check the length is already 1, collapse with all() or any(), or use the non-vectorised identical(). identical() is very strict: it always returns either a single TRUE or a single FALSE, and doesn’t coerce types. This means that you need to be careful when comparing integers and doubles.
+\
+\
+Multipe Conditions
+```{r eval=FALSE}
+centre <- function(x, type) {
+  switch(type,
+         mean = mean(x),
+         median = median(x),
+         trimmed = mean(x, trim = .1))
+}
+x <- rcauchy(10)
+centre(x, "mean")
+```
+
+Dot-dot-dot
+\
+**...** (pronounced dot-dot-dot). This special argument captures any number of arguments that aren’t otherwise matched.
+
+```{r eval=FALSE}
+invisible()
+
+`+` <- function(x, y) {
+  if (runif(1) < 0.1) {
+    sum(x, y)
+  } else {
+    sum(x, y) * 1.1
+  }
+}
+table(replicate(1000, 1 + 2))
+```
+
+## Vectors
+
+NULL is often used to represent the absence of a vector (as opposed to NA which is used to represent the absence of a value in a vector). NULL typically behaves like a vector of length 0.
+
+In R, numbers are doubles by default. To make an integer, place an L after the number:
+```{r eval=FALSE}
+typeof(1)
+typeof(1L)
+1.5L
+```
+
+Base R provides many functions like is.vector() and is.atomic(), but they often return surprising results. Instead, it’s safer to use the is_* functions provided by purrr, which are summarised in the table below.
+
+```{r eval=FALSE}
+c(x = 1, y = 2, z = 4)
+set_names(1:3, c("a", "b", "c"))
+
+x <- 1:10
+attr(x, "greeting")
+attr(x, "greeting") <- "Hi!"
+attr(x, "farewell") <- "Bye!"
+attributes(x)
+```
+ 
+Map
+```{r eval=FALSE}
+seq_along(x)
+
+models <- mtcars %>% 
+  split(.$cyl) %>% 
+  map(~lm(mpg ~ wt, data = .))
+
+models %>% 
+  map(summary) %>% 
+  map_dbl(~.$r.squared)
+
+models %>% 
+  map(summary) %>% 
+  map_dbl("r.squared")
+```
+
+Dealing with failure
+```{r eval=FALSE}
+safe_log <- safely(log)
+possibly(log, NA_real_)
+quietly(log)
+```
+
+Mapping over multiple arguments
+
+```{r eval=FALSE}
+map2(mu, sigma, rnorm, n = 5) %>% str()
+
+args2 <- list(mean = mu, sd = sigma, n = n)
+args2 %>% 
+  pmap(rnorm) %>% 
+  str()
+```
+Note that the arguments that vary for each call come before the function; arguments that are the same for every call come after.
+
+Walk
+```{r eval=FALSE}
+x <- list(1, "a", 3)
+x %>% 
+  walk(print)
+
+library(ggplot2)
+plots <- mtcars %>% 
+  split(.$cyl) %>% 
+  map(~ggplot(., aes(mpg, wt)) + geom_point())
+paths <- stringr::str_c(names(plots), ".pdf")
+
+pwalk(list(paths, plots), ggsave, path = tempdir())
+```
+
+Reduce and accumulate
+
+Reduce a list to a single value by iteratively applying a binary function.
+```{r eval=FALSE}
+dfs <- list(
+  age = tibble(name = "John", age = 30),
+  sex = tibble(name = c("John", "Mary"), sex = c("M", "F")),
+  trt = tibble(name = "Mary", treatment = "A")
+)
+dfs %>% reduce(full_join)
+
+
+vs <- list(
+  c(1, 3, 5, 6, 10),
+  c(1, 2, 3, 7, 8, 10),
+  c(1, 2, 3, 4, 8, 9, 10)
+)
+vs %>% reduce(intersect)
+
+x <- sample(10)
+x %>% accumulate(`+`)
+```
+
+
+## Graphics for communication
+
+Label
+```{r eval=FALSE}
+labs(
+    x = "Engine displacement (L)",
+    y = "Highway fuel economy (mpg)",
+    colour = "Car type"
+    title = "Fuel efficiency generally decreases with engine size",
+    subtitle = "Two seaters (sports cars) are an exception because of their light weight",
+    caption = "Data from fueleconomy.gov"
+  )
+```
+
+Annotations
+```{r eval=FALSE}
+geom_label(aes(label = model), data = best_in_class, nudge_y = 2, alpha = 0.5)
+
+ggrepel::geom_label_repel(aes(label = model), data = best_in_class) 
+
+ggplot(mpg, aes(displ, hwy, colour = class)) +
+  ggrepel::geom_label_repel(aes(label = class),
+    data = class_avg,
+    size = 6,
+    label.size = 0,
+    segment.color = NA
+  ) +
+  geom_point() +
+  theme(legend.position = "none")
+
+geom_text(aes(label = label), data = label, vjust = "top", hjust = "right")
+```
+
+Scales
+```{r eval=FALSE}
+scale_y_continuous(breaks = seq(15, 40, by = 5),labels=NULL)
+
+scale_x_log10()
+
+presidential %>%
+  mutate(id = 33 + row_number()) %>%
+  ggplot(aes(start, id, colour = party)) +
+    geom_point() +
+    geom_segment(aes(xend = end, yend = id)) +
+    scale_colour_manual(values = c(Republican = "red", Democratic = "blue"))
+```
+
+Zooming
+```{r eval=FALSE}
+coord_cartesian(xlim = c(5, 7), ylim = c(10, 30))
+
+x_scale <- scale_x_continuous(limits = range(mpg$displ))
+y_scale <- scale_y_continuous(limits = range(mpg$hwy))
+col_scale <- scale_colour_discrete(limits = unique(mpg$drv))
+
+theme_bw()
+ggsave("my-plot.pdf")
+```
+
+## Model Basics
+
+```{r}
+expand.grid()
+data_grid()
+add_predictions()
+geom_ref_line()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
