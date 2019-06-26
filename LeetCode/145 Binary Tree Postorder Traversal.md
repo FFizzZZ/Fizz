@@ -16,10 +16,9 @@ class Solution:
 Use pre to keep track of the state of each node in the stack
 ```
 class Solution:
-    def postorderTraversal(self, root: TreeNode) -> List[int]:
+    def postorderTraversal(self, root):
         ans = []
         stack = []
-        pre = None
         while root or stack:
             if root:
                 stack.append(root)
