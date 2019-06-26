@@ -1,4 +1,11 @@
+## 总结
+ * 递归
+ * 栈
+    * 每次入栈一个子节点
+    * 每次入栈左右节点
+
 ## Preorder
+每次入栈一个子节点
 ```
 def preorder(root):
     stack = []
@@ -26,7 +33,7 @@ def preorder(root):
             root = root.right
     return ans
 ```
-
+每次入栈左右节点
 ```
 def preorder(root):
     if not root: return []
@@ -43,6 +50,7 @@ def preorder(root):
 ```
 
 ## Inorder
+每次入栈一个子节点
 ```
 def inorder(root):
     stack = []
@@ -71,8 +79,25 @@ def inorder(root):
             root = root.right
     return ans
 ```
-
+每次入栈左右节点
+```
+def inorder(root):
+    if not root: return []
+    ans = []
+    stack = [(root, False)]
+    while stack:
+        node, flag = stack.pop()
+        if node:
+            if flag:
+                ans.append(node.val)
+            else:
+                stack.append((node.right, False))
+                stack.append((node, True))
+                stack.append((node.left, False))
+    return ans
+```
 ## Postorder
+每次入栈左右节点
 ```
 def postorder(root):
     s = []
@@ -87,7 +112,25 @@ def postorder(root):
             stack.append(cur.right)
     return s 
 ```
+```
+class Solution:
+    def postorderTraversal(self, root):
+        traversal, stack = [], [(root, False)]
+        while stack:
+            node, visited = stack.pop()
+            if node:
+                if visited:
+                    # add to result if visited
+                    traversal.append(node.val)
+                else:
+                    # post-order
+                    stack.append((node, True))
+                    stack.append((node.right, False))
+                    stack.append((node.left, False))
 
+        return traversal
+```
+每次入栈一个子节点
 ```
 def post(root):
     ans = []
@@ -139,21 +182,4 @@ class Solution:
                 root = root.right
         return ans
 ```
-```
-class Solution:
-    def postorderTraversal(self, root):
-        traversal, stack = [], [(root, False)]
-        while stack:
-            node, visited = stack.pop()
-            if node:
-                if visited:
-                    # add to result if visited
-                    traversal.append(node.val)
-                else:
-                    # post-order
-                    stack.append((node, True))
-                    stack.append((node.right, False))
-                    stack.append((node.left, False))
 
-        return traversal
-```
