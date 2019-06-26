@@ -19,13 +19,12 @@ class Solution:
         ans = []
         stack = []
         while root or stack:
-            if root:
+            while root:
                 ans.insert(0, root.val)
                 stack.append(root)
                 root = root.right
-            else:
-                root = stack.pop()
-                root = root.left
+            root = stack.pop()
+            root = root.left
         return ans
 ```
 ```
