@@ -10,22 +10,29 @@ class Solution:
         self.f(root.right, ans)
         ans.append(root.val)
 ```
+
+## Leetcode
+## Iteration
 ```
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
         ans = []
         stack = []
+        pre = None
         while root or stack:
-            while root:
-                ans.insert(0, root.val)
+            if root:
                 stack.append(root)
-                root = root.right
-            root = stack.pop()
-            root = root.left
+                root = root.left
+            else:
+                node = stack[-1]
+                if not node.right or node.right == pre:
+                    stack.pop()
+                    ans.append(node.val)
+                    pre = node
+                else:
+                    root = node.right
         return ans
 ```
-
-## Leetcode
 ## Reverse of Preorder
 ```
 class Solution:
