@@ -13,40 +13,19 @@ class Solution(object):
 ```
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
-        inorder = []
-        def f(node):
-            if not node:
-                return
-            f(node.left)
-            inorder.append(node.val)
-            f(node.right)
-        f(root)
-        for i in range(1, len(inorder)):
-            if inorder[i-1] >= inorder[i]:
-                return False
-        return True
-```
-## 上一个方法的改进，只需记录最后一个inorder值即可
-```
-class Solution:
-    def isValidBST(self, root):
-        stack, inorder = [], float('-inf')
-        
+        stack = []
+        val = None
         while stack or root:
             while root:
                 stack.append(root)
                 root = root.left
             root = stack.pop()
-            # If next element in inorder traversal
-            # is smaller than the previous one
-            # that's not BST.
-            if root.val <= inorder:
-                return False
-            inorder = root.val
+            if val and val >= root.val: return False
+            val = root.val
             root = root.right
-
         return True
 ```
+
 ## Iteration (stack)
 ```
 class Solution:
