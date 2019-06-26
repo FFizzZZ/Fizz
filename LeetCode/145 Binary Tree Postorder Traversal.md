@@ -33,7 +33,29 @@ class Solution:
                     root = node.right
         return ans
 ```
+
+```
+class Solution:
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        ans = []
+        stack = []
+        while root or stack:
+            while root:
+                stack.append([root, False])
+                root = root.left
+            root, flag = stack[-1]
+            if flag:
+                stack.pop()
+                ans.append(root.val)
+                root = None
+            else:
+                stack[-1][1] = True
+                root = root.right
+        return ans
+```
+
 ## Reverse of Preorder
+Some people says that this method is kind of cheating.
 ```
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
