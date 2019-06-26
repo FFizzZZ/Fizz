@@ -1,26 +1,27 @@
+## Recurse
 ```
-class Solution(object):
-    def isValidBST(self, root, left = float('inf'), right = float('-inf')):
+class Solution:
+    def isValidBST(self, root, left = float('-inf'), right = float('inf')):
         if not root: return True
-        if root.val >= left or root.val <= right:
+        if root.val <= left or root.val >= right:
             return False
-        return self.isValidBST(root.left, root.val, right) and self.isValidBST(root.right, left, root.val)
+        return self.isValidBST(root.left, left, root.val) and self.isValidBST(root.right, root.val, right)
 ```
     
 ---------------------------
 
-## 检验中序排序是否严格递增
+## Inorder Traversal
 ```
 class Solution:
     def isValidBST(self, root: TreeNode) -> bool:
         stack = []
-        val = None
+        val = float('-inf')
         while stack or root:
             while root:
                 stack.append(root)
                 root = root.left
             root = stack.pop()
-            if val and val >= root.val: return False
+            if val >= root.val: return False
             val = root.val
             root = root.right
         return True
