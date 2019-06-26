@@ -13,6 +13,7 @@ class Solution:
 
 ## Leetcode
 ## Iteration
+Use pre to keep track of the state of each node in the stack
 ```
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
@@ -33,7 +34,7 @@ class Solution:
                     root = node.right
         return ans
 ```
-
+Similarly
 ```
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
