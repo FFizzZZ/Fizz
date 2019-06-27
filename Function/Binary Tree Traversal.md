@@ -19,21 +19,6 @@ def preorder(root):
         root = stack.pop().right
     return ans
 ```
-
-```
-def preorder(root):
-    stack = []
-    ans = []
-    while root or stack:
-        if root:
-            ans.append(root.val)
-            stack.append(root)
-            root = root.left
-        else:
-            root = stack.pop()
-            root = root.right
-    return ans
-```
 每次入栈左右节点
 ```
 def preorder(root):
@@ -63,21 +48,6 @@ def inorder(root):
         root = stack.pop()
         ans.append(root.val)
         root = root.right
-    return ans
-```
-
-```
-def inorder(root):
-    ans = []
-    stack = []
-    while stack or root:
-        if root:
-            stack.append(root)
-            root = root.left
-        else:
-            root = stack.pop()
-            ans.append(root.val)
-            root = root.right
     return ans
 ```
 每次入栈左右节点
@@ -121,10 +91,8 @@ class Solution:
             node, visited = stack.pop()
             if node:
                 if visited:
-                    # add to result if visited
                     traversal.append(node.val)
                 else:
-                    # post-order
                     stack.append((node, True))
                     stack.append((node.right, False))
                     stack.append((node.left, False))
