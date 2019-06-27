@@ -37,3 +37,12 @@ class Solution:
         if p.val != q.val: return False
         return True
 ```
+## Recurse
+Interesting!
+```
+class Solution:
+    def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+        def t(n):
+            return n and (n.val, t(n.left), t(n.right))
+        return t(p) == t(q)
+```
