@@ -1,17 +1,13 @@
 ```
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
-        def f(p, q):
-            if not p and not q:
-                return True
-            if not p or not q:
-                return False
-            if p.val != q.val:
-                return False
-            return f(p.left, q.left) and f(p.right, q.right)
-        return f(p, q)
+        if not p or not q:
+            if p or q: return False
+            return True
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 ```
-
 
 ```
 class Solution:
