@@ -3,6 +3,7 @@
  * 栈
     * 每次入栈一个子节点
     * 每次入栈左右节点
+ * Morris Traversal
 
 ## Preorder
 每次入栈一个子节点
@@ -183,3 +184,45 @@ class Solution:
         return ans
 ```
 
+## Morris Traversal
+## Inorder
+```
+class Solution:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        ans = []
+        while root:
+            if not root.left:
+                ans.append(root.val)
+                root = root.right
+            else:
+                temp = p = root.left
+                while p.right:
+                    p = p.right
+                p.right = root
+                root.left = None   # Pay attention!
+                root = temp
+        return ans
+```
+
+This one will recover the binary tree to its original state.
+```
+class Solution:
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        ans = []
+        while root:
+            if not root.left:
+                ans.append(root.val)
+                root = root.right
+            else:
+                pre = root.left
+                while pre.right and pre.right != root:
+                    pre = pre.right
+                if not pre.right:
+                    pre.right = root
+                    root = root.left
+                else:
+                    pre.right = None
+                    ans.append(root.val)
+                    root = root.right
+        return ans
+```
