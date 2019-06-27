@@ -1,3 +1,26 @@
+```
+class Solution:
+    def recoverTree(self, root: TreeNode) -> None:
+        stack = []
+        first, second = None, None
+        pre = None
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            root = stack.pop()
+            if not first:
+                if pre and root.val < pre.val:
+                    first = pre
+                    second = root
+            else:
+                if root.val < pre.val:
+                    second = root              
+            pre = root
+            root = root.right
+        first.val, second.val = second.val, first.val
+```
+## Leetcode
 ## Inorder Traversal
 ```
 class Solution:
