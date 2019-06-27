@@ -28,27 +28,19 @@ class Solution:
 ```
 
 ## Iteration (stack)
+每次将左右子节点进栈
 ```
 class Solution:
     def isValidBST(self, root):
-        if not root:
-            return True     
-        stack = [(root, -sys.maxsize, sys.maxsize), ] 
+        if not root: return True
+        stack = [(root, float('-inf'), float('inf'))]
         while stack:
-            root, lower_limit, upper_limit = stack.pop()
-            if root.right:
-                if root.right.val > root.val:
-                    if root.right.val >= upper_limit:
-                        return False
-                    stack.append((root.right, root.val, upper_limit))
-                else:
-                    return False
-            if root.left:
-                if root.left.val < root.val:
-                    if root.left.val <= lower_limit:
-                        return False
-                    stack.append((root.left, lower_limit, root.val))
-                else:
-                    return False
-        return True  
+            root, left, right = stack.pop()
+            if not root: continue
+            if root.val >= right or root.val <= left: return False
+            stack.append((root.right, root.val, right))
+            stack.append((root.left, left, root.val))
+        return True
 ```
+
+
