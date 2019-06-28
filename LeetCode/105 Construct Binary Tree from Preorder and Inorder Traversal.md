@@ -27,7 +27,7 @@ class Solution:
         node.right = self.f(index + 1, k, preorder, inorder)
         return node
 ```
-## Optimized version
+### Recurse: Optimized version
 This one stores index in the dictionary so that it can spend less time.  
 Also, it use iter(), it is such a good idea that it would change the original preorder.
 ```
@@ -46,4 +46,48 @@ class Solution(object):
         node.left = self.f(l, index - 1, iterator, d)
         node.right = self.f(index + 1, r, iterator, d)
         return node
+```
+## Iteration
+```
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        if not preorder: return None   
+        head = TreeNode(preorder[0])
+        stack = [head]
+        i = 1
+        j = 0
+        for i in range(1, len(preorder)):
+            temp = None
+            t = TreeNode(preorder[i])
+            while stack and stack[-1].val == inorder[j]:
+                temp = stack.pop()
+                j += 1
+            if temp:
+                temp.right = t
+            else:
+                stack[-1].left = t
+            stack.append(t)        
+        return head
+```
+
+```
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        if not preorder: return None
+        d = {}
+        for i, v in enumerate(inorder):
+            d[v] = i
+        root = TreeNode(preorder[0])
+        stack = [root]
+        for i in range(1, len(preorder)):
+            val = preorder[i]
+            node = TreeNode(val)
+            if d[val] < d[stack[-1].val]:
+                stack[-1].left = node
+            else:
+                while stack and d[val] > d[stack[-1].val]:
+                    parent = stack.pop()
+                parent.right = node
+            stack.append(node)
+        return root
 ```
