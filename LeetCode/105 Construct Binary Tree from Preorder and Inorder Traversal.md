@@ -28,7 +28,8 @@ class Solution:
         return node
 ```
 ## Optimized version
-This one stores index in the dictionary and use iter(), which saves time and memory usage.
+This one stores index in the dictionary so that it can spend less time.  
+Also, it use iter(), it is such a good idea that it would change the original preorder.
 ```
 class Solution(object):
     def buildTree(self, preorder, inorder):
