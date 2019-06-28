@@ -9,13 +9,13 @@ class Solution:
             res = []
             for _ in range(len(queue)):
                 root = queue.pop(0)
-                res.append(root.val)
+                if right:
+                    res.append(root.val)
+                else:
+                    res.insert(0, root.val)
                 if root.left: queue.append(root.left)
-                if root.right: queue.append(root.right)
-            if right:
-                ans.append(res)
-            else:
-                ans.append(res[::-1])   
+                if root.right: queue.append(root.right) 
+            ans.append(res)
             right = 1 - right
         return ans
 ```
