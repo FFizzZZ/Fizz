@@ -48,6 +48,7 @@ class Solution(object):
         return node
 ```
 ## Iteration
+So difficult .... It takes me long time to understand. Oh my god!
 ```
 class Solution(object):
     def buildTree(self, preorder, inorder):
