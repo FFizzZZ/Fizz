@@ -13,7 +13,7 @@ class Solution:
         node.right = self.f(i + index - j + 1, index + 1, k, preorder, inorder)
         return node
 ```
-This one use preorder.pop(). It is convenient that we don't need to calculate the start of preorder.
+This one use preorder.pop(). It is convenient that we don't need to calculate the index of preorder.
 ```
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
