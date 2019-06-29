@@ -16,21 +16,21 @@ class Solution:
 ```
 class Solution(object):
     def isBalanced(self, root):
-        stack, node, last, depths = [], root, None, {}
-        while stack or node:
-            if node:
-                stack.append(node)
-                node = node.left
+        stack = []
+        pre = None
+        depth = {}
+        while stack or root:
+            while root:
+                stack.append(root)
+                root = root.left
+            node = stack[-1]
+            if not node.right or node.right == pre:
+                stack.pop()
+                pre = node
+                left, right = depth.get(node.left, 0), depth.get(node.right, 0)
+                if abs(left - right) > 1: return False
+                depth[node] = max(left, right) + 1
             else:
-                node = stack[-1]
-                if not node.right or last == node.right:
-                    node = stack.pop()
-                    left, right  = depths.get(node.left, 0), depths.get(node.right, 0)
-                    if abs(left - right) > 1: return False
-                    depths[node] = 1 + max(left, right)
-                    last = node
-                    node = None
-                else:
-                    node = node.right
+                root = node.right
         return True
 ```
