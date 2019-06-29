@@ -55,7 +55,6 @@ class Solution(object):
         if not preorder: return None   
         head = TreeNode(preorder[0])
         stack = [head]
-        i = 1
         j = 0
         for i in range(1, len(preorder)):
             temp = None
