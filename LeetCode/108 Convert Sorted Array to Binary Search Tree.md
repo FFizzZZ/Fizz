@@ -18,24 +18,16 @@ class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
         if not nums: return None
         head = TreeNode(0)
-        stack = [head]
-        left = [0]
-        right = [len(nums) - 1]
+        stack = [(head, 0, len(nums) - 1)]
         while stack:
-            node = stack.pop()
-            l = left.pop()
-            r = right.pop()
+            node, l, r = stack.pop()
             mid = (l + r) // 2
             node.val = nums[mid]
             if l <= mid - 1:
                 node.left = TreeNode(0)
-                stack.append(node.left)
-                left.append(l)
-                right.append(mid - 1)
+                stack.append((node.left, l, mid - 1))
             if mid + 1 <= r:
                 node.right = TreeNode(0)
-                stack.append(node.right)
-                left.append(mid + 1)
-                right.append(r)
+                stack.append((node.right, mid + 1, r))
         return head
 ```
