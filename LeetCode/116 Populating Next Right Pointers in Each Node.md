@@ -29,3 +29,17 @@ class Solution:
         self.connect(root.right)
         return root
 ```
+
+```
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        if not root: return None
+        self.f(root.left, root.right)
+        return root
+    def f(self, l, r):
+        if not l: return
+        l.next = r
+        self.f(l.left, l.right)
+        self.f(l.right, r.left)
+        self.f(r.left, r.right)
+```
