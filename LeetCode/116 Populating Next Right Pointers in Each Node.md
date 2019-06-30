@@ -3,17 +3,16 @@
 ```
 class Solution:
     def connect(self, root: 'Node') -> 'Node':
-        if not root: return None
-        node = root
-        while node.left:
-            p = node
-            while p:
-                p.left.next = p.right
-                if p.next:
-                    p.right.next = p.next.left
-                p = p.next
-            node = node.left
-        return root
+        p = root
+        while root and root.left:
+            node = root
+            while node:
+                node.left.next = node.right
+                if node.next:
+                    node.right.next = node.next.left
+                node = node.next
+            root = root.left
+        return p
 ```
 
 ### Recurse
