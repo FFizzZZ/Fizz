@@ -4,11 +4,11 @@ class Solution:
         if not root: return
         while root:
             if root.left:
-                temp = root.right
-                node = root.right = root.left
+                node = root.left
                 while node.right:
                     node = node.right
-                node.right = temp
+                node.right = root.right
+                root.right = root.left
                 root.left = None
             root = root.right
 ```
