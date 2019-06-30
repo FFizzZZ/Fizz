@@ -12,6 +12,19 @@ class Solution:
                 root.left = None
             root = root.right
 ```
+```
+class Solution:
+    def flatten(self, root: TreeNode) -> None:
+        if not root: return None
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node.right: stack.append(node.right)
+            if node.left: stack.append(node.left)
+            if not stack: break
+            node.right = stack[-1]
+            node.left = None
+```
 
 ## Leetcode
 ### Recurse
