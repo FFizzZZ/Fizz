@@ -10,3 +10,16 @@ class Solution:
                     dp[j] = dp[j] + dp[j - 1]
         return dp[-1]
 ```
+## Leetcode
+```
+class Solution:
+    def numDistinct(self, s: str, t: str) -> int:
+        dp = [1] + [0] * len(t)
+        indices = collections.defaultdict(list)
+        for i, c in reversed(list(enumerate(t))):
+            indices[c].append(i + 1)
+        for c in s:
+            for i in indices[c]:
+                    dp[i] += dp[i - 1]
+        return dp[-1]
+```
