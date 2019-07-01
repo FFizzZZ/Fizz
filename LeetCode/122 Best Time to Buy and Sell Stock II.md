@@ -24,6 +24,7 @@ class Solution:
 ```
 
 #### Peak-Valley Approach
+The key point is we need to consider every peak immediately following a valley to maximize the profit. In case we skip one of the peaks (trying to obtain more profit), we will end up losing the profit over one of the transactions leading to an overall lesser profit.
 ```
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
