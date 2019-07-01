@@ -1,3 +1,20 @@
+```
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        ans = nums[0]
+        pre = 0
+        for i in range(len(nums)):
+            if pre < 0:
+                pre = nums[i]
+            else:
+                pre += nums[i]
+            if pre > ans:      # Here I compare the speed of 'ans = max(ans, pre)' and 'if pre > ans:....',
+                ans = pre      # I found that the second one is faster.
+        return ans
+```
+
+
+
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         for i in range(1, len(nums)):
@@ -5,15 +22,8 @@ class Solution:
                 nums[i] += nums[i-1]
         return max(nums)
         
--------------------------------------------------------
-class Solution(object):
-    def maxSubArray(self, nums):
-        maxN=min(nums);sumN=0
-        for i in nums:
-            if sumN<0:sumN=i
-            else:sumN+=i
-            if sumN>maxN:maxN=sumN
-        return maxN
+
+
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
