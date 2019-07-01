@@ -16,7 +16,6 @@ class Solution:
                 if node.right:
                     if pre:
                         pre.next = node.right
-                        pre = node.right
                     else:
                         first = node.right
                     pre = node.right
