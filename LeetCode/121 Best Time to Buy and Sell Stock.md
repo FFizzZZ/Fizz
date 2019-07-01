@@ -1,13 +1,15 @@
 ## Leetcode
 ```
 class Solution:
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
-        l = len(triangle)
-        dp = triangle[-1][:]
-        for i in range(l - 2, -1, -1):
-            for j in range(i + 1):
-                dp[j] = min(dp[j], dp[j + 1]) + triangle[i][j]
-        return dp[0]
+    def maxProfit(self, prices: List[int]) -> int:
+        l = float('inf')
+        ans = 0
+        for i in range(len(prices)):
+            if prices[i] < l:
+                l = prices[i]
+            if prices[i] - l > ans:
+                ans = prices[i] - l
+        return ans
 ```
 #### Kadane's Algorithm
 I think the idea behind this algorithm is almost the same as the solution given by Leetcode
