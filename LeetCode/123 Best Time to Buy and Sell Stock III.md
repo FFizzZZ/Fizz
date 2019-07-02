@@ -5,8 +5,8 @@ class Solution:
         hold1, hold2 = float('-inf'), float('-inf')
         release1, release2 = 0, 0
         for i in prices:
-            release2 = max(release2, hold2 + i)
-            hold2 = max(hold2, release1 - i)
+            release2 = max(release2, hold2 + i)      # The order to this four equations
+            hold2 = max(hold2, release1 - i)         # doesn't matter anything!
             release1 = max(release1, hold1 + i)
             hold1 = max(hold1, -i)
         return release2
@@ -23,6 +23,6 @@ class Solution:
             temp = f[i - 1][0] - prices[0]
             for j in range(1, l):
                 f[i][j] = max(f[i][j - 1], prices[j] + temp)
-                temp = max(temp, f[i - 1][j] - prices[j])
-        return f[-1][-1]
+                temp = max(temp, f[i - 1][j] - prices[j])   # Here changing f[i - 1][j] to 
+        return f[-1][-1]                                    # f[i - 1][j] gets the same answer.
 ```
