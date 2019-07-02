@@ -21,6 +21,23 @@ class Solution:
 ## Leetcode
 ```
 class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = ans = 0
+        d = {}
+        for r, v in enumerate(s):
+            if v in d:
+                temp = d[v] + 1
+                if temp > l:
+                    l = temp
+            temp = r - l + 1
+            if temp > ans:
+                ans = temp
+            d[v] = r
+        return ans
+```
+
+```
+class Solution:
     def lengthOfLongestSubstring(self, s: 'str') -> 'int':
         sub = ''
         res = ''
@@ -33,3 +50,6 @@ class Solution:
                 sub = sub.split(i)[-1] + i
         return max(len(sub), len(res))
 ```
+
+
+
