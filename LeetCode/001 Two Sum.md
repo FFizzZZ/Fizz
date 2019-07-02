@@ -1,3 +1,4 @@
+```
 class Solution:
     def twoSum(self, nums: 'List[int]', target: 'int') -> 'List[int]':
         dict = {}
@@ -5,3 +6,4 @@ class Solution:
             if num in dict:
                 return dict[num], index
             dict[target - num] = index
+```
