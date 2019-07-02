@@ -31,3 +31,4 @@ POINTS
   最小公倍数=两整数的乘积÷最大公约数
 * 0 ^ n = n
 * 汉诺塔问题的非递归算法
+* max(a, b) is slower than if clause
