@@ -1,15 +1,13 @@
 ```
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        temp = 0
-        l = len(nums)
-        for i in range(l-1):
-            if temp >= i:
-                if temp < nums[i] + i:
-                    temp = nums[i] + i
+        index = 0
+        for i in range(len(nums) - 1):
+            if i > index: return False
             else:
-                return False
-        return True if temp >= len(nums) - 1 else False
+                if i + nums[i] > index:
+                    index = i + nums[i]
+        return True if index >= len(nums) - 1 else False
 ```
 
 ## 只有一个点的最大跳跃距离nums[i] == 0且我们不能跳得比这个点更远的时候，我们才无法到达最后
