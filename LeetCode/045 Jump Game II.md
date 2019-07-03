@@ -20,15 +20,18 @@ class Solution:
 ```
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        step = 0
+        count = 0
+        index = 0
         temp = 0
-        end = 0
-        for i in range(len(nums)-1):
-            temp = max(temp, nums[i] + i)
-            if i == end:
-                end = temp
-                step += 1
-        return step
+        for i in range(len(nums) - 1):
+            if i + nums[i] > temp:
+                temp = i + nums[i]
+            if temp >= len(nums) - 1:
+                return count + 1
+            if i == index:
+                count += 1
+                index = temp
+        return count
 ```
 
 # 顺挂摸藤，必须排掉较差的情况，否则超过时间限制
