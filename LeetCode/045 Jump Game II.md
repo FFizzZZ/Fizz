@@ -1,20 +1,19 @@
-# the last two cases didn't pass
+```
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        res = []
-        log = []
-        def f(i, count):
-            if i == 0: res.append(count)
-            if i in log: return False
-            temp = []
-            for j in range(i):
-                if j + nums[j] >= i:
-                    temp.append(f(j, count + 1))
-            if not any(temp):
-                    log.append(i)
-            return any(temp)
-        f(len(nums)-1, 0)
-        return min(res)
+        count = 0
+        index = 0
+        while index < len(nums) - 1:
+            count += 1
+            end = index + nums[index]
+            if end >= len(nums) - 1: return count
+            temp = 0
+            for i in range(index + 1, end + 1):
+                if i + nums[i] > temp:
+                    temp = i + nums[i]
+                    index = i
+        return count
+```
     
 -----------------------------------------------------
 # 顺藤摸瓜
