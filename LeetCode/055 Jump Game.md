@@ -2,12 +2,12 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         index = 0
-        for i in range(len(nums) - 1):
+        for i in range(len(nums)):
             if i > index: return False
             else:
                 if i + nums[i] > index:
                     index = i + nums[i]
-        return True if index >= len(nums) - 1 else False
+        return True
 ```
 ## Leetcode
 ```
