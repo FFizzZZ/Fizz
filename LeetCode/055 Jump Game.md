@@ -9,8 +9,18 @@ class Solution:
                     index = i + nums[i]
         return True if index >= len(nums) - 1 else False
 ```
-
-## 只有一个点的最大跳跃距离nums[i] == 0且我们不能跳得比这个点更远的时候，我们才无法到达最后
+## Leetcode
+```
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        index = len(nums) - 1
+        for i in range(len(nums) - 1, -1, -1):
+            if i + nums[i] >= index:
+                index = i
+        return index == 0
+```
+### 只有一个点的最大跳跃距离nums[i] == 0且我们不能跳得比这个点更远的时候，我们才无法到达最后
+    
 ```
 class Solution:
     def canJump(self, nums):
