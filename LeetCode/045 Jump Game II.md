@@ -17,6 +17,7 @@ class Solution:
     
 -----------------------------------------------------
 # 顺藤摸瓜
+```
 class Solution:
     def jump(self, nums: List[int]) -> int:
         step = 0
@@ -28,8 +29,10 @@ class Solution:
                 end = temp
                 step += 1
         return step
+```
 
 # 顺挂摸藤，必须排掉较差的情况，否则超过时间限制
+```
 class Solution:
     def jump(self, nums: List[int]) -> int:
         if all([x == 1 for x in nums]): return len(nums) - 1
@@ -43,3 +46,4 @@ class Solution:
                     steps += 1
                     break
         return steps
+```
