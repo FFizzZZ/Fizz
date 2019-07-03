@@ -2,11 +2,10 @@
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         index = 0
-        for i in range(len(nums)):
+        for i, v in enumerate(nums):
             if i > index: return False
-            else:
-                if i + nums[i] > index:
-                    index = i + nums[i]
+            if i + v > index:
+                index = i + v
         return True
 ```
 ## Leetcode
