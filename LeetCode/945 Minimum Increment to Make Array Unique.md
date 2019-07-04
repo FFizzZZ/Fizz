@@ -1,3 +1,20 @@
+## Leetcode
+```
+class Solution:
+    def minIncrementForUnique(self, A):
+        if not A: return 0
+        ans = 0
+        A.sort()
+        pre = A[0]
+        for i in range(1, len(A)):
+            if A[i] <= pre:
+                ans += pre - A[i] + 1
+                pre += 1
+            else:
+                pre = A[i]
+        return ans
+```
+
 ```
 class Solution:
     def minIncrementForUnique(self, A: List[int]) -> int:
@@ -27,4 +44,14 @@ class Solution:
                 ans += give * (give + 1) // 2 + give * A[i - 1]
                 taken -= give
         return ans
+```
+
+```
+class Solution:
+    def minIncrementForUnique(self, A):
+        res = need = 0
+        for i in sorted(A):
+            res += max(need - i, 0)
+            need = max(need + 1, i + 1)
+        return res
 ```
