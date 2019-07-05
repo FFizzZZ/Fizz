@@ -1,4 +1,5 @@
 ## Leetcode
+#### When A reaches the end, then redirect it to the head of B; similarly when B reaches the end, redirect it the head of A.
 ```
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
@@ -9,7 +10,7 @@ class Solution(object):
             b = b.next if b else headA
         return a
 ```
-
+#### Hash Table
 ```
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
