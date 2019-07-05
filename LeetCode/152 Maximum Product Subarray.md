@@ -13,7 +13,7 @@ class Solution(object):
                 ans = imax
         return ans
 ```
-
+#### The number of '-' counts.
 ```
 class Solution(object):
     def maxProduct(self, A):
