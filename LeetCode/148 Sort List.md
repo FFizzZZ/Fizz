@@ -1,4 +1,5 @@
 ## Leetcode
+#### Recurse
 ```
 class Solution(object):
     def sortList(self, head):
@@ -27,4 +28,54 @@ class Solution(object):
         if right:
             node.next = right
         return dummy.next
+```
+#### Iteration
+```
+class Solution(object):
+    def sortList(self, head):
+        if not head or not head.next: return head
+        cur = head
+        l = 0
+        while cur:
+            l += 1
+            cur = cur.next
+        dummy = ListNode(0)
+        dummy.next = head
+        step = 1
+        while step < l:
+            cur = dummy.next
+            tail = dummy
+            while cur:
+                left = cur
+                right = self.split(left, step)
+                cur = self.split(right, step)
+                tail = self.merge(left, right, tail)
+            step <<= 1
+        return dummy.next
+    def split(self, head, n):
+        i = 1
+        while head and i < n:
+            head = head.next
+            i += 1
+        if not head: return None
+        second = head.next
+        head.next = None
+        return second
+    def merge(self, left, right, tail):
+        cur = tail
+        while left and right:
+            if left.val < right.val:
+                cur.next = left
+                left = left.next
+            else:
+                cur.next = right
+                right = right.next
+            cur = cur.next
+        if right:
+            cur.next = right
+        if left:
+            cur.next = left
+        while cur.next:
+            cur = cur.next
+        return cur
 ```
