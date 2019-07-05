@@ -1,3 +1,4 @@
+### Recurse with memorization
 ```
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
@@ -15,6 +16,7 @@ class Solution:
         d[index] = ans
         return ans
 ```
+### Dynamic Programming
 ```
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
@@ -41,5 +43,26 @@ class Solution:
             for j in range(i):
                 if dp[j] and s[j:i] in wordDict:
                     dp[i] = True
+                    break
         return dp[-1]
 ```
+
+```
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n = len(s)
+        dp = [False] * (n + 1)
+        dp[0] = True
+        for i in range(n + 1):
+            for x in wordDict:
+                l = len(x)
+                if l <= i and dp[i - l] and x == s[i - l:i]:
+                    dp[i] = True
+                    break
+        return dp[-1]
+```
+        
+        
+        
+        
+
