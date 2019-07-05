@@ -29,7 +29,7 @@ class Solution(object):
             node.next = right
         return dummy.next
 ```
-#### Iteration
+#### Iteration: O(1) space
 ```
 class Solution(object):
     def sortList(self, head):
