@@ -15,6 +15,21 @@ class Solution:
         d[index] = ans
         return ans
 ```
+```
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n = len(s)
+        dp = [False] * (n + 1)
+        dp[0] = True
+        for i in range(n + 1):
+            for x in wordDict:
+                l = len(x)
+                if dp[i] and i + l <= n and x == s[i:i + l]:
+                    dp[i + l] = True
+        return dp[-1]
+```
+        
+
 ## Leetcode
 #### Dynamic Programming
 ```
