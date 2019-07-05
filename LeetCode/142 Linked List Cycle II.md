@@ -5,11 +5,11 @@ class Solution(object):
         while q and q.next:
             q = q.next.next
             p = p.next
-            if p == q: break
-        if not q or not q.next: return None
-        x = head
-        while x != q:
-            x = x.next
-            q = q.next
-        return x
+            if p == q:
+                x = head
+                while x != q:
+                    x = x.next
+                    q = q.next
+                return x                
+        return None
 ```
