@@ -21,6 +21,7 @@ class MinStack(object):
 ```
 
 ## Leetcode
+#### One Stack
 ```
 class MinStack(object):
     def __init__(self):
@@ -38,4 +39,23 @@ class MinStack(object):
         return self.stack[-1]
     def getMin(self):
         return self.min
+```
+#### Two Stack
+```
+class MinStack(object):
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+    def push(self, x):
+        self.stack1.append(x)
+        if not self.stack2 or self.stack2[-1] >= x:
+            self.stack2.append(x)
+    def pop(self):
+        val = self.stack1.pop()
+        if val == self.stack2[-1]:
+            self.stack2.pop()
+    def top(self):
+        return self.stack1[-1]
+    def getMin(self):
+        return self.stack2[-1]
 ```
