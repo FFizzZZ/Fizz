@@ -2,23 +2,25 @@
 ```
 class Solution(object):
     def numIslands(self, grid):
-        if not grid: return 0
-        n, m = len(grid), len(grid[0])
-        count = 0
+        if not grid or not grid[0]:
+            return 0            
+        islands = 0
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                if grid[i][j] == '1':
-                    self.f(grid, i, j)
-                    count += 1
-        return count
-    def f(self, grid, i, j):
-        if i < 0 or j < 0 or i == len(grid) or j == len(grid[0]) or grid[i][j] == '0':
-            return
-        grid[i][j] = '0'
-        self.f(grid, i + 1, j)
-        self.f(grid, i - 1, j)
-        self.f(grid, i, j + 1)
-        self.f(grid, i, j - 1)
+                if grid[i][j] == "1":
+                    self.explore(grid, i, j)
+                    islands += 1
+        return islands       
+    def explore(self, g, x, y):
+        g[x][y] = "X"       
+        if x - 1 >= 0 and g[x-1][y] == "1":
+            self.explore(g, x - 1, y)
+        if y - 1 >= 0 and g[x][y - 1] == "1":
+            self.explore(g, x, y - 1)
+        if x + 1 < len(g) and g[x+1][y] == "1":
+            self.explore(g, x + 1, y)
+        if y + 1 < len(g[0]) and g[x][y + 1] == "1":
+            self.explore(g, x, y + 1)
 ```
 #### UnionFind
 ```
