@@ -1,3 +1,4 @@
+#### Recurse
 ```
 class Solution(object):
     def rob(self, nums):
@@ -12,4 +13,16 @@ class Solution(object):
         ans = val1 if val1 > val2 else val2
         d[i] = ans
         return ans
+```
+#### Dynamic Programming
+```
+class Solution(object):
+    def rob(self, nums):
+        if not nums: return 0
+        n = len(nums)
+        dp = [0] * (n + 1)
+        dp[1] = nums[0]
+        for i in range(2, n + 1):
+            dp[i] = max(nums[i - 1] + dp[i - 2], dp[i - 1])
+        return dp[-1]
 ```
