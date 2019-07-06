@@ -26,3 +26,14 @@ class Solution(object):
             dp[i] = max(nums[i - 1] + dp[i - 2], dp[i - 1])
         return dp[-1]
 ```
+#### Optimized Version
+```
+class Solution(object):
+    def rob(self, nums):
+        if not nums: return 0
+        n = len(nums)
+        first, second = 0, nums[0]
+        for i in range(2, n + 1):
+            first, second = second, max(nums[i - 1] + first, second)
+        return second
+```
