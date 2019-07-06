@@ -5,8 +5,8 @@ class Solution(object):
         if not grid: return 0
         n, m = len(grid), len(grid[0])
         count = 0
-        for i in range(n):
-            for j in range(m):
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
                 if grid[i][j] == '1':
                     self.f(grid, i, j)
                     count += 1
