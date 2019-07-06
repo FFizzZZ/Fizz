@@ -37,3 +37,14 @@ class Solution(object):
             first, second = second, max(nums[i - 1] + first, second)
         return second
 ```
+
+## Leetcode
+I think it is like DP
+```
+class Solution(object):
+    def rob(self, nums):
+        a, b = 0, 0
+        for i in nums:
+            a, b = b, max(a + i, b)
+        return b
+```
