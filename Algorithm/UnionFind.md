@@ -17,7 +17,6 @@ class UnionFind_MergeOptimize:
     def union(self, x, y):
         rootx = self.find(x)
         rooty = self.find(y)
-        print(rootx, rooty)
         if rootx != rooty:
             if self.heights[rootx] > self.heights[rooty]:
                 self.elements[rooty] = rootx
@@ -26,7 +25,6 @@ class UnionFind_MergeOptimize:
             else:
                 self.elements[rootx] = rooty
                 self.heights[rooty] += 1
-            self.elements[rootx] = rooty
     def count(self):
         return self.elements.count(-1)
     def print(self):
