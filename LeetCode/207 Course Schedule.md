@@ -3,25 +3,23 @@
 ```
 class Solution(object):
     def canFinish(self, n, p):
-        matrix = [[0] * n for _ in range(n)]
-        indegree = [0] * n
-        for i in range(len(p)):
-            ready, pre = p[i]
-            matrix[pre][ready] = 1
-            indegree[ready] += 1
-        count = 0
+        matrix = [[] for _ in range(n)]
+        degree = [0] * n
+        for i in p:
+            now, pre = i
+            matrix[pre].append(now)
+            degree[now] += 1
         queue = []
-        for i in range(len(indegree)):
-            if indegree[i] == 0: queue.append(i)
+        for i in range(n):
+            if degree[i] == 0: queue.append(i)
         while queue:
-            cur = queue.pop(0)
-            count += 1
-            for i in range(n):
-                if matrix[cur][i] != 0:
-                    indegree[i] -= 1
-                    if indegree[i] == 0:
-                        queue.append(i)
-        return n == count
+            cur = queue.pop()
+            n -= 1
+            for i in matrix[cur]:
+                degree[i] -= 1
+                if degree[i] == 0:
+                    queue.append(i)
+        return n == 0
 ```
 
 ```
