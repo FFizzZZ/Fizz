@@ -1,5 +1,37 @@
 ## Leetcode
 ```
+class Trie:
+    def __init__(self):
+        self.root = {}
+
+    def insert(self, word: str) -> None:
+        p = self.root
+        for c in word:
+            if c not in p:
+                p[c] = {}
+            p = p[c]
+        p['#'] = True
+
+    def search(self, word: str) -> bool:
+        p = self.find(word)
+        if p and '#' in p: return True
+        return False
+
+    def startsWith(self, prefix: str) -> bool:
+        p = self.find(prefix)
+        if p: return True
+        return False
+    
+    def find(self, prefix):
+        p = self.root
+        for c in prefix:
+            if c not in p:
+                return None
+            p = p[c]
+        return p
+```
+------------------------------------------------------------------------------------
+```
 class TrieNode:
     def __init__(self):
         self.children = collections.defaultdict(TrieNode)
