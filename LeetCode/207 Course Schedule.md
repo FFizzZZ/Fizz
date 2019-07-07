@@ -5,8 +5,7 @@ class Solution(object):
     def canFinish(self, n, p):
         matrix = [[] for _ in range(n)]
         degree = [0] * n
-        for i in p:
-            now, pre = i
+        for now, pre in p:
             matrix[pre].append(now)
             degree[now] += 1
         queue = []
