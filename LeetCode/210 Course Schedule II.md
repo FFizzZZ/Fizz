@@ -20,3 +20,25 @@ class Solution(object):
                     queue.append(i)
         return ans if len(ans) == n else []
 ```
+## Leetcode
+```
+from collections import defaultdict
+class Solution:
+    def findOrder(self, numCourses, prerequisites):
+        adj_list = defaultdict(list)
+        indegree = {}
+        for dest, src in prerequisites:
+            adj_list[src].append(dest)
+            indegree[dest] = indegree.get(dest, 0) + 1
+        zero_indegree_queue = [k for k in range(numCourses) if k not in indegree]
+        topological_sorted_order = []
+        while zero_indegree_queue:
+            vertex = zero_indegree_queue.pop(0)
+            topological_sorted_order.append(vertex)
+            if vertex in adj_list:
+                for neighbor in adj_list[vertex]:
+                    indegree[neighbor] -= 1
+                    if indegree[neighbor] == 0:
+                        zero_indegree_queue.append(neighbor)
+        return topological_sorted_order if len(topological_sorted_order) == numCourses else []
+```
