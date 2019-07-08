@@ -19,3 +19,19 @@ class Solution:
         root.left, root.right = root.right, root.left
         return root
 ```
+#### Iteration
+```
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root: return None
+        queue = []
+        queue.append(root)
+        while queue:
+            node = queue.pop()
+            node.right, node.left = node.left, node.right
+            if node.right:
+                queue.append(node.right)
+            if node.left:
+                queue.append(node.left)
+        return root
+```
