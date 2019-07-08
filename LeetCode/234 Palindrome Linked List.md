@@ -26,3 +26,19 @@ class Solution:
             head = temp
         return pre
 ```
+#### Reverse the first half while finding the middle
+```
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        pre = None
+        slow, fast = head, head
+        while fast and fast.next:
+            fast = fast.next.next
+            pre, pre.next, slow = slow, pre, slow.next
+        if fast:
+            slow = slow.next
+        while pre and pre.val == slow.val:
+            slow = slow.next
+            pre = pre.next
+        return not pre
+```
