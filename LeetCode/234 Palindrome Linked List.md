@@ -42,3 +42,23 @@ class Solution:
             pre = pre.next
         return not pre
 ```
+
+#### This one recovers the linked list
+```
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        pre = None
+        slow, fast = head, head
+        while fast and fast.next:
+            fast = fast.next.next
+            pre, pre.next, slow = slow, pre, slow.next
+        node = slow
+        if fast:
+            slow = slow.next
+        ans = True
+        while pre:
+            ans = ans and pre.val == slow.val
+            slow = slow.next
+            pre.next, pre, node = node, pre.next, pre
+        return ans
+```
