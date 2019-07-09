@@ -50,3 +50,20 @@ class Solution:
         return q
 ```
 
+```
+class Solution:
+    def lowestCommonAncestor(self, root, p, q):
+        def path(root, goal):
+            path, stack = [], [root]
+            while stack:
+                node = stack.pop()
+                if node:
+                    if node not in path[-1:]:
+                        path.append(node)
+                        if node == goal:
+                            return path
+                        stack += node, node.right, node.left
+                    else:
+                        path.pop()
+        return [a for a, b in zip(path(root, p), path(root, q)) if a == b][-1]
+```
