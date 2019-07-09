@@ -9,7 +9,7 @@ class Solution:
             i += 1
         s = {n}
         count = 0
-        while s:
+        while 1:
             count += 1
             temp = set()
             for x in s:
