@@ -28,6 +28,7 @@ class Solution:
 ```
 
 #### Iteration
+##### Use dic to record the parent of nodes
 ```
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
@@ -49,7 +50,7 @@ class Solution:
             q = d[q]
         return q
 ```
-
+##### Find the path to the two nodes
 ```
 class Solution:
     def lowestCommonAncestor(self, root, p, q):
