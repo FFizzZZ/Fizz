@@ -12,3 +12,17 @@ class Solution:
             ans[i] = l[i] * r[i]
         return ans
 ```
+#### Optimized Verison
+```
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ans = [1] * n
+        for i in range(1, n):
+            ans[i] = nums[i - 1] * ans[i - 1]
+        r = nums[-1]
+        for i in range(n - 2, -1, -1):
+            ans[i] *= r
+            r *= nums[i]
+        return ans
+```
