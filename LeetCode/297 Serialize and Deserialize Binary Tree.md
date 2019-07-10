@@ -34,3 +34,21 @@ class Codec:
                 queue.append(right)
         return head
 ```
+
+## Leetcode
+```
+class Codec:
+    def serialize(self, root):
+        if not root: return '#'
+        return str(root.val) + ',' + self.serialize(root.left) + ',' + self.serialize(root.right)
+    def deserialize(self, data):
+        s = data.split(',')
+        return self.f(s)
+    def f(self, s):
+        val = s.pop(0)
+        if val != '#':
+            node = TreeNode(int(val))
+            node.left = self.f(s)
+            node.right = self.f(s)
+            return node
+```
