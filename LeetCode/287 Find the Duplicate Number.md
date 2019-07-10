@@ -1,4 +1,5 @@
 ## Leetcode
+##### The idea is almost the same as finding the entrance to the cycle in a linked list.
 ```
 class Solution:
     def findDuplicate(self, nums):
