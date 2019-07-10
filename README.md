@@ -32,3 +32,4 @@ POINTS
 * 0 ^ n = n
 * 汉诺塔问题的非递归算法
 * max(a, b) is slower than if clause
+* use iter() and next() to avoid in-place change!
