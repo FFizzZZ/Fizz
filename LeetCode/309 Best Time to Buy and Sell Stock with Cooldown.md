@@ -5,7 +5,7 @@ class Solution:
         if n < 2: return 0
         s1, s2, b = 0, 0, -prices[0]
         for i in range(1, n):
-            b, s1, s2 = max(s1 - prices[i], b), s2, max(s1, prices[i] + b)
+            b, s1, s2 = max(s1 - prices[i], b), s2, max(s2, prices[i] + b)
         return s2
 ```
 
