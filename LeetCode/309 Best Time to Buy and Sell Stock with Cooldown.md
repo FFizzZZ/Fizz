@@ -9,6 +9,17 @@ class Solution:
         return s2
 ```
 
+```
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        if n < 2: return 0
+        s1, s2, b = 0, 0, float('-inf')
+        for i in prices:
+            b, s1, s2 = max(s1 - i, b), s2, max(s2, i + b)
+        return s2
+```
+
 ## Leetcode
 #### Dynamic Programming
 ```
