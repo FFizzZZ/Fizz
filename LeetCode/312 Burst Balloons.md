@@ -1,4 +1,5 @@
 ## Leetcode
+#### Dynamic Programming
 ```
 class Solution:
     def maxCoins(self, iNums):
