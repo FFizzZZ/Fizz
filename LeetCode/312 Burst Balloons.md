@@ -15,3 +15,22 @@ class Solution:
                         dp[left][right] = temp
         return dp[0][n - 1]
 ```
+
+#### Recurse
+```
+class Solution:
+    def maxCoins(self, iNums):
+        nums = [1] + [x for x in iNums if x > 0] + [1]
+        d = {}
+        return self.f(0, len(nums) - 1, nums, d)
+    def f(self, l, r, nums, d):
+        if r == l + 1: return 0
+        if (l, r) in d: return d[(l, r)]
+        ans = 0
+        for index in range(l + 1, r):
+            temp = nums[l] * nums[index] * nums[r] + self.f(l, index, nums, d) + self.f(index, r, nums, d)
+            if temp > ans:
+                ans = temp
+        d[(l, r)] = ans
+        return ans
+```
