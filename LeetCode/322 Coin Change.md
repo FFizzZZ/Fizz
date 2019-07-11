@@ -22,6 +22,7 @@ class Solution:
             
             
 ## Leetcode
+#### permutation
 ```
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -38,7 +39,7 @@ class Solution:
         else:
             return dp[-1]
 ```
-
+#### combination (slightly faster?)
 ```
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
