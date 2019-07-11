@@ -39,6 +39,17 @@ class Solution:
             return dp[-1]
 ```
 
+```
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0
+        for x in coins:
+            for i in range(x, amount + 1):
+                temp = dp[i - x] + 1
+                if temp < dp[i]:
+                    dp[i] = temp
+        return -1 if dp[-1] > amount else dp[-1]
 
-
+```
 
