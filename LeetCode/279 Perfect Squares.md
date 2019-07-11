@@ -1,3 +1,27 @@
+```
+class Solution:
+    d = {}
+    def numSquares(self, n):
+        if n < 2: return n
+        d = self.d
+        nums = []
+        for i in range(1, n + 1):
+            if i ** 2 > n: break
+            nums.append(i ** 2)
+        return self.f(n, nums, d)
+    def f(self, n, nums, d):
+        if n == 0: return 0
+        if n in d: return d[n]
+        ans = n
+        for x in nums:
+            if n >= x:
+                temp = self.f(n - x, nums, d) + 1
+                if temp < ans:
+                    ans = temp
+        d[n] = ans
+        return ans
+```
+        
 ## Leetcode
 #### BFS
 ```
