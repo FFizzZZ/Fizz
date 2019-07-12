@@ -20,6 +20,25 @@ class Solution:
 ```
 class Solution:
     def rob(self, root: TreeNode) -> int:
+        return self.f(root, {})
+    def f(self, root, d):
+        if not root: return 0
+        if root in d: return d[root]
+        val = root.val
+        if root.left:
+            val += self.f(root.left.left, d) + self.f(root.left.right, d)
+        if root.right:
+            val += self.f(root.right.left, d) + self.f(root.right.right, d)
+        temp = self.f(root.left, d) + self.f(root.right, d)
+        if temp > val:
+            val = temp
+        d[root] = val
+        return val
+```
+
+```
+class Solution:
+    def rob(self, root: TreeNode) -> int:
         return max(self.f(root))
     def f(self, root):
         if not root: return [0, 0]
