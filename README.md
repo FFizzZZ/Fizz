@@ -34,3 +34,4 @@ POINTS
 * 汉诺塔问题的非递归算法
 * max(a, b) is slower than if clause
 * use iter() and next() to avoid in-place change!
+* format(2, '.2f'), '%.2f' % num
