@@ -16,3 +16,26 @@ class Solution:
         right = self.count(root.right, sum)
         return mid + left + right
 ```
+#### Recurse with memorization (really good!)
+```
+class Solution(object):
+    def pathSum(self, root, target):
+        self.result = 0
+        cache = {0:1}
+        self.dfs(root, target, 0, cache)
+        return self.result
+    
+    def dfs(self, root, target, currPathSum, cache):
+        if not root: return  
+        # calculate currPathSum and required oldPathSum
+        currPathSum += root.val
+        oldPathSum = currPathSum - target
+        # update result and cache
+        self.result += cache.get(oldPathSum, 0)
+        cache[currPathSum] = cache.get(currPathSum, 0) + 1
+        # dfs breakdown
+        self.dfs(root.left, target, currPathSum, cache)
+        self.dfs(root.right, target, currPathSum, cache)
+        # when move to a different branch, the currPathSum is no longer available, hence remove one. 
+        cache[currPathSum] -= 1
+```
