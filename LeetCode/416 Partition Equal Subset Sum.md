@@ -15,7 +15,7 @@ class Solution:
                 dp[j] = dp[j] or nums[i - 1] <= j and dp[j - nums[i - 1]]
         return dp[-1]
 ```
-###### Similar to Coin Changes, here we can use nums in the outter loop
+###### Another version
 ```
 class Solution(object):
     def canPartition(self, nums):
