@@ -2,6 +2,16 @@
 ```
 class Solution(object):
     def reconstructQueue(self, people):
+        people.sort(key=lambda p: [-p[0], p[1]])
+        queue = []
+        for p in people:
+            queue.insert(p[1], p)
+        return queue
+```
+
+```
+class Solution(object):
+    def reconstructQueue(self, people):
         if not people: return []
         peopledct, height, res = {}, [], []        
         for i in range(len(people)):
