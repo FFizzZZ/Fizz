@@ -20,6 +20,7 @@ UNFINISHED
 * 126 
 * 131 Palindrome Partitioning: dynamic programming
 * 154 Find Minimum in Rotated Sorted Array: duplicate
+* 698 Partition to K Equal Sum Subsets
 
 
 POINTS
