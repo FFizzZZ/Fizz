@@ -10,9 +10,9 @@ class Solution:
         s //= 2
         dp = [False] * (s + 1)
         dp[0] = True
-        for i in range(1, n + 1):
+        for num in nums:
             for j in range(s, 0, -1):
-                dp[j] = dp[j] or nums[i - 1] <= j and dp[j - nums[i - 1]]
+                dp[j] = dp[j] or num <= j and dp[j - num]
         return dp[-1]
 ```
 ###### Another version
