@@ -1,5 +1,6 @@
 ## Leetcode
 #### dynamic programming
+###### Something like backpack problem, dp[i][j] means whether we can reach j by first i items
 ```
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
