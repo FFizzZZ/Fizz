@@ -1,4 +1,5 @@
 ## Leetcode
+#### mark visited element as negative
 ```
 class Solution(object):
     def findDisappearedNumbers(self, nums):
@@ -8,6 +9,16 @@ class Solution(object):
                 nums[index] *= -1
         return [i + 1 for i in range(len(nums)) if nums[i] > 0]
 ```
+similar idea
+```
+class Solution(object):
+    def findDisappearedNumbers(self, nums):
+        N = len(nums)
+        for i in range(len(nums)):
+            nums[(nums[i]%N)-1] += N
+        return [i+1 for i in range(len(nums)) if nums[i]<=N]
+```
+#### assign each element to its index
 ```
 class Solution(object):
     def findDisappearedNumbers(self, nums):
