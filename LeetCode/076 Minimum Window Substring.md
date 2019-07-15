@@ -4,7 +4,7 @@ class Solution:
         d = collections.Counter(t)
         l, r = 0, 0
         count = len(d)
-        ans = 0, float('inf')
+        start, end = 0, float('inf')
         for r, v in enumerate(s):
             if v in d:
                 d[v] -= 1
@@ -13,11 +13,12 @@ class Solution:
                 temp = s[l]
                 if temp in d:
                     d[temp] += 1
-                    if d[temp] > 0: count += 1
-                if r - l < ans[1] - ans[0]:
-                    ans = (l, r)
+                    if d[temp] > 0: 
+                        count += 1
+                        if r - l < end - start:
+                            start, end = l, r
                 l += 1
-        return '' if ans[1] == float('inf') else s[ans[0]:ans[1]+1]
+        return '' if end == float('inf') else s[start:end+1]
 ```
 
 ## Leetcode Solution
