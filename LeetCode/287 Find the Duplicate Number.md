@@ -1,3 +1,14 @@
+```
+class Solution:
+    def findDuplicate(self, nums):
+        for v in nums:
+            v = abs(v)
+            if nums[v] < 0:
+                return v
+            else:
+                nums[v] *= -1
+```
+
 ## Leetcode
 ##### The idea is almost the same as finding the entrance to the cycle in a linked list.
 ```
