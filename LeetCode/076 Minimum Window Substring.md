@@ -7,12 +7,11 @@ class Solution:
         ls = len(s)
         ans = (0, ls + 1)
         flag = 0
-        while r < ls:
+        for r in range(ls):
             char = s[r]
             if char in d:
                 d[char] -= 1
                 if d[char] == 0: count -= 1
-            r += 1
             while count == 0:
                 temp = s[l]
                 if temp in d:
@@ -22,7 +21,7 @@ class Solution:
                     ans = (l, r)
                     flag = 1
                 l += 1
-        return s[ans[0]:ans[1]] if flag else ''
+        return s[ans[0]:ans[1]+1] if flag else ''
 ```
 
 ## Leetcode Solution
