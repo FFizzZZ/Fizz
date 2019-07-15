@@ -5,7 +5,7 @@ class Solution:
         l, r = 0, 0
         count = len(d)
         ls = len(s)
-        ans = (0, ls + 1)
+        ans = 0, ls
         flag = 0
         for r in range(ls):
             char = s[r]
@@ -21,7 +21,7 @@ class Solution:
                     ans = (l, r)
                     flag = 1
                 l += 1
-        return s[ans[0]:ans[1]+1] if flag else ''
+        return '' if ans[1] == ls else s[ans[0]:ans[1]+1]
 ```
 
 ## Leetcode Solution
