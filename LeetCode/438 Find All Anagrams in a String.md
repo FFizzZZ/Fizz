@@ -10,8 +10,9 @@ class Solution:
             sCounter[s[i]] += 1  
             if sCounter == pCounter:    
                 res.append(i-l+1)  
-            sCounter[s[i-l+1]] -= 1  
-            if sCounter[s[i-l+1]] == 0:
-                del sCounter[s[i-l+1]]
+            temp = s[i - l + 1]
+            sCounter[temp] -= 1  
+            if sCounter[temp] == 0:
+                del sCounter[temp]
         return res
 ```
