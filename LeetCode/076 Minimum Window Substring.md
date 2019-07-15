@@ -4,14 +4,11 @@ class Solution:
         d = collections.Counter(t)
         l, r = 0, 0
         count = len(d)
-        ls = len(s)
-        ans = 0, ls
-        flag = 0
-        for r in range(ls):
-            char = s[r]
-            if char in d:
-                d[char] -= 1
-                if d[char] == 0: count -= 1
+        ans = 0, float('inf')
+        for r, v in enumerate(s):
+            if v in d:
+                d[v] -= 1
+                if d[v] == 0: count -= 1
             while count == 0:
                 temp = s[l]
                 if temp in d:
@@ -19,9 +16,8 @@ class Solution:
                     if d[temp] > 0: count += 1
                 if r - l < ans[1] - ans[0]:
                     ans = (l, r)
-                    flag = 1
                 l += 1
-        return '' if ans[1] == ls else s[ans[0]:ans[1]+1]
+        return '' if ans[1] == float('inf') else s[ans[0]:ans[1]+1]
 ```
 
 ## Leetcode Solution
