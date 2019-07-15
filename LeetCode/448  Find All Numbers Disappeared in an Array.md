@@ -29,3 +29,12 @@ class Solution(object):
                 nums[temp - 1] = temp
         return [i + 1 for i in range(len(nums)) if nums[i] != i + 1]
 ```
+
+#### Extra space
+```
+class Solution:
+    def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
+        A=set(range(1, len(nums)+1))
+        B=set(nums)
+        return(list(A-B))
+```
