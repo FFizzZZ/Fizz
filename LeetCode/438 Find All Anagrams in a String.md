@@ -42,3 +42,24 @@ class Solution:
                 start += 1
         return ans
 ```
+
+#### Hash value (fastest!)
+```
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        ls, lp = len(s), len(p)
+        if lp > ls:
+            return res
+        hash_p =hash_s = 0
+        for i in range(lp):
+            hash_p += hash(p[i])
+            hash_s += hash(s[i])
+        if hash_p==hash_s:
+            res.append(0)
+        for i in range(lp, ls):
+            hash_s += hash(s[i]) - hash(s[i-lp])
+            if hash_p == hash_s:
+                res.append(i - lp + 1)
+        return res
+```
