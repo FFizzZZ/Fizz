@@ -11,6 +11,21 @@ class Solution:
 ```
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
+        nums = [x for x in nums if x > 0]
+        n = len(nums)
+        for i in nums:
+            index = abs(i) - 1
+            if index < n and nums[index] > 0:
+                nums[index] *= -1
+        for i in range(n):
+            if nums[i] > 0:
+                return i + 1
+        return n + 1
+```
+
+```
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
         nums.sort()
         index = sum([i <= 0 for i in nums])
         temp = []
@@ -23,18 +38,4 @@ class Solution:
         else:
             return len(res) + 1
 ```
--------------------
-```
-class Solution:
-    def firstMissingPositive(self, nums: List[int]) -> int:
-        nums = [n for n in nums if n > 0]
-        n = len(nums)
-        for i in range(n):
-            ind = abs(nums[i])-1
-            if ind < n and nums[ind] > 0:
-                nums[ind] = - nums[ind]
-        for i in range(n):
-            if nums[i]>0:
-                return i + 1
-        return n + 1
-```
+
