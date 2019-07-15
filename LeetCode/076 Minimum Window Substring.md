@@ -104,3 +104,32 @@ class Solution:
                     I, J = i, j
         return s[I:J]
 ```
+## Fastest!
+```
+from collections import defaultdict
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        d = defaultdict(int)
+        for ch in t:
+            d[ch] += 1
+        res = 0
+        i = 0
+        count = len(t)
+        l, r = 0, float('inf')
+        for j, ch in enumerate(s, 1):
+            if d[ch] > 0:
+                count -= 1
+            if ch in d:   
+                d[ch] -= 1
+            if count == 0:
+                while d[s[i]] < 0:
+                    d[s[i]] += 1
+                    i += 1
+                if j - i < r - l:
+                    l = i
+                    r = j
+                d[s[i]] += 1
+                i += 1
+                count += 1
+        return s[l: r] if r != float('inf') else ''
+```
