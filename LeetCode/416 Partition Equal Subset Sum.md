@@ -11,8 +11,8 @@ class Solution:
         dp = [False] * (s + 1)
         dp[0] = True
         for num in nums:
-            for j in range(s, 0, -1):
-                dp[j] = dp[j] or num <= j and dp[j - num]
+            for j in range(s, num - 1, -1):
+                dp[j] = dp[j] or dp[j - num]
         return dp[-1]
 ```
 ###### Another version
