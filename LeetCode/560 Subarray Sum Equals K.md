@@ -1,5 +1,5 @@
 ## Leetcode
-#### cummulative sum
+#### using cummulative sum TLE!
 ```
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
