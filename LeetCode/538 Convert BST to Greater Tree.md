@@ -56,3 +56,32 @@ class Solution:
             node = node.left
         return root
 ```
+
+#### Morris Traversal
+```
+class Solution(object):
+    def convertBST(self, root):
+        def get_successor(node):
+            succ = node.right
+            while succ.left and succ.left != node:
+                succ = succ.left
+            return succ     
+        total = 0
+        node = root
+        while node:
+            if not node.right:
+                total += node.val
+                node.val = total
+                node = node.left
+            else:
+                succ = get_successor(node)
+                if not succ.left:
+                    succ.left = node
+                    node = node.right
+                else:
+                    succ.left = None
+                    total += node.val
+                    node.val = total
+                    node = node.left
+        return root
+```
