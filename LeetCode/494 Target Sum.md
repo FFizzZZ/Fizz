@@ -53,3 +53,17 @@ class Solution:
             dp = temp
         return dp[s + S]
 ```
+#### the same idea but using dict
+```
+class Solution(object):
+    def findTargetSumWays(self, nums, S):
+        from collections import defaultdict
+        memo = {0: 1}
+        for x in nums:
+            m = defaultdict(int)
+            for s, n in memo.items():
+                m[s + x] += n
+                m[s - x] += n
+            memo = m
+        return memo[S]
+```
