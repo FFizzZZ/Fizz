@@ -1,5 +1,5 @@
 ## Leetcode
-#### using cummulative sum TLE!
+#### Using cummulative sum TLE!
 ```
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
@@ -17,7 +17,7 @@ class Solution:
         return count
 ```
 
-####
+#### Using hashmap
 ```
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
