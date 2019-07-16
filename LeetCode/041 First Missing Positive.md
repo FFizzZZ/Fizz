@@ -39,6 +39,7 @@ class Solution:
         return n + 1
 ```
 ## Leetcode
+#### swap elements in-place
 ```
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
@@ -53,7 +54,7 @@ class Solution:
                 return i + 1
         return n + 1
 ```
-#### really amazing!
+#### append 0, really amazing!
 ```
 class Solution:
     def firstMissingPositive(self, nums):
