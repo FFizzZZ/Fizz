@@ -22,6 +22,22 @@ class Solution:
                 return i + 1
         return n + 1
 ```
+#### add n + 1 to the visited index
+```
+class Solution:
+    def firstMissingPositive(self, nums):
+        n = len(nums)
+        for i in range(n):
+            if nums[i] < 1 or nums[i] >= n + 1:
+                nums[i] = 0
+        for i in range(n):
+            if nums[i] != 0:
+                nums[nums[i] % (n + 1) - 1] += n + 1
+        for i in range(n):
+            if nums[i] <= n:
+                return i + 1
+        return n + 1
+```
 ## Leetcode
 ```
 class Solution:
