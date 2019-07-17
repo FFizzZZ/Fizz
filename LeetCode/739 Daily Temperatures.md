@@ -1,3 +1,4 @@
+## stack
 ```
 class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
@@ -27,7 +28,7 @@ class Solution(object):
             nxt[T[i]] = i
         return ans
 ```
-
+#### stack
 ```
 class Solution(object):
     def dailyTemperatures(self, T):
