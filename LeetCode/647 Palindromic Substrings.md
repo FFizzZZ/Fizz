@@ -15,6 +15,24 @@ class Solution:
         return ans
 ```
 
+```
+class Solution:
+    def countSubstrings(self, S):
+        count = 0
+        for i in range(len(S)):
+            count += self.f(i, i, S)
+            count += self.f(i, i + 1, S)
+        return count
+    def f(self, l, r, s):
+        n = len(s)
+        count = 0
+        while l >= 0 and r < n and s[l] == s[r]:
+            count += 1
+            l -= 1
+            r += 1
+        return count
+```
+
 #### Manacher's Algorithm
 ```
 class Solution:
