@@ -17,7 +17,7 @@ class Solution:
         stack = [(t1, t2)]
         while stack:
             node1, node2 = stack.pop()
-            if not node1 or not node2:
+            if not node2:
                 continue
             node1.val += node2.val
             if not node1.left:
