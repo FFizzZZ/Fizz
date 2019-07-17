@@ -43,27 +43,35 @@ class Solution:
 ```
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
-        min, max = float('inf'), float('-inf')
-        flag = False
         n = len(nums)
-        if n == 1: return 0
-        for i in range(1, n):
-            if nums[i] < nums[i - 1]:
+        left, right = n - 1, 0
+        for i in range(n - 1):
+            if nums[i] > nums[i+1]:
+                left = i
                 break
-        for j in range(i, n):
-            if nums[j] < min:
-                min = nums[j]
-        for i in range(n - 2, -1, -1):
-            if nums[i] > nums[i + 1]:
+        for j in range(len(nums)-1,0,-1):
+            if nums[j-1] > nums[j]:
+                right = j
                 break
-        for j in range(i, -1, -1):
-            if nums[j] > max:
-                max = nums[j]
-        for l in range(n):
-            if nums[l] > min:
+        if left >= right: 
+            return 0 
+        minMid = min(nums[left:right+1])
+        maxMid = max(nums[left:right+1])
+        for left in range(n):
+            if nums[left] > minMid:
                 break
-        for r in range(n - 1, -1, -1):
-            if nums[r] < max:
+        for right in range(n - 1, -1, -1):
+            if nums[right] < maxMid:
                 break
-        return 0 if r - l < 0 else r - l + 1
+        return right - left + 1 
 ```
+
+
+
+        
+        
+        
+        
+        
+        
+        
