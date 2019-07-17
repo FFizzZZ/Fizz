@@ -38,8 +38,23 @@ class Solution:
             stack.append(i)
         return r - l + 1 if r != 0 else 0
 ```
-
-#### Without Using Extra Space
+#### Find the index of the rightmost element which is smaller than maximum on its left side.
+```
+class Solution:
+    def findUnsortedSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        l, r = -1, -2
+        min, max = nums[n - 1], nums[0]
+        for i in range(1, n):
+            if nums[i] > max:
+                max = nums[i]
+            if nums[n - 1 - i] < min:
+                min = nums[n - 1 - i]
+            if nums[i] < max: r = i
+            if nums[n - 1 - i] > min: l = n - 1 - i
+        return r - l + 1
+```
+#### Without Using Extra Space. FASTEST!
 ```
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
