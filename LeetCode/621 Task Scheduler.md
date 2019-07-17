@@ -17,8 +17,17 @@ class Solution:
         return l + idles
 ```
         
-       
-
+```
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        if not tasks: return 0
+        task_counts = list(collections.Counter(tasks).values())
+        M = max(task_counts)
+        Mct = task_counts.count(M)
+        val = (M - 1) * (n + 1) + Mct
+        l = len(tasks)
+        return val if val > l else l
+```
         
         
         
