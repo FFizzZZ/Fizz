@@ -43,3 +43,27 @@ class Solution:
             return False
         return DFS(0,1)
 ```
+
+
+
+```
+class Solution(object):
+    def canIWin(self, maxChoosableInteger, desiredTotal):
+        if maxChoosableInteger * (maxChoosableInteger + 1) // 2 < desiredTotal:
+            return False
+        cache = {}
+        return self.helper(1, maxChoosableInteger, desiredTotal, cache)
+    def helper(self, selected, maxChoosableInteger, desiredTotal, cache):
+        if desiredTotal <= 0: 
+            cache[selected] = True
+            return True
+        if selected in cache: return cache[selected]
+        for i in range(1, maxChoosableInteger):
+            new = 1 << i
+            if new & selected: continue
+            if not self.helper(new | selected, maxChoosableInteger, desiredTotal - i, cache):
+                cache[selected] = True
+                return True
+        cache[selected] = False
+        return False
+```
