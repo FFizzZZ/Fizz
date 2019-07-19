@@ -18,34 +18,7 @@ class Solution(object):
         cache[nums] = False
         return False
 ```
-#### Using bits FASTEST!
-```
-class Solution:
-    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
-        if (1+maxChoosableInteger)*maxChoosableInteger//2 < desiredTotal:
-            return False   
-        memo = {}
-        def DFS(current_sum, selected):
-            if selected in memo:
-                return memo[selected]        
-            if current_sum + maxChoosableInteger >= desiredTotal:
-                memo[selected] = True    
-                return True    
-            for n in reversed(range(1, maxChoosableInteger)):
-                mask = 1<<n
-                if selected & mask:
-                    continue
-                new_select = selected | mask
-                if not DFS(current_sum+n, new_select):
-                    memo[selected] = True
-                    return True
-            memo[selected] = False
-            return False
-        return DFS(0,1)
-```
-
-
-
+#### Using bits
 ```
 class Solution:
     def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
@@ -70,15 +43,30 @@ class Solution:
             return False
         return DFS(0,1)
 ```
-
-
-
-
-
-
-
-
-
-
+##### This one is fastest! I think there is some tricks behind it: if you cannot win the game at once, you won't add the largest number to the pool. But I can't figure it out why it works...
+```
+class Solution:
+    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if (1+maxChoosableInteger)*maxChoosableInteger//2 < desiredTotal:
+            return False   
+        memo = {}
+        def DFS(current_sum, selected):
+            if selected in memo:
+                return memo[selected]        
+            if current_sum + maxChoosableInteger >= desiredTotal:
+                memo[selected] = True    
+                return True    
+            for n in reversed(range(1, maxChoosableInteger)):
+                mask = 1<<n
+                if selected & mask:
+                    continue
+                new_select = selected | mask
+                if not DFS(current_sum+n, new_select):
+                    memo[selected] = True
+                    return True
+            memo[selected] = False
+            return False
+        return DFS(0,1)
+```
 
 
