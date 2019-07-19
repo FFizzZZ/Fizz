@@ -47,23 +47,38 @@ class Solution:
 
 
 ```
-class Solution(object):
-    def canIWin(self, maxChoosableInteger, desiredTotal):
-        if maxChoosableInteger * (maxChoosableInteger + 1) // 2 < desiredTotal:
+class Solution:
+    def canIWin(self, maxChoosableInteger: int, desiredTotal: int) -> bool:
+        if (1 + maxChoosableInteger) * maxChoosableInteger // 2 < desiredTotal:
+            return False   
+        memo = {}
+        def DFS(current_sum, selected):
+            if selected in memo:
+                return memo[selected]          
+            for n in reversed(range(1, maxChoosableInteger + 1)):
+                mask = 1<<n
+                if selected & mask:
+                    continue
+                if n + current_sum >= desiredTotal:
+                    memo[selected] = True
+                    return True
+                new_select = selected | mask
+                if not DFS(current_sum + n, new_select):
+                    memo[selected] = True
+                    return True
+            memo[selected] = False
             return False
-        cache = {}
-        return self.helper(1, maxChoosableInteger, desiredTotal, cache)
-    def helper(self, selected, maxChoosableInteger, desiredTotal, cache):
-        if desiredTotal <= 0: 
-            cache[selected] = True
-            return True
-        if selected in cache: return cache[selected]
-        for i in range(1, maxChoosableInteger):
-            new = 1 << i
-            if new & selected: continue
-            if not self.helper(new | selected, maxChoosableInteger, desiredTotal - i, cache):
-                cache[selected] = True
-                return True
-        cache[selected] = False
-        return False
+        return DFS(0,1)
 ```
+
+
+
+
+
+
+
+
+
+
+
+
