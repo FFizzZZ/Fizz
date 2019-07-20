@@ -31,18 +31,20 @@ class Solution:
 ```
 class Solution:
     def solve(self, board):
+        if not board: return
         queue = []
-        for r in range(len(board)):
-            for c in range(len(board[0])):
-                if (r in [0, len(board)-1] or c in [0, len(board[0])-1]) and board[r][c] == "O":
+        m, n = len(board), len(board[0])
+        for r in range(m):
+            for c in range(n):
+                if (r in [0, m - 1] or c in [0, n - 1]) and board[r][c] == "O":
                     queue.append((r, c))
         while queue:
             r, c = queue.pop()
-            if 0 <= r < len(board) and 0 <= c < len(board[0]) and board[r][c] == "O":
+            if 0 <= r < m and 0 <= c < n and board[r][c] == "O":
                 board[r][c] = "D"
                 queue.extend([(r - 1, c), (r + 1, c), (r, c - 1), (r, c + 1)])
-        for r in range(len(board)):
-            for c in range(len(board[0])):
+        for r in range(m):
+            for c in range(n):
                 if board[r][c] == "O":
                     board[r][c] = "X"
                 elif board[r][c] == "D":
