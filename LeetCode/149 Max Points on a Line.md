@@ -1,3 +1,5 @@
+## Leetcode
+####
 ```
 class Solution:
     def maxPoints(self, points):
@@ -23,8 +25,36 @@ class Solution:
             tmp = Max + overlap + 1
             if tmp > ans: ans = tmp
         return ans
-                
     def gcd(self, x, y):
-        if y == 0: return x
-        return self.gcd(y, x % y)
+        while y != 0:
+            x, y = y, x % y
+        return x
+```
+
+#### 
+```
+class Solution:
+    def maxPoints(self, points):
+        if len(points) == 0:
+            return 0
+        line_table = collections.defaultdict(int)
+        for x, y in points:
+            line_table[(x, y)] += 1
+        keys = list(line_table.keys())
+        N = len(keys)
+        if N == 1:
+            return line_table[keys[0]]
+        result = 0
+        for i in range(N-1):
+            slopes = collections.defaultdict(int)
+            for j in range(i + 1, N):
+                dx, dy = keys[i][0] - keys[j][0], keys[i][1] - keys[j][1]
+                if dy == 0:
+                    slope = 0
+                else:
+                    slope = dx/dy
+                slopes[slope] += line_table[keys[j]]
+            tmp = line_table[keys[i]] + max(slopes.values())
+            if tmp > result: result = tmp
+        return result    
 ```
