@@ -45,16 +45,16 @@ class Solution:
         if N == 1:
             return line_table[keys[0]]
         result = 0
-        for i in range(N-1):
+        for i in range(N - 1):
             slopes = collections.defaultdict(int)
             for j in range(i + 1, N):
                 dx, dy = keys[i][0] - keys[j][0], keys[i][1] - keys[j][1]
                 if dy == 0:
-                    slope = 0
+                    slope = '$'
                 else:
                     slope = dx/dy
                 slopes[slope] += line_table[keys[j]]
             tmp = line_table[keys[i]] + max(slopes.values())
             if tmp > result: result = tmp
-        return result    
+        return result  
 ```
