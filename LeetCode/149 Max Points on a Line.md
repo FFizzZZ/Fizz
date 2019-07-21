@@ -1,5 +1,4 @@
 ## Leetcode
-####
 ```
 class Solution:
     def maxPoints(self, points):
@@ -31,7 +30,7 @@ class Solution:
         return x
 ```
 
-#### 
+#### FASTEST (Actually I think this one is not correct because it use dx / dy.)
 ```
 class Solution:
     def maxPoints(self, points):
@@ -52,7 +51,7 @@ class Solution:
                 if dy == 0:
                     slope = '$'
                 else:
-                    slope = dx/dy
+                    slope = dx / dy
                 slopes[slope] += line_table[keys[j]]
             tmp = line_table[keys[i]] + max(slopes.values())
             if tmp > result: result = tmp
