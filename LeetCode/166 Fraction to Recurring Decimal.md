@@ -18,37 +18,3 @@ class Solution:
         return ''.join(result).replace('(0)', '').rstrip('.')
 ```
 
-
-
-
-```
-class Solution:
-    def fractionToDecimal(self, numerator: int, denominator: int) -> str:
-        res = ''
-        if numerator < 0 and denominator < 0:
-            numerator,denominator = abs(numerator), abs(denominator)
-        elif numerator < 0 or denominator < 0:
-            numerator,denominator = abs(numerator), abs(denominator)
-            if numerator != 0:
-                res = '-'
-        tempres, numerator = divmod(numerator, denominator)
-        res += str(tempres)
-        if numerator != 0:
-            res += '.'
-            if numerator < 0:
-                numerator = -numerator
-                res = '-' + res
-        else:
-            return res
-        numes = {}
-        while numerator != 0:
-            if numerator not in numes:
-                numes[numerator] = len(res)
-            else:
-                res = res[:numes[numerator]] + '(' + res[numes[numerator]:] + ')'
-                return res
-            numerator *= 10
-            tempres,numerator = divmod(numerator, denominator)
-            res += str(tempres)
-        return res
-```
