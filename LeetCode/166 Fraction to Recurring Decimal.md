@@ -2,19 +2,19 @@
 ```
 class Solution:
     def fractionToDecimal(self, numerator, denominator):
-        n, remainder = divmod(abs(numerator), abs(denominator))
-        sign = '-' if numerator*denominator < 0 else ''
-        result = [sign+str(n), '.']
+        sign = '-' if numerator * denominator < 0 else ''
+        n, r = divmod(abs(numerator), abs(denominator))
+        ans = [sign + str(n) + '.']
         index = 0
         d = {}
-        while remainder not in d:
-            d[remainder] = index
+        while r not in d:
+            d[r] = index
             index += 1
-            n, remainder = divmod(remainder*10, abs(denominator))
-            result.append(str(n))
-        idx = d[remainder]
-        result.insert(idx+2, '(')
-        result.append(')')
-        return ''.join(result).replace('(0)', '').rstrip('.')
+            n, r = divmod(r * 10, abs(denominator))
+            ans.append(str(n))
+        ind = d[r]
+        ans.insert(ind + 1, '(')
+        ans.append(')')
+        return ''.join(ans).replace('(0)', '').rstrip('.')
 ```
 
