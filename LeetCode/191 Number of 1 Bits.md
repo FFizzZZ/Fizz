@@ -19,3 +19,9 @@ class Solution(object):
             n &= (n - 1)
         return ans
 ```
+
+```
+class Solution(object):
+    def hammingWeight(self, n):
+        return bin(n).count('1')
+```
