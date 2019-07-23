@@ -27,6 +27,27 @@ class Solution:
         for i in range(l):
             nums[i] = new[i]
 ```
+#### Using Cyclic Replacements
+```
+class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        n = len(nums)
+        k %= n
+        count = 0
+        for start in range(n):
+            if count < n:
+                current = start
+                prev = nums[start]
+                next = (current + k) % n
+                nums[next], prev = prev, nums[next]
+                count += 1
+                current = next
+                while start != current:
+                    next = (current + k) % n
+                    nums[next], prev = prev, nums[next]
+                    count += 1
+                    current = next  
+```
 
 #### Reverse
 ```
