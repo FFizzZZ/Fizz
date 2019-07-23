@@ -28,3 +28,30 @@ class Trie:
             node = node[i]
         return node
 ```
+
+
+```
+import bisect
+class Trie(object):
+    def __init__(self):
+        self.words = list()   
+
+    def insert(self, word: str) -> None:
+        i = bisect.bisect_left(self.words, word)
+        if i == len(self.words): 
+            self.words.append(word)
+        elif i < len(self.words):
+            self.words.insert(i, word)
+        
+    def search(self, word: str) -> bool:
+        i = bisect.bisect_left(self.words, word)
+        if i < len(self.words) and self.words[i] == word:
+            return True
+        return False
+        
+    def startsWith(self, prefix: str) -> bool:
+        i = bisect.bisect_left(self.words, prefix)
+        if i < len(self.words) and self.words[i].startswith(prefix): 
+            return True
+        return False
+```
