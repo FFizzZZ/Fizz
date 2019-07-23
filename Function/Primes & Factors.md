@@ -1,4 +1,5 @@
 #### The Sieve of Eratosthenes
+This one calculates the number of primes less than n.
 ```
 class Solution:
     def countPrimes(self, n):
