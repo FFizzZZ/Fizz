@@ -7,3 +7,15 @@ class Solution(object):
             n >>= 1
         return ans
 ```
+
+## Leetcode
+
+```
+class Solution(object):
+    def hammingWeight(self, n):
+        ans = 0
+        while n:
+            ans += 1
+            n &= (n - 1)
+        return ans
+```
