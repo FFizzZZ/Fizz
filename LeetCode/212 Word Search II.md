@@ -37,45 +37,6 @@ class Solution:
                     dfs(i, j, root)
         return ans
 ```
-
-
-```
-class Solution:
-    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
-        if not board or not board[0]: return []
-        m, n = len(board), len(board[0])
-        root = {}
-        for word in words:
-            node = root
-            for i in word:
-                if i not in node:
-                    node[i] = {}
-                node = node[i]
-            node['#'] = word
-        ans = []
-        for i in range(m):
-            for j in range(n):
-                if board[i][j] in root:
-                    self.dfs(i, j, root, board, ans)
-        return ans
-    def dfs(self, i, j, node, board, ans):
-        tmp, board[i][j] = board[i][j], '$'
-        trie = node[tmp]
-        if '#' in trie:
-            ans.append(trie.pop('#'))
-        m, n = len(board), len(board[0])
-        if i and board[i - 1][j] in trie:
-            self.dfs(i - 1, j, trie, board, ans)
-        if i + 1 < m and board[i + 1][j] in trie:
-            self.dfs(i + 1, j, trie, board, ans)
-        if j and board[i][j - 1] in trie:
-            self.dfs(i, j - 1, trie, board, ans)
-        if j + 1 < n and board[i][j + 1] in trie:
-            self.dfs(i, j + 1, trie, board, ans)
-        board[i][j] = tmp
-        if not trie:
-            node.pop(tmp)
-```
                 
                 
                 
