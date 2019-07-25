@@ -14,3 +14,27 @@ class Solution:
         d[(l, r)] = val
         return val
 ```
+
+
+```
+class Solution:
+    def PredictTheWinner(self, nums: List[int]) -> bool:
+        l = len(nums)
+        dp = [[0] * l for _ in range(l)]
+        for i in range(l - 2, -1, -1):
+            for j in range(i + 1, l):
+                dp[i][j] = max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1])
+        return dp[0][-1] >= 0
+```
+
+
+```
+class Solution:
+    def PredictTheWinner(self, nums: List[int]) -> bool:
+        l = len(nums)
+        dp = [0] * l
+        for i in range(l - 2, -1, -1):
+            for j in range(i + 1, l):
+                dp[j] = max(nums[i] - dp[j], nums[j] - dp[j - 1])
+        return dp[-1] >= 0
+```
