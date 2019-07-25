@@ -15,7 +15,7 @@ class Solution:
         return val
 ```
 
-
+#### Dynamic Programming 2D
 ```
 class Solution:
     def PredictTheWinner(self, nums: List[int]) -> bool:
@@ -26,8 +26,7 @@ class Solution:
                 dp[i][j] = max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1])
         return dp[0][-1] >= 0
 ```
-
-
+#### dp 1D
 ```
 class Solution:
     def PredictTheWinner(self, nums: List[int]) -> bool:
