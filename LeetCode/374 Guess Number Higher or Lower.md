@@ -1,4 +1,5 @@
 ## Leetcode
+#### Binary Search
 ```
 class Solution(object):
     def guessNumber(self, n):
