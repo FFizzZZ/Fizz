@@ -27,12 +27,11 @@ class Solution:
         tmp = 0
         num = 0
         ans = 0
-        for i in range(len(s)):
-            c = s[i]
-            if c.isdigit():
+        for i in s + '+':
+            if i.isdigit():
                 num *= 10
-                num += int(c)
-            if c != ' ' and not c.isdigit() or i == len(s) - 1:
+                num += int(i)
+            elif i != ' ':
                 if op == '+':
                     ans += tmp
                     tmp = num
@@ -43,7 +42,7 @@ class Solution:
                     tmp *= num
                 elif op == '/':
                     tmp = int(tmp / num)
-                op = c
+                op = i
                 num = 0
         ans += tmp
         return ans
