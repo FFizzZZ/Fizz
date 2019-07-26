@@ -25,6 +25,23 @@ class Solution:
 ## Leetcode
 ```
 class Solution:
+    def gameOfLife(self, board):
+        m, n = len(board), len(board[0])
+        for i in range(m):
+            for j in range(n):
+                count = 0
+                for I in range(max(0, i - 1), min(i + 2, m)):
+                    for J in range(max(0, j - 1), min(j + 2, n)):
+                        count += board[I][J] & 1
+                if count == 3 or count == 4 and board[i][j] == 1:
+                    board[i][j] |= 2
+        for i in range(m):
+            for j in range(n):
+                board[i][j] >>= 1
+```
+
+```
+class Solution:
     def gameOfLifeInfinite(self, live):
         ctr = collections.Counter((I, J) for i, j in live for I in range(i-1, i+2)
                                   for J in range(j-1, j+2) if I != i or J != j)
