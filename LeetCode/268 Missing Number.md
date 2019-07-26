@@ -28,3 +28,12 @@ class Solution:
             missing ^= i ^ num
         return missing
 ```
+
+#### Math
+```
+class Solution:
+    def missingNumber(self, nums):
+        n = len(nums)
+        expected = (1 + n) * n // 2
+        return expected - sum(nums)
+```
