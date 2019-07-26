@@ -1,3 +1,4 @@
+## Leetcode
 ```
 class Solution:
     def missingNumber(self, nums):
@@ -8,7 +9,6 @@ class Solution:
                 return i
         return n
 ```
-
 ```
 class Solution:
     def missingNumber(self, nums):
@@ -17,4 +17,14 @@ class Solution:
         for i in range(n):
             if i not in num_set:
                 return i
+```
+
+#### Bit Manipulation
+```
+class Solution:
+    def missingNumber(self, nums):
+        missing = len(nums)
+        for i, num in enumerate(nums):
+            missing ^= i ^ num
+        return missing
 ```
