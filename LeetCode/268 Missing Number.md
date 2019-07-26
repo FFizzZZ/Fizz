@@ -19,6 +19,21 @@ class Solution:
                 return i
 ```
 
+#### Binary Search
+```class Solution:
+    def missingNumber(self, nums):
+        nums.sort()
+        n = len(nums)
+        l, r = 0, n
+        while l < r:
+            mid = (l + r) // 2
+            if nums[mid] > mid:
+                r = mid
+            else:
+                l = mid + 1
+        return l
+```
+
 #### Bit Manipulation
 ```
 class Solution:
