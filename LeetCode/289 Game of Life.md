@@ -1,31 +1,23 @@
 ```
 class Solution:
     def gameOfLife(self, board: List[List[int]]) -> None:
-        d = [(1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0), (-1, -1), (0, -1), (1, -1)]
-        m, n = len(board), len(board[0])
-        for i in range(m):
-            for j in range(n):
-                tmp = self.count(i, j, board, m, n, d)
-                if board[i][j] == 1:
-                    if tmp < 2 or tmp > 3:
-                        board[i][j] = 2
-                elif board[i][j] == 0:
-                    if tmp == 3:
-                        board[i][j] = 3
-        for i in range(m):
-            for j in range(n):
-                if board[i][j] == 2:
-                    board[i][j] = 0
-                elif board[i][j] == 3:
-                    board[i][j] = 1
-        
-    def count(self, i, j, board, m, n, d):
-        count = 0
-        for dx, dy in d:
-            x = i + dx
-            y = j + dy
-            if 0 <= x < m and 0 <= y < n:
-                if board[x][y] in [1, 2]:
-                    count += 1
-        return count
+        neighbors = [(1,0), (1,-1), (0,-1), (-1,-1), (-1,0), (-1,1), (0,1), (1,1)]
+        rows, cols = len(board), len(board[0])
+        for row in range(rows):
+            for col in range(cols):
+                count = 0
+                for dx, dy in neighbors:
+                    r, c = row + dx, col + dy
+                    if (r < rows and r >= 0) and (c < cols and c >= 0) and abs(board[r][c]) == 1:
+                        count += 1
+                if board[row][col] == 1 and (count < 2 or count > 3):
+                    board[row][col] = -1
+                if board[row][col] == 0 and count == 3:
+                    board[row][col] = 2
+        for row in range(rows):
+            for col in range(cols):
+                if board[row][col] > 0:
+                    board[row][col] = 1
+                else:
+                    board[row][col] = 0
 ```
