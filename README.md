@@ -20,6 +20,7 @@ UNFINISHED
 * 126 
 * 131 Palindrome Partitioning: dynamic programming
 * 154 Find Minimum in Rotated Sorted Array: duplicate
+* 315 Count of Smaller Numbers After Self
 * 438 Find All Anagrams in a String: Hash Value
 * 698 Partition to K Equal Sum Subsets
 
