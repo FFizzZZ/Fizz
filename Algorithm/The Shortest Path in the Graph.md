@@ -14,13 +14,12 @@ def dijkstra(graph, s):
     if graph is None:
         return None
     dist = [x for x in graph[s]]
-    S = []
-    Q = [i for i in range(len(graph))]
+    S = set()
+    Q = set(i for i in range(len(graph)))
     while Q:
-        u_dist = min([d for v, d in enumerate(dist) if v in Q])
-        u = dist.index(u_dist)
-        S.append(u)
-        Q.remove(u)
+        u_dist, u = min([(d, v) for v, d in enumerate(dist) if v in Q])
+        S.add(u)
+        Q.discard(u)
         for v, d in enumerate(graph[u]):
             if 0 < d < MAX_value:
                 if dist[v] > dist[u]+d:
