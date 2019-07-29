@@ -25,3 +25,16 @@ class Solution:
         nums[r], nums[index] = nums[index], nums[r]
         return index
 ```
+
+## Leetcode
+```
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return sorted(nums)[len(nums) - k]
+```
+
+```
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return heapq.nlargest(k, nums)[-1]
+```
