@@ -8,3 +8,33 @@ c.以k为新考虑的中间点，修改U中各顶点的距离；若从源点v到
 d.重复步骤b和c直到所有顶点都包含在S中。
 
 ![](https://github.com/FFizzZZ/Fizz/blob/master/Algorithm/Pictures/Dijkstra.png)
+```
+MAX_value = 999999
+def dijkstra(graph, s):
+    if graph is None:
+        return None
+    dist = [x for x in graph[s]]
+    S = []
+    Q = [i for i in range(len(graph))]
+    while Q:
+        u_dist = min([d for v, d in enumerate(dist) if v in Q])
+        u = dist.index(u_dist)
+        S.append(u)
+        Q.remove(u)
+        for v, d in enumerate(graph[u]):
+            if 0 < d < MAX_value:
+                if dist[v] > dist[u]+d:
+                    dist[v] = dist[u]+d
+    return dist
+if __name__ == '__main__':
+    graph_list = [ [0, 9, MAX_value, MAX_value, MAX_value, 14,15,MAX_value],
+                    [9, 0, 24, MAX_value, MAX_value, MAX_value,MAX_value,MAX_value],
+                    [MAX_value, 24, 0, 6, 2, 18,MAX_value,19],
+                    [MAX_value, MAX_value, 6, 0, 11,MAX_value,MAX_value, 6],
+                    [MAX_value,MAX_value, 2, 11, 0, 30,20, 16],
+                    [14,MAX_value,18,MAX_value,30,0,5,MAX_value],
+                    [15,MAX_value,MAX_value,MAX_value,20,5,0,44],
+                    [MAX_value,MAX_value,19,6,16,MAX_value,44,0]]
+    distance = dijkstra(graph_list, 0)
+    print(distance)
+```
