@@ -7,4 +7,4 @@ c.以k为新考虑的中间点，修改U中各顶点的距离；若从源点v到
 
 d.重复步骤b和c直到所有顶点都包含在S中。
 
-![](Dijkstra.png)
+![](https://github.com/FFizzZZ/Fizz/blob/master/Algorithm/Pictures/Dijkstra.png)
