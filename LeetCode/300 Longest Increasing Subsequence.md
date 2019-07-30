@@ -1,16 +1,21 @@
+#### Dynamic Programming
 ```
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         if not nums: return 0
         n = len(nums)
         dp = [1] * n
+        ans = 1
         for i in range(1, n):
+            tmp = 0
             for j in range(i):
-                if nums[j] < nums[i]:
-                    tmp = dp[j] + 1
-                    if tmp > dp[i]:
-                        dp[i] = tmp
-        return max(dp)
+                if nums[i] > nums[j]:
+                    if tmp < dp[j]:
+                        tmp = dp[j]
+            dp[i] = tmp + 1
+            if dp[i] > ans:
+                ans = dp[i]
+        return ans
 ```
 
 ## Leetcode
@@ -31,22 +36,4 @@ class Solution:
         return tmp
 ```
 
-#### Dynamic Programming
-```
-class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
-        if not nums: return 0
-        n = len(nums)
-        dp = [1] * n
-        ans = 1
-        for i in range(1, n):
-            tmp = 0
-            for j in range(i):
-                if nums[i] > nums[j]:
-                    if tmp < dp[j]:
-                        tmp = dp[j]
-            dp[i] = tmp + 1
-            if dp[i] > ans:
-                ans = dp[i]
-        return ans
-```
+
