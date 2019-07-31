@@ -35,5 +35,22 @@ class Solution:
         d[(pre, cur)] = tmp
         return tmp
 ```
-
-
+#### Binary Search
+```
+class Solution:
+    def lengthOfLIS(self, nums):
+        tails = [0] * len(nums)
+        size = 0
+        for x in nums:
+            l, r = 0, size
+            while l < r:
+                mid = (l + r) // 2
+                if tails[mid] < x:
+                    l = mid + 1
+                else:
+                    r = mid
+            tails[l] = x
+            if l + 1 > size:
+                size = l + 1
+        return size
+```
