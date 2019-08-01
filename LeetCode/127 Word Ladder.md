@@ -26,48 +26,35 @@ class Solution(object):
 
 #### Bidirectional Breadth First Search
 ```
-from collections import defaultdict
-class Solution(object):
-    def __init__(self):
-        self.length = 0
-        self.all_combo_dict = defaultdict(list)
-    def visitWordNode(self, queue, visited, others_visited):
-        current_word, level = queue.popleft()
-        for i in range(self.length):
-            intermediate_word = current_word[:i] + "*" + current_word[i+1:]
-            for word in self.all_combo_dict[intermediate_word]:
-                if word in others_visited:
-                    return level + others_visited[word]
-                if word not in visited:
-                    visited[word] = level + 1
-                    queue.append((word, level + 1))
-        return None
-
-    def ladderLength(self, beginWord, endWord, wordList):
-        if endWord not in wordList:
-            return 0
-        self.length = len(beginWord)
-
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        wordList = set(wordList)
+        if endWord not in wordList: return 0
+        n, level = len(beginWord), 1
+        d = collections.defaultdict(list)
         for word in wordList:
-            for i in range(self.length):
-                self.all_combo_dict[word[:i] + "*" + word[i+1:]].append(word)
-        queue_begin = collections.deque([(beginWord, 1)]) 
-        queue_end = collections.deque([(endWord, 1)]) 
-        visited_begin = {beginWord: 1}
-        visited_end = {endWord: 1}
-        ans = None
-
-        while queue_begin and queue_end:
-            ans = self.visitWordNode(queue_begin, visited_begin, visited_end)
-            if ans:
-                return ans
-            ans = self.visitWordNode(queue_end, visited_end, visited_begin)
-            if ans:
-                return ans
+            for i in range(n):
+                d[word[:i] + '*' + word[i + 1:]].append(word)
+        head, tail = {beginWord}, {endWord}
+        wordList.remove(endWord)
+        while head and tail:
+            if len(head) > len(tail):
+                head, tail = tail, head
+            tmp = set()
+            for word in head:
+                for i in range(n):
+                    cur = word[:i] + '*' + word[i + 1:]
+                    for x in d[cur]:
+                        if x in tail:
+                            return level + 1
+                        if x in wordList:
+                            tmp.add(x)
+                            wordList.remove(x)
+            head = tmp
+            level += 1
         return 0
 ```
 
-###### FASTEST!
 ```
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
