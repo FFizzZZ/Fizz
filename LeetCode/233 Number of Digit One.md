@@ -1,4 +1,4 @@
-## 剑指offer
+## Recurse
 ```
 class Solution:
     def countDigitOne(self, n: int) -> int:
@@ -13,4 +13,30 @@ class Solution:
             cnt += 10 ** length
         cnt += first * length * 10 ** (length - 1)
         return cnt + self.countDigitOne(remain)
+```
+
+## Iterative
+```
+class Solution:
+    def countDigitOne(self, n):
+        ones, m = 0, 1
+        while n >= m:
+            multiply, digit = divmod(n // m, 10)
+            ones += multiply * m
+            if digit >= 2:
+                ones += m
+            elif digit == 1:
+                ones += n % m + 1
+            m *= 10
+        return ones  
+```
+#### with some tricks
+```
+class Solution:
+    def countDigitOne(self, n):    
+        ones, m = 0, 1
+        while m <= n:
+            ones += (n // m + 8) // 10 * m + (n // m % 10 == 1) * (n % m + 1)
+            m *= 10
+        return ones
 ```
