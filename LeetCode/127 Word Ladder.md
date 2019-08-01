@@ -66,3 +66,31 @@ class Solution(object):
                 return ans
         return 0
 ```
+
+###### FASTEST!
+```
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        wordList = set(wordList)
+        if endWord not in wordList: return 0
+        n, level = len(beginWord), 1
+        head, tail = {beginWord}, {endWord}
+        wordList.remove(endWord)
+        chars = set('abcdefghijklmnopqrstuvwxyz')
+        while head and tail:
+            if len(head) > len(tail):
+                head, tail = tail, head
+            tmp = set()
+            for word in head:
+                for i in range(n):
+                    for c in chars:
+                        cur = word[:i] + c + word[i + 1:]
+                        if cur in tail:
+                            return level + 1
+                        if cur in wordList:
+                            tmp.add(cur)
+                            wordList.remove(cur)
+            head = tmp
+            level += 1
+        return 0
+```
