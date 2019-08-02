@@ -15,16 +15,16 @@ class Solution:
 ```
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
-        zero, second = -1, len(nums)
-        i = 0
-        while i < second:
+        n = len(nums)
+        zero, second = 0, n - 1
+        for i in range(n):
+            if i > second: break
             while nums[i] == 2 and i < second:
-                second -= 1
                 nums[i], nums[second] = nums[second], nums[i]
-            if nums[i] == 0 and i > zero:
-                zero += 1
+                second -= 1
+            while nums[i] == 0 and i > zero:
                 nums[i], nums[zero] = nums[zero], nums[i]
-            i += 1
+                zero += 1
 ```
 ```
 class Solution:
