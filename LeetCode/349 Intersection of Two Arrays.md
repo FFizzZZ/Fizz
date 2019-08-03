@@ -4,8 +4,10 @@ class Solution:
         s1 = set(nums1)
         s2 = set(nums2)
         ans = []
-        for x in s2:
-            if x in s1:
+        if len(s1) > len(s2):
+            s1, s2 = s2, s1
+        for x in s1:
+            if x in s2:
                 ans.append(x)
         return ans
 ```
