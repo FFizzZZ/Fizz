@@ -17,6 +17,7 @@ class Solution:
         return ans
 ```
 
+#### Sorting
 ```
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
@@ -34,7 +35,7 @@ class Solution:
                     temp = 1
         return temp if temp > ans else ans
 ```
-
+#### HashSet and Intelligent Sequence Building
 ```
 class Solution:
     def longestConsecutive(self, nums):
