@@ -73,14 +73,14 @@ class Solution(object):
 ```
 class Solution(object):
     def mergeKLists(self, lists):
-        amount = len(lists)
-        interval = 1
-        while interval < amount:
-            for i in range(0, amount - interval, interval * 2):
-                lists[i] = self.merge2Lists(lists[i], lists[i + interval])
-            interval *= 2
-        return lists[0] if amount > 0 else None
-
+        n = len(lists)
+        if n == 0: return None
+        l = 1
+        while l < n:
+            for i in range(0, n - l, 2 * l):
+                lists[i] = self.merge2Lists(lists[i], lists[i + l])
+            l *= 2
+        return lists[0]     
     def merge2Lists(self, l1, l2):
         head = point = ListNode(0)
         while l1 and l2:
