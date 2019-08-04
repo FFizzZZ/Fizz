@@ -19,3 +19,24 @@ class Solution:
         a, b = map(collections.Counter, (nums1, nums2))
         return list((a & b).elements())
 ```
+
+```
+class Solution:
+    def intersect(self, nums1, nums2):
+        nums1.sort()
+        nums2.sort()
+        ans = []
+        p, q = 0, 0
+        n1, n2 = len(nums1), len(nums2)
+        while p < n1 and q < n2:
+            if nums1[p] == nums2[q]:
+                ans.append(nums1[p])
+                p += 1
+                q += 1
+            elif nums1[p] < nums2[q]:
+                p += 1
+            else:
+                q += 1
+        return ans
+```
+
