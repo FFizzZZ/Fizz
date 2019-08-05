@@ -29,6 +29,19 @@ class Solution(object):
                 r = mid
         return l
 ```
+```
+class Solution(object):
+    def kthSmallest(self, matrix, k):
+        l, r = matrix[0][0], matrix[-1][-1]
+        while l < r:
+            mid = (l + r) // 2 + 1
+            if sum(bisect.bisect_left(row, mid) for row in matrix) >= k:
+                r = mid - 1
+            else:
+                l = mid
+        return l
+```
+
 ##### write the function by myself
 ```
 class Solution(object):
@@ -51,3 +64,36 @@ class Solution(object):
                 r = mid
         return r
 ```
+
+
+#### kkkkkk
+```
+class Solution(object):
+    def kthSmallest(self, matrix, k):
+        n = len(matrix)
+        L, R = matrix[0][0], matrix[n - 1][n - 1]
+        while L < R:
+            mid = L + ((R - L) >> 1)
+            temp = self.search_lower_than_mid(matrix, n, mid)
+            if temp < k:
+                L = mid + 1
+            else:
+                R = mid
+        return L
+    def search_lower_than_mid(self, matrix, n, x):
+        i, j = n - 1, 0
+        cnt = 0
+        while i >= 0 and j < n:
+            if matrix[i][j] <= x:
+                j += 1
+                cnt += i + 1
+            else:
+                i -= 1
+        return cnt
+```
+
+
+
+
+
+
