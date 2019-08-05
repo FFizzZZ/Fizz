@@ -15,3 +15,17 @@ class Solution:
             q.put([matrix[x + 1][y], x + 1, y])
         return q.get()[0]
 ```
+
+#### Binary Search
+```
+class Solution(object):
+    def kthSmallest(self, matrix, k):
+        l, r = matrix[0][0], matrix[-1][-1]
+        while l < r:
+            mid = (l + r) // 2
+            if sum(bisect.bisect_right(row, mid) for row in matrix) < k:
+                l = mid + 1
+            else:
+                r = mid
+        return l
+```
