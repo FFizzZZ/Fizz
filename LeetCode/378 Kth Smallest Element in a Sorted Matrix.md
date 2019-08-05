@@ -29,3 +29,25 @@ class Solution(object):
                 r = mid
         return l
 ```
+##### write the function by myself
+```
+class Solution(object):
+    def kthSmallest(self, matrix, k):
+        l, r = matrix[0][0], matrix[-1][-1]
+        while l < r:
+            mid = (l + r) // 2
+            if sum(self.f(row, mid) for row in matrix) < k:
+                l = mid + 1
+            else:
+                r = mid
+        return l
+    def f(self, nums, val):
+        l, r = 0, len(nums)
+        while l < r:
+            mid = (l + r) // 2
+            if nums[mid] <= val:
+                l = mid + 1
+            else:
+                r = mid
+        return r
+```
