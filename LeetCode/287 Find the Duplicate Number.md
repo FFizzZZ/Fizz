@@ -30,7 +30,7 @@ class Solution:
             ptr2 = nums[ptr2]       
         return ptr1
 ```
-
+#### Binary Search
 ```
 class Solution(object):
     def findDuplicate(self, nums):
