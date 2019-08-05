@@ -34,10 +34,6 @@ class Solution:
 ```
 class Solution(object):
     def findDuplicate(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
         low = 1
         high = len(nums)-1
         
