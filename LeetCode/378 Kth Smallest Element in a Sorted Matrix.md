@@ -64,31 +64,28 @@ class Solution(object):
                 r = mid
         return r
 ```
-
-
-#### kkkkkk
+###### Interesting
 ```
 class Solution(object):
     def kthSmallest(self, matrix, k):
         n = len(matrix)
-        L, R = matrix[0][0], matrix[n - 1][n - 1]
-        while L < R:
-            mid = L + ((R - L) >> 1)
-            temp = self.search_lower_than_mid(matrix, n, mid)
-            if temp < k:
-                L = mid + 1
+        l, r = matrix[0][0], matrix[-1][-1]
+        while l < r:
+            mid = (l + r) // 2
+            if self.f(matrix, n, mid) < k:
+                l = mid + 1
             else:
-                R = mid
-        return L
-    def search_lower_than_mid(self, matrix, n, x):
-        i, j = n - 1, 0
+                r = mid
+        return l      
+    def f(self, matrix, n, val):
+        x, y = n - 1, 0
         cnt = 0
-        while i >= 0 and j < n:
-            if matrix[i][j] <= x:
-                j += 1
-                cnt += i + 1
+        while x >= 0 and y < n:
+            if matrix[x][y] <= val:
+                cnt += x + 1
+                y += 1
             else:
-                i -= 1
+                x -= 1
         return cnt
 ```
 
