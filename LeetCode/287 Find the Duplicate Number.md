@@ -34,18 +34,16 @@ class Solution:
 ```
 class Solution(object):
     def findDuplicate(self, nums):
-        low = 1
-        high = len(nums)-1
-        
-        while low < high:
-            mid = low+(high-low)/2
+        l, r = 0, len(nums) - 1
+        while l < r:
+            mid = (l + r) // 2
             count = 0
             for i in nums:
                 if i <= mid:
-                    count+=1
+                    count += 1
             if count <= mid:
-                low = mid+1
+                l = mid + 1
             else:
-                high = mid
-        return low
+                r = mid
+        return r
 ```
