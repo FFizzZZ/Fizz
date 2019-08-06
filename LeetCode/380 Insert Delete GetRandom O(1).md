@@ -8,8 +8,8 @@ class RandomizedSet(object):
         
     def insert(self, val):
         if val not in self.pos:
-            self.nums.append(val)
-            self.pos[val] = len(self.nums) - 1
+            self.pos[val] = len(self.nums)
+            self.nums.append(val)            
             return True
         return False
         
@@ -23,5 +23,6 @@ class RandomizedSet(object):
         return False
             
     def getRandom(self):
-        return self.nums[random.randint(0, len(self.nums) - 1)]
+        return random.choice(self.nums)
+    ##  return self.nums[random.randint(0, len(self.nums) - 1)]
 ```
