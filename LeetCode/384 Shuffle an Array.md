@@ -18,20 +18,31 @@ class Solution:
             self.array[idx] = aux.pop(remove_idx)
         return self.array
 ```
+
 #### Fisher-Yates Algorithm
 ```
 class Solution:
     def __init__(self, nums):
-        self.array = nums
-        self.original = list(nums)
+        self.original = nums
 
     def reset(self):
-        self.array = list(self.original)
-        return self.array
+        return self.original
 
     def shuffle(self):
-        for i in range(len(self.array)):
-            swap_idx = random.randrange(i, len(self.array))
-            self.array[i], self.array[swap_idx] = self.array[swap_idx], self.array[i]
-        return self.array
+        array = self.original[:]
+        for i in range(len(array)):
+            swap_idx = random.randrange(i, len(array))
+            array[i], array[swap_idx] = array[swap_idx], array[i]
+        return array
+```
+
+#### FASTEST
+```
+class Solution:
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+    def reset(self) -> List[int]:
+        return self.nums
+    def shuffle(self) -> List[int]:
+        return sorted(self.nums, key = lambda x: random.random())
 ```
