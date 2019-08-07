@@ -46,3 +46,15 @@ class Solution:
     def shuffle(self) -> List[int]:
         return sorted(self.nums, key = lambda x: random.random())
 ```
+
+```
+class Solution:
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+    def reset(self) -> List[int]:
+        return self.nums
+    def shuffle(self) -> List[int]:
+        array = self.nums[:]
+        random.shuffle(array)
+        return array
+```
