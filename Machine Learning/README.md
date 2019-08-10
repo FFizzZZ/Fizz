@@ -2,3 +2,4 @@
 * log(sum(exp(x))) https://blog.csdn.net/zziahgf/article/details/78489562
 * 熵 https://www.cnblogs.com/kyrieng/p/8694705.html
 * SMOTE过采样 https://www.cnblogs.com/Determined22/p/5772538.html
+* 优化算法 https://blog.csdn.net/u012328159/article/details/80311892
