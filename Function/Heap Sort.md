@@ -26,24 +26,30 @@ def heapsort(A):
         max_heapify(A, heap_size, 0)
 ```
 
-## heapify 的非递归写法 
+## heapsort 的非递归写法 
 ```
-def heapify(nums):
+def heapify(i, nums, n):
+    index = i
+    val = nums[i]
+    while 2 * index + 1 < n:
+        tmp = 2 * index + 1
+        if tmp + 1 < n and nums[tmp] < nums[tmp + 1]:
+            tmp += 1
+        if val >= nums[tmp]:
+            break
+        nums[index] = nums[tmp]
+        index = tmp
+    nums[index] = val
+    
+def heapsort(nums):
     n = len(nums)
     for i in range(n // 2, -1, -1):
-        index = i
-        val = nums[i]
-        while 2 * index + 1 < n:
-            tmp = 2 * index + 1
-            if tmp + 1 < n and nums[tmp] > nums[tmp + 1]:
-                tmp += 1
-            if val < nums[tmp]:
-                break
-            nums[index] = nums[tmp]
-            index = tmp
-        nums[index] = val
+        heapify(i, nums, n)
+    for i in range(n - 1, 0, -1):
+        nums[0], nums[i] = nums[i], nums[0]
+        heapify(0, nums, i)
 ```
 
-#### Build_heap O(n)
+#### Build_heap O(n)复杂度的证明
 https://www.jianshu.com/p/7cf64b02c0a4
 
