@@ -55,3 +55,21 @@ class UnionFind_PathOptimize:
     def print(self):
         print(self.elements)
 ```
+
+
+```
+class UnionFind:
+    def __init__(self, nums):
+        self.elements = {x: x for x in nums}
+    def find(self, x):
+        if self.elements[x] == x: return x
+        root = self.find(x)
+        self.elements[x] = root
+        return root
+    def union(self, x, y):
+        rootx = self.find(x)
+        rooty = self.find(y)
+        self.elements[rootx] = rooty
+    def count(self):
+        return sum(1 for x, v in self.elements.items() if x == v)
+```
