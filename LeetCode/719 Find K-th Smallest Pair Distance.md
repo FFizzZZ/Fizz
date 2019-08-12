@@ -37,3 +37,24 @@ class Solution(object):
             cnt += right - left
         return cnt >= k
 ```
+
+```
+class Solution(object):
+    def smallestDistancePair(self, nums, k):
+        nums.sort()
+        l, r = 0, nums[-1] - nums[0]
+        while l < r:
+            mid = (l + r) // 2 + 1
+            if self.check(mid, nums) < k:
+                l = mid
+            else:
+                r = mid - 1
+        return r
+    def check(self, val, nums):
+        left = cnt = 0
+        for right, value in enumerate(nums):
+            while value - nums[left] >= val:
+                left += 1
+            cnt += right - left
+        return cnt
+```
