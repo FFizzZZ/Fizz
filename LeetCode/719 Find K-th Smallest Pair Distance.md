@@ -3,24 +3,20 @@
 ```
 class Solution(object):
     def smallestDistancePair(self, nums, k):
-        def possible(guess):
-            #Is there k or more pairs with distance <= guess?
-            count = left = 0
-            for right, x in enumerate(nums):
-                while x - nums[left] > guess:
-                    left += 1
-                count += right - left
-            return count >= k
-
         nums.sort()
-        lo = 0
-        hi = nums[-1] - nums[0]
-        while lo < hi:
-            mi = (lo + hi) // 2
-            if possible(mi):
-                hi = mi
+        l, r = 0, nums[-1] - nums[0]
+        while l < r:
+            mid = (l + r) // 2
+            if self.check(mid, nums, k):
+                r = mid
             else:
-                lo = mi + 1
-
-        return lo
+                l = mid + 1
+        return l
+    def check(self, val, nums, k):
+        cnt = left = 0
+        for right, value in enumerate(nums):
+            while value - nums[left] > val:
+                left += 1
+            cnt += right - left
+        return cnt >= k
 ```
