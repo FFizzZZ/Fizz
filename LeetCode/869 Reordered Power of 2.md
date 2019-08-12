@@ -17,6 +17,7 @@ class Solution(object):
 
 #### FASTEST
 if N has k digits, then its rearrangements are between 10^(k-1) and 10^k
+
 so the powers of 2 it could be have powers between (k-1)log_2(10) and klog_2(10)
 ```
 from collections import Counter
