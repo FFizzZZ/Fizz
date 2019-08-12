@@ -3,7 +3,7 @@
 https://blog.csdn.net/u013682388/article/details/39343181
 
 ### 12个硬币，一个假币，最多3次称重找出假币
-![](https://github.com/FFizzZZ/Fizz/blob/master/Algorithm/Pictures/%E7%A1%AC%E5%B8%81.png)
+![](https://github.com/FFizzZZ/Fizz/blob/master/Algorithm/Pictures/硬币.png)
 
 ### 在一个舞会上,所有人都戴着一顶帽子,帽子只有两种颜色,黑色和白色,黑色至少有一顶,每个人都能看到别人头上帽子的颜色但看不到自己的.这时,主持人说,如果有人觉得自己头上的帽子是黑色的就打自己的嘴巴一下,第一次关灯,没有声音,第二次还是没有,第三次关灯时听见了有人打嘴巴的声音,请问总共有多少人戴的是黑帽子?
 
