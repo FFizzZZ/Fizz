@@ -1,4 +1,21 @@
 ## Leetcode
+#### Heap TLE!
+```
+class Solution(object):
+    def smallestDistancePair(self, nums, k):
+        nums.sort()
+        n = len(nums)
+        heap = [(nums[i + 1] - nums[i], i, i + 1) for i in range(n - 1)]
+        heapq.heapify(heap)
+        
+        for _ in range(k):
+            diff, root, nei = heapq.heappop(heap)
+            if nei + 1 < n:
+                heapq.heappush(heap, (nums[nei + 1] - nums[root], root, nei + 1))    
+        return diff
+```
+
+
 #### Binary Search
 ```
 class Solution(object):
