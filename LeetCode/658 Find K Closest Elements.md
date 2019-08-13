@@ -15,8 +15,8 @@ class Solution:
         left, right = 0, len(A) - k
         while left < right:
             mid = (left + right) // 2
-            if x - A[mid] > A[mid + k] - x:
-                left = mid + 1
+            if x - A[mid] > A[mid + k] - x:  # pay attention here!!!
+                left = mid + 1               # because the question prefer a smaller element.
             else:
                 right = mid
         return A[left:left + k]
