@@ -21,3 +21,13 @@ class Solution:
                 right = mid
         return A[left:left + k]
 ```
+
+```
+class Solution(object):
+    def findClosestElements(self, arr, k, x):
+        n = len(arr)
+        end = max(bisect.bisect_right(arr, x), k)
+        while end < n and arr[end]-x < x - arr[end - k]:
+            end += 1
+        return arr[end-k:end]
+```
