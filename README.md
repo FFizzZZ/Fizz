@@ -21,6 +21,7 @@ UNFINISHED
 * 154 Find Minimum in Rotated Sorted Array: duplicate
 * 315 Count of Smaller Numbers After Self
 * 324 Wiggle Sort II
+* 341 Flatten Nested List Iterator
 * 438 Find All Anagrams in a String: Hash Value
 * 698 Partition to K Equal Sum Subsets
 
