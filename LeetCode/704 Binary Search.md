@@ -14,3 +14,16 @@ class Solution:
                 r = mid - 1
         return -1
 ```
+
+```
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        index = bisect.bisect_left(nums, target)
+        try:
+            if nums[index] == target:
+                return index
+            else:
+                return -1
+        except:
+            return -1
+```
