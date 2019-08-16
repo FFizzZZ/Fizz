@@ -1,4 +1,5 @@
 ## Leetcode
+#### BFS
 ```
 class Solution(object):
     def distanceK(self, root, target, K):
@@ -21,7 +22,7 @@ class Solution(object):
             self.dfs(root.left, root)
             self.dfs(root.right, root)
 ```
-
+#### Amazing!
 ```
 class Solution(object):
     def distanceK(self, root, target, K):
