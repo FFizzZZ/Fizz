@@ -12,6 +12,26 @@ class Solution:
                 dp[i] = dp[i + 1]
         return dp[1]
 ```
+
+```
+class Solution:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        n = days[-1]
+        dp = [-1] * (n + 1)
+        dp[0] = 0
+        for d in days:
+            dp[d] = 0
+        c1, c2, c3 = costs
+        for i in range(1, n + 1):
+            if dp[i] < 0:
+                dp[i] = dp[i - 1]
+            else:
+                dp[i] = min(dp[i - 1] + c1,
+                           dp[max(i - 7, 0)] + c2,
+                           dp[max(i - 30, 0)] + c3)
+        return dp[n]
+```
+
 #### Dynamic Programming (Window Variant)
 ```
 class Solution:
@@ -33,21 +53,4 @@ class Solution:
         return dp[0]
 ```
 
-```
-class Solution:
-    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
-        n = days[-1]
-        dp = [-1] * (n + 1)
-        dp[0] = 0
-        for d in days:
-            dp[d] = 0
-        c1, c2, c3 = costs
-        for i in range(1, n + 1):
-            if dp[i] < 0:
-                dp[i] = dp[i - 1]
-            else:
-                dp[i] = min(dp[i - 1] + c1,
-                           dp[max(i - 7, 0)] + c2,
-                           dp[max(i - 30, 0)] + c3)
-        return dp[n]
-```
+
