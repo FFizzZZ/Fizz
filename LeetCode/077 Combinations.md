@@ -9,6 +9,19 @@ class Solution:
                     ans.append(temp + [j])
         return ans
 ```
+
+```
+class Solution:
+    def combine(self, n, k):
+        ans = collections.deque([[i] for i in range(k, n + 1)])
+        for i in range(1, k):
+            for _ in range(len(ans)):
+                tmp = ans.popleft()
+                for j in range(k - i, tmp[0]):
+                    ans.append([j] + tmp)
+        return ans
+```
+
 ```
 class Solution:
     def combine(self, n, k):
