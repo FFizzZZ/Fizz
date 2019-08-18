@@ -1,4 +1,45 @@
-## dynamic programming
+```
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        found = set()
+        ans = ''
+        cnt = 0
+        for i in range(n):
+            for j in range(i + 1):
+                if s[i] == s[j] and (i - j <= 1 or (j + 1, i - 1) in found):
+                    found.add((j, i))
+                    tmp = i + 1 - j
+                    if tmp > cnt:
+                        cnt = tmp
+                        ans = s[j: i + 1]
+        return ans
+```
+
+## Leetcode
+
+#### Dynamic Programming
+```
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        ans = 0
+        l, r = 0, 0
+        for j in range(n):
+            for i in range(j + 1):
+                if i == j:
+                    dp[i][i] = True
+                elif j == i + 1:
+                    dp[i][j] = s[i] == s[j]
+                else:
+                    dp[i][j] = s[i] == s[j] and dp[i + 1][j - 1]
+                if dp[i][j] and j - i + 1 > ans:
+                    ans = j - i + 1
+                    l, r = i, j
+        return s[l: r + 1]
+```
+
 ```
 class Solution:
     def longestPalindrome(self, s: str) -> str:
@@ -17,6 +58,7 @@ class Solution:
                     ans = j - i + 1, i, j     
         return s[ans[1]:ans[2]+1]
 ```
+#### Expand Around Center
 ```
 class Solution:
     def longestPalindrome(self, s: str) -> str:
@@ -34,7 +76,7 @@ class Solution:
 ```
 
 
-## Manacher’s Algorithm
+#### Manacher’s Algorithm
 ```class Solution:
     def longestPalindrome(self, s: str) -> str:
         t = '#'.join('$' + s + '^')
