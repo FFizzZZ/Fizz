@@ -1,35 +1,38 @@
-## recurse
+## Leetcode
+#### recurse
 ```
-class Solution(object):
-    def partition(self, s):
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        if not s: return [[]]
         ans = []
         for i in range(1, len(s) + 1):
-            if s[:i] == s[i-1::-1]:
-                for j in self.partition(s[i:]):
-                    ans.append([s[:i]] + j)
-        return ans if ans else [[]]
-```
-
-## recurse with memo
-```
-class Solution(object):
-    def partition(self, s):
-        d = {}
-        return self.f(s, 0, d)
-    def f(self, s, start, d):
-        if start in d:
-            return d[start]
-        ans = []
-        for i in range(start + 1, len(s) + 1):             # temp = s[start:i]
-            if s[start:i] == s[i-1:start:-1] + s[start]:   # if temp == temp[::-1]
-                for j in self.f(s, i, d):
-                    ans.append([s[start:i]] + j)
-        ans = ans if ans else [[]]
-        d[start] = ans
+            sub = s[:i]
+            if sub == sub[::-1]:
+                tmp = self.partition(s[i:])
+                for y in tmp:
+                    ans.append([sub] + y)
         return ans
 ```
 
-## dynamic programming (best)
+#### recurse with memo
+```
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        return self.f(0, s, {})
+    def f(self, index, s, d):
+        if index == len(s): return [[]]
+        if index in d: return d[index]
+        ans = []
+        for i in range(index + 1, len(s) + 1):
+            sub = s[index: i]
+            if sub == sub[::-1]:
+                for y in self.f(i, s, d):
+                    ans.append([sub] + y)
+        d[index] = ans
+        return ans
+```
+
+#### dynamic programming (best)
 ```
 class Solution(object):
     def partition(self, s):
