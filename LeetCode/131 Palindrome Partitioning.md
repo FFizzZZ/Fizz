@@ -62,3 +62,30 @@ class Solution(object):
         make_results(0,pallindromes,[],results)
         return results
 ```
+
+```
+class Solution(object):
+    def partition(self, s):
+        n = len(s)
+        found = set()
+        pallindromes = collections.defaultdict(list)
+        for i in range(n):
+            for j in range(i + 1):
+                if s[i] == s[j] and (i - j <= 1 or (j + 1, i - 1) in found):
+                    found.add((j, i))
+                    pallindromes[j].append(s[j: i + 1])
+        
+        ans = []
+        self.make(0, pallindromes, n, [], ans)
+        return ans
+    
+    def make(self, index, pallindromes, n, path, ans):
+        if index == n:
+            ans.append(path[:])
+            return
+        for tmp in pallindromes[index]:
+            l = len(tmp)
+            path.append(tmp)
+            self.make(index + l, pallindromes, n, path, ans)
+            path.pop()
+```
