@@ -25,3 +25,20 @@ class Solution:
         if i == n: return s
         return s[i:][::-1] + self.shortestPalindrome(s[:i]) + s[i:]
 ```
+
+#### KMP
+```
+class Solution:
+    def shortestPalindrome(self, s):
+        p = s + '*' + s[::-1]
+        n = len(p)
+        table = [0] * n
+        for i in range(1, n):
+            index = table[i - 1]
+            while index > 0 and p[i] != p[index]:
+                index = table[index - 1]
+            if p[i] == p[index]:
+                index += 1
+            table[i] = index
+        return s[table[-1]:][::-1] + s
+```
