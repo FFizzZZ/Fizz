@@ -24,6 +24,7 @@ UNFINISHED
 * 341 Flatten Nested List Iterator
 * 438 Find All Anagrams in a String: Hash Value
 * 698 Partition to K Equal Sum Subsets
+* 1143 Non-dp method
 
 
 POINTS
