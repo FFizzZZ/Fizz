@@ -39,7 +39,7 @@ class Solution(object):
         n = len(s)
         dp = [1] * n
         for j in range(n):
-            pre = dp[j]
+            pre = None
             for i in range(j - 1, -1, -1):
                 tmp = dp[i]
                 if s[i] == s[j]:
