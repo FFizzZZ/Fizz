@@ -32,23 +32,20 @@ class Solution:
                     
         return dp[0][(n - 1) % 2]
 ```
+##### O(n)!
 ```
 class Solution(object):
     def longestPalindromeSubseq(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
         n = len(s)
         dp = [1] * n
-        for j in range(1, len(s)):
+        for j in range(n):
             pre = dp[j]
-            for i in reversed(range(0, j)):
+            for i in range(j - 1, -1, -1):
                 tmp = dp[i]
                 if s[i] == s[j]:
-                    dp[i] = 2 + pre if i + 1 <= j - 1 else 2
+                    dp[i] = pre + 2 if i + 1 <= j - 1 else 2
                 else:
-                    dp[i] = max(dp[i + 1], dp[i])
+                    dp[i] = max(dp[i], dp[i + 1])
                 pre = tmp
         return dp[0]
 ```
