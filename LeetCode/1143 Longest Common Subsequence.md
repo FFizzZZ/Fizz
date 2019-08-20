@@ -32,3 +32,24 @@ class Solution:
                 pre = tmp
         return dp[-1]
 ```
+
+#### FASTEST! But I don't understand...So sad.
+```
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        if len(text1) > len(text2):
+            text1, text2 = text2, text1
+        m, n = len(text1), len(text2)
+        za = [-1]
+        
+        for t1 in text1:
+            loc = text2.find(t1, za[-1]+1)
+            if loc != -1:
+                za.append(loc)
+            for j in range(len(za)-2-int(loc!=-1),-1,-1):
+                loc = text2.find(t1, za[j]+1, za[j+1])
+                if loc != -1:
+                    za[j+1] = loc
+        print(za)
+        return len(za) - 1
+```
