@@ -34,3 +34,25 @@ class Solution:
                 stack.append(node.left)
         return ans
 ```
+
+```
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root: return []
+        ans = []
+        while root:
+            if root.left:
+                node = root.left
+                while node.right and node.right != root:
+                    node = node.right
+                if node.right:
+                    node.right = None
+                    root = root.right
+                else:
+                    ans.append(root.val)
+                    node.right, root = root, root.left
+            else:
+                ans.append(root.val)
+                root = root.right
+        return ans
+```
