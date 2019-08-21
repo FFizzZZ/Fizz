@@ -1,3 +1,4 @@
+```
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         self.ans = None
@@ -13,6 +14,7 @@ class Solution:
         if tmp == 2 and not self.ans:
             self.ans = root
         return tmp
+```
         
 ## Leetcode
 #### Recurse
