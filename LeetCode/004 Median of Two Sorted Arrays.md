@@ -1,6 +1,39 @@
 ```
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        n1, n2 = len(nums1), len(nums2)
+        i, j = 0, 0
+        cnt = 0
+        n = n1 + n2
+        l = n // 2
+        while cnt < l:
+            if i == n1:
+                j += 1
+                cnt += 1
+                continue
+            if j == n2:
+                i += 1
+                cnt += 1
+                continue
+            if nums1[i] < nums2[j]:
+                i += 1
+            else:
+                j += 1
+            cnt += 1            
+        if n % 2:
+            if i == n1: return nums2[j]
+            if j == n2: return nums1[i]
+            return min(nums1[i], nums2[j])
+        else:
+            a = max(nums1[i - 1:i] + nums2[j - 1:j])
+            b = min(nums1[i:i + 1] + nums2[j:j + 1])
+            return (a + b) / 2
+```
+
+## Leetcode
+```
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
         m, n = len(nums1), len(nums2)
         if m > n:
             nums1, nums2, m, n = nums2, nums1, n, m
