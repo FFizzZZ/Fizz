@@ -19,3 +19,21 @@ class Solution(object):
         
         return dp0, dp1, dp2
 ```
+
+```
+class Solution(object):
+    def minCameraCover(self, root):
+        self.ans = 0
+        visited = {None}
+        self.f(root, None, visited)
+        return self.ans
+        
+    def f(self, node, par, visited):
+        if node:
+            self.f(node.left, node, visited)
+            self.f(node.right, node, visited)
+            
+            if not par and node not in visited or node.left not in visited or node.right not in visited:
+                self.ans += 1
+                visited.update([node, par, node.left, node.right])
+```
