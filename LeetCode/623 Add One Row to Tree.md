@@ -11,13 +11,11 @@ class Solution:
         if not root: return
         if depth == d - 1:
             node = TreeNode(v)
-            if root.left:
-                node.left = root.left
+            node.left = root.left
             root.left = node
             
             node = TreeNode(v)
-            if root.right:
-                node.right = root.right
+            node.right = root.right
             root.right = node
         else:
             self.f(root.left, v, d, depth + 1)
