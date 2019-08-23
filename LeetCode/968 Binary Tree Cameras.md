@@ -1,4 +1,5 @@
 ## Leetcode
+#### Dynamic Programming
 * [State 0] Strict subtree: All the nodes below this node are covered, but not this node.
 * [State 1] Normal subtree: All the nodes below and including this node are covered, but there is no camera here.
 * [State 2] Placed camera: All the nodes below and including this node are covered, and there is a camera here 
@@ -19,7 +20,7 @@ class Solution(object):
         
         return dp0, dp1, dp2
 ```
-
+#### Greedy
 ```
 class Solution(object):
     def minCameraCover(self, root):
@@ -36,4 +37,24 @@ class Solution(object):
             if not par and node not in visited or node.left not in visited or node.right not in visited:
                 self.ans += 1
                 visited.update([node, par, node.left, node.right])
+```
+
+#### FASTEST
+##### GREAT IDEA
+```
+class Solution(object):
+    def minCameraCover(self, root):
+        self.cnt = 0
+        def f(node):
+            if not node: return -1
+            l = f(node.left)
+            r = f(node.right)
+            if l == 0 or r == 0:
+                self.cnt += 1
+                return 1
+            if r == 1 or l == 1:
+                return -1
+            else:
+                return 0
+        return (f(root) == 0) + self.cnt
 ```
