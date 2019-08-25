@@ -36,17 +36,16 @@ class Solution(object):
 # Bottom-up
 ```
 class Solution(object):
-    def isMatch(self, text, pattern):
-        dp = [[False] * (len(pattern) + 1) for _ in range(len(text) + 1)]
+    def isMatch(self, s, p):
+        n1, n2 = len(s), len(p)
+        dp = [[False] * (n2 + 1) for _ in range(n1 + 1)]
         dp[-1][-1] = True
-        
-        for i in range(len(text), -1, -1):
-            for j in range(len(pattern) - 1, -1, -1):
-                first_match = i < len(text) and pattern[j] in {text[i], '.'}
-                if j+1 < len(pattern) and pattern[j+1] == '*':
-                    dp[i][j] = dp[i][j+2] or first_match and dp[i+1][j]
+        for i in range(n1, -1, -1):
+            for j in range(n2 - 1, -1, -1):
+                first = i < n1 and p[j] in ['.', s[i]]
+                if j + 1 < n2 and p[j + 1] == '*':
+                    dp[i][j] = dp[i][j + 2] or first and dp[i + 1][j]
                 else:
-                    dp[i][j] = first_match and dp[i+1][j+1]
-
+                    dp[i][j] = first and dp[i + 1][j + 1]
         return dp[0][0]
 ```
