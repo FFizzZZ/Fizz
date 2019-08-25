@@ -10,29 +10,6 @@ class Solution:
         else:
             return first_match and self.isMatch(s[1:], p[1:])
 ```
-            
-# Dynamic Programming
-```
-class Solution(object):
-    def isMatch(self, text, pattern):
-        log = {}
-        def dp(i, j):
-            if (i,j) in log:
-                return log[(i,j)]
-            else:
-                if j == len(pattern):
-                    res = i == len(text)
-                else:
-                    first_match = i < len(text) and pattern[j] in ['.', text[i]]
-                    if j + 1 < len(pattern) and pattern[j+1] == '*':
-                        res = dp(i, j+2) or first_match and dp(i+1, j)
-                    else:
-                        res = first_match and dp(i+1, j+1)
-                    log[(i,j)] = res
-            return res
-        return dp(0, 0)
-```
-            
 # Solutions
 Dynamic Programming
 As the problem has an optimal substructure, it is natural to cache intermediate results. We ask the question dp(i, j): does 
