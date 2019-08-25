@@ -40,33 +40,29 @@ text[i:] and pattern[j:] match? We can describe our answer in terms of answers t
 # Top-down Variation
 ```
 class Solution(object):
-    def isMatch(self, text, pattern):
-        memo = {}
+    def isMatch(self, s, p):
+        n1, n2 = len(s), len(p)
+        d = dict()
         def dp(i, j):
-            if (i, j) not in memo:
-                if j == len(pattern):
-                    ans = i == len(text)
-                else:
-                    first_match = i < len(text) and pattern[j] in {text[i], '.'}
-                    if j+1 < len(pattern) and pattern[j+1] == '*':
-                        ans = dp(i, j+2) or first_match and dp(i+1, j)
-                    else:
-                        ans = first_match and dp(i+1, j+1)
-
-                memo[i, j] = ans
-            return memo[i, j]
-
+            if (i, j) in d: return d[(i, j)]
+            if j == n2: return i == n1
+            first = i < n1 and p[j] in ['.', s[i]]
+            if j + 1 < n2 and p[j + 1] == '*':
+                ans = dp(i, j + 2) or first and dp(i + 1, j)
+            else:
+                ans = first and dp(i + 1, j + 1)
+            d[(i, j)] = ans
+            return ans
         return dp(0, 0)
 ```
-#
-#
+
 # Bottom-up
 ```
 class Solution(object):
     def isMatch(self, text, pattern):
         dp = [[False] * (len(pattern) + 1) for _ in range(len(text) + 1)]
-
         dp[-1][-1] = True
+        
         for i in range(len(text), -1, -1):
             for j in range(len(pattern) - 1, -1, -1):
                 first_match = i < len(text) and pattern[j] in {text[i], '.'}
