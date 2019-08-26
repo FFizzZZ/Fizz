@@ -20,3 +20,18 @@ class Solution:
                 size += 1
         return size
 ```
+```
+class Solution:
+    def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
+        envelopes.sort(key = lambda x: [x[0], -x[1]])
+        n = len(envelopes)
+        h = []
+        for env in envelopes:
+            height = env[1]
+            l = bisect.bisect_left(h, height)
+            if l == len(h):
+                h.append(height)
+            else:
+                h[l] = height
+        return len(h)
+```
