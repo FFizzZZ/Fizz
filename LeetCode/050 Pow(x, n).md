@@ -1,3 +1,4 @@
+```
 class Solution:
     def myPow(self, x: float, n: int) -> float:
         count = 0
@@ -18,8 +19,9 @@ class Solution:
                     d.append([count, res])
         if n < 0: res = 1 / res
         return res
+```
         
-        
+```
 class Solution:
     def myPow(self, x, n):
         if n == 0: return 1
@@ -37,10 +39,11 @@ class Solution:
                     res *= component[len(l)-1-i]
             if n < 0: res = 1 / res
             return res
+```
                 
---------------------------
-
-Recursive:
+## Leetcode
+#### Recursive
+```
 class Solution:
     def myPow(self, x, n):
         if not n:
@@ -50,8 +53,10 @@ class Solution:
         if n % 2:
             return x * self.myPow(x, n-1)
         return self.myPow(x*x, n/2)
+```
 
-Iterative:
+#### Iterative
+```
 class Solution:
     def myPow(self, x, n):
         if n < 0:
@@ -64,7 +69,7 @@ class Solution:
             x *= x
             n >>= 1
         return pow
-
+```
 
 
 
