@@ -1,28 +1,27 @@
 ```
-import queue
-class Solution:
-    def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
+class Solution(object):
+    def minRefuelStops(self, target, startFuel, stations):
         cur = startFuel
-        stations.sort()
+        pq = []
         n = len(stations)
         
-        q = queue.PriorityQueue()
         index = 0
-        while index <= n - 1 and stations[index][0] <= cur:
-            q.put(-stations[index][1])
+        while index < n and stations[index][0] <= cur:
+            heapq.heappush(pq, -stations[index][1])
             index += 1
         
         cnt = 0
-        while cur < target and q.qsize():
-            cur -= q.get()
-            while index <= n - 1 and stations[index][0] <= cur:
-                q.put(-stations[index][1])
-                index += 1
+        while pq and cur < target:
+            cur -= heapq.heappop(pq)
             cnt += 1
-        if cur >= target:
-            return cnt
-        else:
+            while index < n and stations[index][0] <= cur:
+                heapq.heappush(pq, -stations[index][1])
+                index += 1
+        
+        if cur < target:
             return -1
+        else:
+            return cnt
 ```
 
 
