@@ -1,4 +1,6 @@
-## dynamic programming: two vector
+## Leetcode
+
+#### dynamic programming: two vector
 ```
 class Solution:
     def minDistance(self, word1, word2):
@@ -18,7 +20,7 @@ class Solution:
             pre = cur[:]        # pay attention to [:] !!!!
         return pre[-1]
 ```
-## one vector
+#### one vector
 ```
 class Solution:
     def minDistance(self, word1, word2):
@@ -40,7 +42,7 @@ class Solution:
         return cur[-1]
 ```
 
-## recurse with memo
+#### recurse with memo
 ```
 class Solution:
     def minDistance(self, word1, word2):
@@ -65,3 +67,28 @@ class Solution:
             memo[(i, j)] = ans
         return memo[(i, j)]
 ```
+
+#### FASTEST!
+```
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        visited = set()
+        q = collections.deque([(word1, word2, 0)])
+        while True:
+            w1, w2, cnt = q.popleft()
+            if (w1, w2) not in visited:
+                if w1 == w2:
+                    return cnt
+                visited.add((w1, w2))
+                while w1 and w2 and w1[0] == w2[0]:
+                    w1, w2 = w1[1:], w2[1:]
+                cnt += 1
+                q.extend([(w1[1:], w2[1:], cnt), (w1, w2[1:], cnt), (w1[1:], w2, cnt)])
+```
+        
+        
+      
+        
+  
+
+
