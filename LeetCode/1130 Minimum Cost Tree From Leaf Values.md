@@ -19,19 +19,23 @@ class Solution:
         return dp[0][-1] 
 ```
 
+#### FASTEST
 ```
 class Solution:
-    def mctFromLeafValues(self, A):
-        res, n = 0, len(A)
+    def mctFromLeafValues(self, arr):
         stack = [float('inf')]
-        for a in A:
-            while stack[-1] <= a:
-                mid = stack.pop()
-                res += mid * min(stack[-1], a)
-            stack.append(a)
-        while len(stack)  >2:
-            res += stack.pop() * stack[-1]
-        return res
+        ans = 0
+        for x in arr:
+            while stack[-1] <= x:
+                smaller = stack.pop()
+                ans += smaller * min(stack[-1], x)
+            stack.append(x)
+        n = len(stack)
+        while n > 2:
+            n -= 1
+            smaller = stack.pop()
+            ans += smaller * stack[-1]
+        return ans
 ```
                 
             
