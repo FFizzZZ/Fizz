@@ -21,15 +21,18 @@ class Solution:
 ```
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        return self.f(0, s, wordDict, {})
-    def f(self, index, s, wordDict, d):
+        word_set = set(wordDict)
+        l_set = set(len(x) for x in word_set)
+        return self.f(0, s, word_set, l_set, {})
+    
+    def f(self, index, s, wordDict, l_set, d):
         if index == len(s): return ['']
         if index in d: return d[index]
         ans = []
-        for x in wordDict:
-            l = len(x)
-            if s[index:index + l] == x:
-                sub = self.f(index + l, s, wordDict, d)
+        for l in l_set:
+            x = s[index:index + l]
+            if x in wordDict:
+                sub = self.f(index + l, s, wordDict, l_set, d)
                 for y in sub:
                     if y == '':
                         ans.append(x)
@@ -39,3 +42,5 @@ class Solution:
         return ans
 ```
         
+        
+
