@@ -8,5 +8,6 @@ class Solution:
                 stack.pop()
             stack.append(x)
         ans = ''.join(stack[:len(stack) - k]).lstrip('0')
-        return ans if ans else '0'
+        return ans if ans else '0'      #  return ''.join(stack[:-k or None]).lstrip('0') or '0'
+
 ```
