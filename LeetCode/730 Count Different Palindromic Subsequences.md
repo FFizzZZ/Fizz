@@ -4,13 +4,11 @@ class Solution:
     def countPalindromicSubsequences(self, S: str) -> int:
         n = len(S)
         dp = [[0] * n for _ in range(n)]
-        
-        for dist in range(n):
-            for i in range(n - dist):
-                if dist == 0:
+        for j in range(n):
+            for i in range(j, -1, -1):
+                if i == j:
                     dp[i][i] = 1
                     continue
-                j = i + dist
                 if S[i] == S[j]:
                     l = i + 1
                     r = j - 1
