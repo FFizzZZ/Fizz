@@ -2,6 +2,7 @@
 ```
 class Solution:
     def strangePrinter(self, S):
+        S = re.sub(r'(.)\1*', r'\1', S)
         if not S: return 0
         n = len(S)
         dp = [[0] * n for _ in range(n)]
