@@ -10,8 +10,6 @@ class Solution:
             for i in range(j, -1, -1):
                 if i == j:
                     dp[i][j] = 1
-                elif i + 1 == j:
-                    dp[i][j] = 1 + int(S[i] != S[j])
                 else:
                     tmp = 1 + dp[i + 1][j]
                     if S[i] == S[j]: tmp = min(tmp, dp[i][j - 1])
