@@ -15,10 +15,10 @@ UNFINISHED
 * 071
 * 084 some methods haven't been implemented
 * 085
-* 123 Best Time to Buy and Sell Stock III
 * 126 
 * 131 Palindrome Partitioning: dynamic programming
 * 154 Find Minimum in Rotated Sorted Array: duplicate
+* 188 Best Time to Buy and Sell Stock IV: don't understand FASTEST method
 * 315 Count of Smaller Numbers After Self
 * 324 Wiggle Sort II
 * 341 Flatten Nested List Iterator
