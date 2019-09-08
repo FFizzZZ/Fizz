@@ -8,7 +8,7 @@ class Solution:
         dp[0][0] = 1
         for i in range(1, N + 1):
             for j in range(i, L + 1):
-                dp[i][j] = dp[i - 1][j - 1] * (N - i + 1) + dp[i][j - 1] * max(i - K, 0)
+                dp[i][j] = dp[i - 1][j - 1] * i + dp[i][j - 1] * max(i - K, 0)
         return dp[N][L] % (10 ** 9 + 7)
 ```
 
