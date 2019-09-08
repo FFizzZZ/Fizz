@@ -12,7 +12,7 @@ class Solution:
         return dp[N][L] % (10 ** 9 + 7)
 ```
 
-#### Faster
+#### Optimized Version
 ```
 class Solution:
     def numMusicPlaylists(self, N, L, K):
