@@ -1,3 +1,5 @@
+## Leetcode
+#### Cumulative Sum
 ```
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
@@ -10,5 +12,19 @@ class Solution:
             tmp = p[i] - p[i - k]
             if tmp > ans:
                 ans = tmp
+        return ans / k
+```
+
+#### Sliding Window
+```
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        n = len(nums)
+        cur = sum(nums[:k])
+        ans = cur
+        for i in range(k, n):
+            cur += nums[i] - nums[i - k]
+            if cur > ans:
+                ans = cur
         return ans / k
 ```
