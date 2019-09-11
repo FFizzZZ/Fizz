@@ -38,27 +38,26 @@ class Solution(object):
 ```
 #### FASTEST
 ```
-from bisect import bisect_left
 class Solution:
     def findNumberOfLIS(self, nums: List[int]) -> int:
-        min_end = [float('inf') for _ in nums]
-        count = [0 for _ in nums]
-        candi = [[] for _ in nums]
-        for n in nums:
-            i = bisect_left(min_end, n)
-            min_end[i] = n
-            if i > 0:
-                while candi[i - 1][0][0] >= n:
-                    count[i - 1] -= candi[i - 1].pop(0)[1]
-                count_e = count[i - 1]
+        n = len(nums)
+        end = [float('inf')] * n
+        candidate = [[] for _ in range(n)]
+        cnt = [0] * n
+        for x in nums:
+            index = bisect.bisect_left(end, x)
+            end[index] = x
+            if index == 0:
+                count = 1
             else:
-                count_e = 1
-            count[i] += count_e
-            candi[i].append((n, count_e))
-        # print(count)
-        for i in range(len(nums) - 1, -1, -1):
-            if count[i] > 0:
-                return count[i]
+                while candidate[index - 1][0][0] >= x:
+                    cnt[index - 1] -= candidate[index - 1].pop(0)[1]
+                count = cnt[index - 1]
+            cnt[index] += count
+            candidate[index].append((x, count))
+        for i in range(n - 1, -1, -1):
+            if cnt[i] > 0:
+                return cnt[i]
         return 0
 ```
         
