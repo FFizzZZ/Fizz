@@ -3,3 +3,4 @@
 * 熵 https://www.cnblogs.com/kyrieng/p/8694705.html
 * SMOTE过采样 https://www.cnblogs.com/Determined22/p/5772538.html
 * 优化算法 https://blog.csdn.net/u012328159/article/details/80311892
+* AUC计算 https://blog.csdn.net/qq_22238533/article/details/78666436
