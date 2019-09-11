@@ -36,7 +36,7 @@ class Solution(object):
             max_for_all = max(max_len, max_for_all)
         return sum([item[1] for item in dp if item[0] == max_for_all])
 ```
-#### Don't understand
+#### FASTEST
 ```
 from bisect import bisect_left
 class Solution:
