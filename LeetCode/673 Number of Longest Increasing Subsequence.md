@@ -18,7 +18,25 @@ class Solution(object):
         length = max(tails)
         return sum(c for i, c in enumerate(cnt) if tails[i] == length)
 ```
-        
+```
+class Solution(object):
+    def findNumberOfLIS(self, nums):
+        dp = [[1, 1] for i in range(len(nums))]
+        max_for_all = 1
+        for i, num in enumerate(nums):
+            max_len, count = 1, 1
+            for j in range(i):
+                if nums[j] < num:
+                    if dp[j][0] >= max_len:
+                        max_len = dp[j][0] + 1
+                        count = dp[j][1]
+                    elif dp[j][0] == max_len - 1:
+                        count += dp[j][1]
+            dp[i] = [max_len, count]
+            max_for_all = max(max_len, max_for_all)
+        return sum([item[1] for item in dp if item[0] == max_for_all])
+```
+#### Don't understand
 ```
 from bisect import bisect_left
 class Solution:
@@ -43,29 +61,6 @@ class Solution:
                 return count[i]
         return 0
 ```
-        
-        
-        
-        
-   
-        
-        
-                
-        
-        
-        
-   
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
