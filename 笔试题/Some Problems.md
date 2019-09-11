@@ -36,5 +36,5 @@ https://www.jianshu.com/p/0fd43ffb5b18 构造两个状态转移方程
 
 ### 8. 求直到连续出现N次正面的次数的期望
 
-https://www.bilibili.com/read/cv2777382/
-T_(n + 1) = 2 * T_n + 2
+https://www.bilibili.com/read/cv2777382/  
+T_(n + 1) = 2 * T_n + 2,  T_1 = 2
