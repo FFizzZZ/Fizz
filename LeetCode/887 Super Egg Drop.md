@@ -27,7 +27,30 @@ class Solution(object):
             return memo[k, n]
         return dp(K, N)
 ```
-
+####### TLE
+```
+class Solution(object):
+    def superEggDrop(self, K, N):
+        dp = [[0] * (K + 1) for _ in range(N + 1)]
+        for i in range(1, N + 1):
+            for j in range(1, K + 1):
+                if j == 1:
+                    dp[i][j] = i
+                else:
+                    l, r = 1, i
+                    while l + 1 < r:
+                        mid = (l + r) // 2
+                        t1 = dp[mid - 1][j - 1]
+                        t2 = dp[i - mid][j]
+                        if t1 < t2:
+                            l = mid
+                        elif t1 > t2:
+                            r = mid
+                        else:
+                            l = r = mid
+                    dp[i][j] = 1 + min(max(dp[x - 1][j - 1], dp[i - x][j]) for x in (l, r))
+        return dp[N][K]
+```
 #### Another Great Idea
 #### dp[i][j] means the number of floors we can check by i moves and j eggs
 ```
