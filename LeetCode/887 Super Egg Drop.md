@@ -27,7 +27,7 @@ class Solution(object):
             return memo[k, n]
         return dp(K, N)
 ```
-####### TLE
+##### TLE
 ```
 class Solution(object):
     def superEggDrop(self, K, N):
