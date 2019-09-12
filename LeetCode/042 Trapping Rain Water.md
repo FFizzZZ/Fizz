@@ -1,4 +1,27 @@
-## dynamic programming for leftmax and rightmax
+```
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        m = 0
+        n = len(height)
+        l, r = 0, n - 1
+        cnt = 0
+        while l <= r:
+            if height[l] < height[r]:
+                if height[l] < m:
+                    cnt += m - height[l]
+                else:
+                    m = height[l]
+                l += 1
+            else:
+                if height[r] < m:
+                    cnt += m - height[r]
+                else:
+                    m = height[r]
+                r -= 1
+        return cnt
+```
+## Leetcode
+#### dynamic programming for leftmax and rightmax
 ```
 class Solution:
     def trap(self, height: List[int]) -> int:
@@ -16,7 +39,7 @@ class Solution:
         return ans
 ```
 
-## stack
+#### stack
 ```
 class Solution:
     def trap(self, height: List[int]) -> int:
@@ -33,7 +56,7 @@ class Solution:
         return ans
 ```
 
-## two pointers
+#### two pointers
 ```
 class Solution:
     def trap(self, height: List[int]) -> int:
