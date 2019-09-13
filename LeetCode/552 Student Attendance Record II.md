@@ -42,3 +42,35 @@ class Solution(object):
             n //= 2
         return power[5, 2]
 ```
+
+```
+class Solution(object):
+    def checkRecord(self, n):
+        m = 10 ** 9 + 7
+        A = [[0, 0, 1, 0, 0, 0],
+             [1, 0, 1, 0, 0, 0],
+             [0, 1, 1, 0, 0, 0],
+             [0, 0, 1, 0, 0, 1],
+             [0, 0, 1, 1, 0, 1],
+             [0, 0, 1, 0, 1, 1]]
+        return self.pow(A, n + 1, m)[5][2]
+    def mul(self, A, B, m):
+        n = len(A)
+        C = [[0] * n for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                for k in range(n):
+                    C[i][j] = (C[i][j] + A[i][k] * B[k][j]) % m
+        return C
+    def pow(self, A, n, m):
+        dim = len(A)
+        ans = [[0] * dim for _ in range(dim)]
+        for i in range(dim):
+            ans[i][i] = 1
+        while n:
+            if n & 1:
+                ans = self.mul(ans, A, m)
+            A = self.mul(A, A, m)
+            n //= 2
+        return ans
+```
