@@ -23,6 +23,23 @@ class Solution(object):
 
 #### FASTEST
 https://leetcode.com/problems/student-attendance-record-ii/discuss/101633/Improving-the-runtime-from-O(n)-to-O(log-n)
+###### TLE
+```
+class Solution(object):
+    def checkRecord(self, n):
+        m = 10 ** 9 + 7
+        dp = [[[0] * 3 for _ in range(2)] for _ in range(n + 1)]
+        dp[0] = [[1, 1, 1], [1, 1, 1]]
+        for i in range(1, n + 1):
+            for j in range(2):
+                for k in range(3):
+                    val = dp[i - 1][j][2] % m
+                    if j == 1: val = (val + dp[i - 1][0][2]) % m
+                    if k > 0: val = (val + dp[i - 1][j][k - 1]) % m
+                    dp[i][j][k] = val
+        return dp[-1][-1][-1]
+```
+
 ```
 import numpy as np
 class Solution(object):
