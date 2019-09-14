@@ -85,3 +85,29 @@ class Solution:
             pre = n
         return cnt
 ```
+
+```
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        pre = float('-inf')
+        up = peak = down = 0
+        cnt = 0
+        for x in ratings:
+            if x > pre:
+                up += 1
+                peak = up
+                down = 0
+                cnt += up
+            elif x < pre:
+                up = 1
+                down += 1
+                if down == peak:
+                    down += 1
+                cnt += down
+            else:
+                up = peak = 1
+                down = 0
+                cnt += 1
+            pre = x
+        return cnt
+```
