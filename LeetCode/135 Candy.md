@@ -34,3 +34,54 @@ class Solution:
             cnt += candies[i]
         return cnt
 ```
+
+#### Single Pass Approach with Constant Space
+```
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        n = len(ratings)
+        if n == 0: return 0
+        cnt = 1
+        up = down = peak = 0
+        for i in range(1, n):
+            if ratings[i] > ratings[i - 1]:
+                up += 1
+                down = 0
+                peak = up
+                cnt += 1 + up
+            elif ratings[i] < ratings[i - 1]:
+                up = 0
+                down += 1
+                cnt += 1 + down - (peak >= down)
+            else:
+                peak = down = up = 0
+                cnt += 1
+        return cnt
+```
+
+```
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        peak = pre = float('inf')
+        down = 0
+        up = 1
+        cnt = 0
+        for n in ratings:
+            if n < pre:
+                down += 1
+                if down == peak:
+                    down += 1
+                up = 1
+                cnt += down
+            elif n > pre:
+                down = 0
+                up += 1
+                peak = up
+                cnt += peak
+            else:
+                down = 0
+                up = peak = 1
+                cnt += 1
+            pre = n
+        return cnt
+```
