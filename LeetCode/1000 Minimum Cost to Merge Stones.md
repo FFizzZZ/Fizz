@@ -1,3 +1,5 @@
+## Leetcode
+#### dp(i, k, m) means the minimum cost to merge stones[i] - stones[j] into m piles
 ```
 import functools
 class Solution:
@@ -22,7 +24,7 @@ class Solution:
         res = dp(0, n - 1, 1)
         return res if res < inf else -1
 ```
-        
+#### dp(i, j) means the minimum cost needed to merge stones[i] - stones[j]
 ```
 import functools
 class Solution:
