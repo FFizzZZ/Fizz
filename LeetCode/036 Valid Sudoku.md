@@ -40,6 +40,38 @@ class Solution:
                     visited.add((i // 3, j // 3, val))
         return True
 ```
+```
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:       
+        for row in board:
+            d = set()
+            for num in row:
+                if num == '.': continue
+                if num in d: 
+                    return False
+                d.add(num)
+        for col in zip(*board):
+            d = set()
+            for num in col:
+                if num == '.': continue
+                if num in d:
+                    return False
+                d.add(num)
+        for row in range(3):
+            for col in range(3):
+                x, y = 3 * row, 3 * col
+                d = set()
+                for i in range(x, x + 3):
+                    for j in range(y, y + 3):
+                        val = board[i][j]
+                        if val == '.': continue
+                        if val in d:
+                            return False
+                        d.add(val)
+        return True
+```
+
+------------------------------------------------------------
                     
 ```                
 class Solution:
