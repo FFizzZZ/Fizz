@@ -38,3 +38,7 @@ https://www.jianshu.com/p/0fd43ffb5b18 构造两个状态转移方程
 
 https://www.bilibili.com/read/cv2777382/  
 T_(n + 1) = 2 * T_n + 2,  T_1 = 2
+
+### 9. 有 1000 个一模一样的瓶子，其中有 999 瓶是普通的水，有一瓶是毒药。任何喝下毒药的生物都会在一星期之后死亡。现在，你只有 10 只小白鼠和一星期的时间，如何检验出哪个瓶子里有毒药？
+
+https://blog.csdn.net/z_qifa/article/details/74440959
