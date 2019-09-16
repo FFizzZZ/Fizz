@@ -1,27 +1,3 @@
-```
-class Solution:
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
-        for row in board:
-            d = collections.Counter(row)
-            for key, val in d.items():
-                if val > 1 and key != '.':
-                    return False
-        for col in zip(*board):
-            d = collections.Counter(col)
-            for key, val in d.items():
-                if val > 1 and key != '.':
-                    return False
-        for i in range(3):
-            row = board[3*i:3*(i+1)]
-            for j in range(3):
-                temp = [x[3*j:3*(j+1)] for x in row]
-                square = temp[0] + temp[1] + temp[2]
-                counts = [square.count(x) for x in square if x != '.']
-                if sum(counts) != len(counts):
-                    return False
-        return True
-```
-
 ## Leetcode
 ```
 class Solution:
