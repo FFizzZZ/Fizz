@@ -24,6 +24,7 @@ class Solution:
 ```
 
 ## Leetcode
+#### FASTEST
 ```
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
@@ -37,3 +38,47 @@ class Solution:
             sortednums[idx:idx] = [val]
         return ans[::-1]
 ```
+
+
+
+#### MergeSort
+```
+class Solution:
+    def countSmaller(self, nums):
+        ans = [0] * len(nums)
+        self.f(list(enumerate(nums)), ans)
+        return ans
+    def f(self, nums, ans):
+        n = len(nums)
+        if n <= 1:
+            return nums
+        mid = n // 2
+        left, right = self.f(nums[:mid], ans), self.f(nums[mid:], ans)
+        for i in range(n - 1, -1, -1):
+            if not right or left and left[-1][1] > right[-1][1]:
+                ans[left[-1][0]] += len(right)
+                nums[i] = left.pop()
+            else:
+                nums[i] = right.pop()
+        return nums
+```
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
