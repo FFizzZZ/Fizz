@@ -35,8 +35,10 @@ POINTS
 * sys.maxsize, float('inf')
 * Euclidean algorithm 辗转相除法 http://www.voidcn.com/article/p-gkmtgvkr-hd.html  
   最小公倍数=两整数的乘积÷最大公约数
+* 拓展辗转相除法 https://blog.csdn.net/lanchunhui/article/details/50593075
 * 0 ^ n = n
 * x & (x - 1) converts the last '1' into '0'
+* x & -x first '1' from right to left
 * 汉诺塔问题的非递归算法
 * max(a, b) is slower than if clause
 * use iter() and next() to avoid in-place change!
