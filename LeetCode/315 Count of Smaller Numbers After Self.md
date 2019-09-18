@@ -66,33 +66,27 @@ class Solution:
 ```
 class Solution:
     def countSmaller(self, nums):
-        rank, N, res = {val: i + 1 for i, val in enumerate(sorted(nums))}, len(nums), []
-        BITree = [0] * (N + 1)
+        rank = {val: i + 1 for i, val in enumerate(sorted(nums))}
+        n = len(nums)
+        BIT = [0] * (n + 1)
+        
         def update(i):
-            while i <= N:
-                BITree[i] += 1
-                i += (i & -i)
-        def getSum(i):
+            while i <= n:
+                BIT[i] += 1
+                i += i & (-i)
+        def get(i):
             s = 0
-            while i:
-                s += BITree[i]
-                i -= (i & -i)
+            while i > 0:
+                s += BIT[i]
+                i -= i & (-i)
             return s
+        
+        ans = []
         for x in reversed(nums):
-            res += getSum(rank[x] - 1),
             update(rank[x])
-        return res[::-1]
+            ans += get(rank[x] - 1),
+        return ans[::-1]
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 
