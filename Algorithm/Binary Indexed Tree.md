@@ -1,4 +1,9 @@
 * https://zh.wikipedia.org/wiki/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84
+* https://lotabout.me/2018/binary-indexed-tree/
+* https://husterxsp.github.io/2017/06/06/binary-indexed-tree/
+
+
+#### Leetcode 315
 ```
 class Solution:
     def countSmaller(self, nums):
