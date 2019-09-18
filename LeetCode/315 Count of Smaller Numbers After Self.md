@@ -62,7 +62,7 @@ class Solution:
                 nums[i] = right.pop()
         return nums
 ```
-
+#### Binary Indexed Tree
 ```
 class Solution:
     def countSmaller(self, nums):
