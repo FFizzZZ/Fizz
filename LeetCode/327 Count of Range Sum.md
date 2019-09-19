@@ -2,17 +2,17 @@
 #### Binary Search FASTEST!
 ```
 class Solution:
-    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
+    def countRangeSum(self, nums, lower, upper):
         total = sum(nums)
         sortedsum = [total]
-        cnt = 0
+        ans = 0
         for x in reversed(nums):
             total -= x
             l = bisect.bisect_left(sortedsum, total + lower)
             r = bisect.bisect_right(sortedsum, total + upper)
-            cnt += max(r - l, 0)
+            ans += r - l
             bisect.insort(sortedsum, total)
-        return cnt
+        return ans
 ```
 #### Merge Sort
 ```
