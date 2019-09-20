@@ -3,7 +3,6 @@ UNFINISHED
 * 015 3Sum & ...Sum   Not fast enough
 * 018 4Sum
 * 022 Closure NUmber (3) Closure Number
-* 033&034 Binary Search
 * 037 Sudoku Solver
 * 043 Multiply Strings
 * 044 Wildcard Matching: cannot understand the third method.
