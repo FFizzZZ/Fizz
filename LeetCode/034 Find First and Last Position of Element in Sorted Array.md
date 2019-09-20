@@ -1,7 +1,16 @@
 ```
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        if not nums: return [-1, -1]
+        n = len(nums)
+        left = bisect.bisect_left(nums, target)
+        if left == n or nums[left] != target:
+            return [-1, -1]
+        return [left, bisect.bisect_right(nums, target) - 1]
+```
+ 
+```
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
         n = len(nums)
         l, r = 0, n
         while l < r:
@@ -13,48 +22,40 @@ class Solution:
                 r = mid
         if r == n or nums[r] != target:
             return [-1, -1]
-        start = end = r
-        while end < n:
-            if nums[end] != target:
-                break
-            end += 1
-        return [start, end - 1]
+        start = l
+        l, r = 0, n
+        while l < r:
+            mid = (l + r) // 2
+            val = nums[mid]
+            if val <= target:
+                l = mid + 1
+            else:
+                r = mid
+        return [start, r - 1]
 ```
-                
-            
-            
-------------------------
+## Leetcode
+#### Binary Search
 ```
 class Solution:
-    # returns leftmost (or rightmost) index at which `target` should be inserted in sorted
-    # array `nums` via binary search.
-    def extreme_insertion_index(self, nums, target, left):
-        lo = 0
-        hi = len(nums)
-
-        while lo < hi:
-            mid = (lo + hi) // 2
-            if nums[mid] > target or (left and target == nums[mid]):
-                hi = mid
-            else:
-                lo = mid+1
-
-        return lo
-
-
-    def searchRange(self, nums, target):
-        left_idx = self.extreme_insertion_index(nums, target, True)
-
-        # assert that `left_idx` is within the array bounds and that `target`
-        # is actually in `nums`.
-        if left_idx == len(nums) or nums[left_idx] != target:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        left = self.insert(nums, target, True)
+        if left == len(nums) or nums[left] != target:
             return [-1, -1]
-
-        return [left_idx, self.extreme_insertion_index(nums, target, False)-1]
+        return [left, self.insert(nums, target, False) - 1]
+        
+    def insert(self, nums, target, left):
+        l, r = 0, len(nums)
+        while l < r:
+            mid = (l + r) // 2
+            val = nums[mid]
+            if val > target or (left and target == val):
+                r = mid
+            else:
+                l = mid + 1
+        return l
 ```
 
-----------------------------------------------------------------------
-# Divide and Conquer
+#### Divide and Conquer
 ```
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
@@ -70,7 +71,6 @@ class Solution:
         return search(0, len(nums)-1)
 ```
 
----------------------------------------------------------------------
 ```
 class Solution:
     def searchRange(self, nums, target):
