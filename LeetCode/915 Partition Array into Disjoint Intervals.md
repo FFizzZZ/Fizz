@@ -1,4 +1,5 @@
 ## Leetcode
+#### Next Array
 ```
 class Solution:
     def partitionDisjoint(self, nums):
@@ -13,4 +14,20 @@ class Solution:
         for i in range(n - 1):
             if left[i] <= right[i + 1]:
                 return i + 1
+```
+#### Fastest
+```
+class Solution:
+    def partitionDisjoint(self, A: List[int]) -> int:
+        n = len(A)
+        left_max = all_max = A[0]
+        ans = 1
+        for i in range(1, n):
+            val = A[i]
+            if val < left_max:
+                ans = i + 1
+                left_max = all_max
+            if val > all_max:
+                all_max = val
+        return ans
 ```
