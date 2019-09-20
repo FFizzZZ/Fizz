@@ -52,54 +52,25 @@ class Solution:
 ## find the minimum and then use binary search
 ```
 class Solution:
-    def search(self, nums, target):
+    def search(self, nums: List[int], target: int) -> int:
         n = len(nums)
         l, r = 0, n - 1
         while l < r:
             mid = (l + r) // 2
             val = nums[mid]
-            if val > nums[-1]:
+            if val > nums[r]:
                 l = mid + 1
             else:
                 r = mid
-        if r <= 0:
-            l, r = 0, n - 1
-        elif target >= nums[0]:
-            l, r = 0, r - 1
-        else:
-            l, r = r, n - 1
-        while l <= r:
-            mid = (l + r) // 2
-            val = nums[mid]
-            if val == target:
-                return mid
-            elif val < target:
-                l = mid + 1
-            else:
-                r = mid - 1
-        return -1
-```
-another version from others
-```
-class Solution:
-    def search(self, nums, target):
-        n = len(nums)
+        shift = r
         l, r = 0, n - 1
-        while l < r:
-            mid = (l + r) // 2
-            val = nums[mid]
-            if val > nums[-1]:
-                l = mid + 1
-            else:
-                r = mid
-        l, r, temp = 0, n - 1, r
         while l <= r:
             mid = (l + r) // 2
-            realmid = (mid + temp) % n
-            val = nums[realmid]
+            real_mid = (mid + shift) % n
+            val = nums[real_mid]
             if val == target:
-                return realmid
-            elif val < target:
+                return real_mid
+            if val < target:
                 l = mid + 1
             else:
                 r = mid - 1
