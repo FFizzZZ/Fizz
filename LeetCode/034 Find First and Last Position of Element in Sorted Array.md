@@ -1,40 +1,30 @@
-# slow 
+```
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         if not nums: return [-1, -1]
-        if len(nums) == 1:
-            if nums[0] == target:
-                return [0, 0]
+        n = len(nums)
+        l, r = 0, n
+        while l < r:
+            mid = (l + r) // 2
+            val = nums[mid]
+            if val < target:
+                l = mid + 1
             else:
-                return [-1, -1]
-        first, last = 0, len(nums) - 1
-        index = -1
-        while first <= last:
-            mid = (first + last) // 2
-            if nums[mid] == target:
-                index = mid
-            if nums[mid] < target:
-                first += 1
-            else:
-                last -= 1
-        if index == -1: return [-1, -1]
-        res1 = res2 = index
-        for i in range(index, 0, -1):
-            if nums[i] != nums[i-1]:
-                res1 = i
+                r = mid
+        if r == n or nums[r] != target:
+            return [-1, -1]
+        start = end = r
+        while end < n:
+            if nums[end] != target:
                 break
-        if res1 == 1 and nums[1] == nums[0]: res1 = 0
-        for i in range(index, len(nums)-1):
-            if nums[i] != nums[i+1]:
-                res2 = i
-                break
-        if i == len(nums) - 2 and nums[-2] == nums[-1]: res2 = len(nums) - 1
-        return [res1, res2]
+            end += 1
+        return [start, end - 1]
+```
                 
             
             
 ------------------------
-
+```
 class Solution:
     # returns leftmost (or rightmost) index at which `target` should be inserted in sorted
     # array `nums` via binary search.
@@ -61,9 +51,11 @@ class Solution:
             return [-1, -1]
 
         return [left_idx, self.extreme_insertion_index(nums, target, False)-1]
+```
 
 ----------------------------------------------------------------------
 # Divide and Conquer
+```
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         if not nums: return [-1, -1]
@@ -76,9 +68,10 @@ class Solution:
                 return max(l, r) if -1 in l+r else [l[0], r[1]]
             return [-1, -1]
         return search(0, len(nums)-1)
+```
 
 ---------------------------------------------------------------------
-
+```
 class Solution:
     def searchRange(self, nums, target):
         def search(n):
@@ -92,6 +85,7 @@ class Solution:
             return lo
         lo = search(target)
         return [lo, search(target+1)-1] if target in nums[lo:lo+1] else [-1, -1]
+```
 
 
 
