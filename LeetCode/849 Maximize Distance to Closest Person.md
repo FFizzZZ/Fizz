@@ -46,3 +46,17 @@ class Solution(object):
                 ans = max(ans, (L + 1) // 2)
         return max(ans, seats.index(1), seats[::-1].index(1))
 ```
+
+#### Intuitive
+```
+class Solution:
+    def maxDistToClosest(self, seats):
+        ans = 0
+        pre = -1
+        n = len(seats)
+        for i in range(n):
+            if seats[i]:
+                ans = max(ans, i if pre == -1 else (i - pre) // 2)
+                pre = i
+        return max(ans, n - 1 - pre)
+```
