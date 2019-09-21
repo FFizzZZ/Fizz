@@ -4,7 +4,6 @@ UNFINISHED
 * 018 4Sum
 * 022 Closure NUmber (3) Closure Number
 * 037 Sudoku Solver
-* 043 Multiply Strings
 * 044 Wildcard Matching: cannot understand the third method.
 * 054 Spiral Matrix: haven't coded it by myself
 * 056 Merge Intervals: haven't inspected the Connected Components Method 
