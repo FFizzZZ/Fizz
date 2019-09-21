@@ -2,7 +2,6 @@
 UNFINISHED
 * 015 3Sum & ...Sum   Not fast enough
 * 018 4Sum
-* 022 Closure NUmber (3) Closure Number
 * 037 Sudoku Solver
 * 044 Wildcard Matching: cannot understand the third method.
 * 054 Spiral Matrix: haven't coded it by myself
