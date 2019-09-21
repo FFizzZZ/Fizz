@@ -1,4 +1,5 @@
 ## Leetcode
+#### Next Array
 ```
 class Solution:
     def maxDistToClosest(self, seats: List[int]) -> int:
@@ -16,7 +17,7 @@ class Solution:
                 right[i] = right[i + 1] + 1
         return max(min(left[i], right[i]) for i, seat in enumerate(seats) if not seat)
 ```
-
+#### Two Pointer
 ```
 class Solution:
     def maxDistToClosest(self, seats: List[int]) -> int:
@@ -33,4 +34,15 @@ class Solution:
                 right = future - i if future is not None else float('inf')
                 ans = max(ans, min(left, right))
         return ans
+```
+#### Group by Zero
+```
+class Solution(object):
+    def maxDistToClosest(self, seats):
+        ans = 0
+        for seat, group in itertools.groupby(seats):
+            if not seat:
+                L = len(list(group))
+                ans = max(ans, (L + 1) // 2)
+        return max(ans, seats.index(1), seats[::-1].index(1))
 ```
