@@ -18,13 +18,13 @@ class Solution:
 ## Leetcode
  #### Closure Number
  ```
- class Solution(object):
-    def generateParenthesis(self, N):
-        if N == 0: return ['']
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        if n == 0: return ['']
         ans = []
-        for c in xrange(N):
-            for left in self.generateParenthesis(c):
-                for right in self.generateParenthesis(N-1-c):
+        for i in range(n):
+            for left in self.generateParenthesis(i):
+                for right in self.generateParenthesis(n - 1 - i):
                     ans.append('({}){}'.format(left, right))
         return ans
 ```
