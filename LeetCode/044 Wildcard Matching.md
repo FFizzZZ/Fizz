@@ -23,19 +23,22 @@ class Solution:
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         m, n = len(s), len(p)
-        dp = [[False] * (n + 1) for _ in range(m + 1)]
-        dp[0][0] = True
-        for i in range(m + 1):
-            for j in range(1, n + 1):
-                if i == 0:
-                    dp[0][j] = dp[0][j - 1] and p[j - 1] == '*'
+        dp = [True] * (n + 1)
+        for j in range(1, n + 1):
+            dp[j] = dp[j - 1] and p[j - 1] == '*'
+        for i in range(1, m + 1):
+            for j in range(n + 1):
+                tmp = dp[j]
+                if j == 0:
+                    dp[j] = False
                 elif p[j - 1] == '*':
-                    dp[i][j] = dp[i - 1][j] or dp[i][j - 1]
+                    dp[j] = dp[j] or dp[j - 1]
                 elif p[j - 1] in ["?", s[i - 1]]:
-                    dp[i][j] = dp[i - 1][j - 1]
+                    dp[j] = pre
                 else:
-                    dp[i][j] = False
-        return dp[-1][-1]
+                    dp[j] = False
+                pre = tmp
+        return dp[-1]
 ```
 
 ## Leetcode                
@@ -65,24 +68,22 @@ class Solution:
         return j == n
 ```
 
-#### dp
+#### Dynamic Programming
 ```
 class Solution:
-# @return a boolean
-def isMatch(self, s, p):
-    length = len(s)
-    if len(p) - p.count('*') > length:
-        return False
-    dp = [True] + [False]*length
-    for i in p:
-        if i != '*':
-            for n in reversed(range(length)):
-                dp[n+1] = dp[n] and (i == s[n] or i == '?')
-        else:
-            for n in range(1, length+1):
-                dp[n] = dp[n-1] or dp[n]
-        dp[0] = dp[0] and i == '*'
-    return dp[-1]
+    def isMatch(self, s: str, p: str) -> bool:
+        m = len(s)
+        if len(p) - p.count('*') > m: return False
+        dp = [True] + [False] * m
+        for char in p:
+            if char == '*':
+                for i in range(1, m + 1):
+                    dp[i] = dp[i - 1] or dp[i]
+            else:
+                for i in range(m, 0, -1):
+                    dp[i] = dp[i - 1] and (char == s[i - 1] or char == '?')
+            dp[0] = dp[0] and char == '*'
+        return dp[-1]
 ```
 
 
