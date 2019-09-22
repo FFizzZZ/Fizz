@@ -62,44 +62,17 @@ class Solution:
         ans = 0
         for i in range(m):
             for j in range(n):
-                if matrix[i][j] == '1':
+                if matrix[i][j] == "1":
                     height[j] += 1
                 else:
                     height[j] = 0
-            stack = []
-            for j in range(n + 1):
-                while stack and height[j] < height[stack[-1]]:
-                    h = height[stack.pop()]
-                    if stack:
-                        distance = j - 1 - stack[-1]
-                    else:
-                        distance = j
-                    tmp = h * distance
-                    if tmp > ans:
-                        ans = tmp
+            stack = [-1]
+            for j, h in enumerate(height):
+                while height[stack[-1]] > h:
+                    index = stack.pop()
+                    distance = j - stack[-1] - 1
+                    area = height[index] * distance
+                    if area > ans: ans = area
                 stack.append(j)
-        return ans
-```
-##### This one has some tricks.
-```
-class Solution:
-    def maximalRectangle(self, matrix):
-        if not matrix or not matrix[0]:
-            return 0
-        n = len(matrix[0])
-        height = [0] * (n + 1)  # !!!
-        ans = 0
-        for row in matrix:
-            for i in range(n):
-                height[i] = height[i] + 1 if row[i] == '1' else 0
-            stack = [-1]        # !!!
-            for i in range(n + 1):
-                while height[i] < height[stack[-1]]:
-                    h = height[stack.pop()]
-                    w = i - 1 - stack[-1]
-                    temp = h * w
-                    if temp > ans:
-                        ans = temp
-                stack.append(i)
         return ans
 ```
