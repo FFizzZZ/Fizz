@@ -3,21 +3,23 @@
 ```
 class Solution:
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
-        if not matrix: 
-            return 0
-        nums, area = [int(''.join(row), base=2) for row in matrix], 0
-        for i in range(len(nums)):
-            num = -1
-            for j in range(i, len(nums)):
-                num &= nums[j]
-                if not num: 
+        if not matrix: return 0
+        nums = [int("".join(row), base = 2) for row in matrix]
+        ans = 0
+        for i in range(len(matrix)):
+            cur = -1
+            for j in range(i, len(matrix)):
+                cur &= nums[j]
+                if cur == 0:
                     break
-                n, l = num, 0
+                n = cur
+                l = 0
                 while n:
                     l += 1
-                    n &= n << 1      # n &= n >> 1: this one is to calculate the longest continuous "1" subarray
-                area = max(area, l * (j - i + 1))
-        return area
+                    n &= n >> 1
+                area = l * (j - i + 1)
+                if area > ans: ans = area
+        return ans
 ```
 
 #### Dynamic Programming
