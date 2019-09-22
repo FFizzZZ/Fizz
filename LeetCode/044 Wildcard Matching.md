@@ -18,6 +18,26 @@ class Solution:
             return ans
         return dfs(0, 0)
 ```
+
+```
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        m, n = len(s), len(p)
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = True
+        for i in range(m + 1):
+            for j in range(1, n + 1):
+                if i == 0:
+                    dp[0][j] = dp[0][j - 1] and p[j - 1] == '*'
+                elif p[j - 1] == '*':
+                    dp[i][j] = dp[i - 1][j] or dp[i][j - 1]
+                elif p[j - 1] in ["?", s[i - 1]]:
+                    dp[i][j] = dp[i - 1][j - 1]
+                else:
+                    dp[i][j] = False
+        return dp[-1][-1]
+```
+
 ## Leetcode                
 #### FASTEST
 ```
