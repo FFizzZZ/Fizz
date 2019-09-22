@@ -1,4 +1,17 @@
-## Sort
+```
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort()
+        ans = []
+        for l, r in intervals:
+            if ans and ans[-1][1] >= l:
+                ans[-1] = [ans[-1][0], r]
+            else:
+                ans.append([l, r])
+        return ans
+```
+## Leetcode
+#### Sort
 ```
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
@@ -11,7 +24,7 @@ class Solution:
         return ans
 ```
 
-## Connected Components
+#### Connected Components
 ```
 class Solution:
     def overlap(self, a, b):
