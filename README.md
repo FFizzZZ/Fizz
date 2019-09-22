@@ -10,9 +10,7 @@ UNFINISHED
 * 085
 * 126 
 * 131 Palindrome Partitioning: dynamic programming
-* 154 Find Minimum in Rotated Sorted Array: duplicate
 * 188 Best Time to Buy and Sell Stock IV: don't understand FASTEST method
-* 315 Count of Smaller Numbers After Self
 * 341 Flatten Nested List Iterator
 * 438 Find All Anagrams in a String: Hash Value
 * 698 Partition to K Equal Sum Subsets
