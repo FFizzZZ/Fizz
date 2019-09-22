@@ -1,5 +1,5 @@
 ## Leetcode
-#### FASTEST
+#### FASTEST ONE
 ```
 class Solution:
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
@@ -15,7 +15,7 @@ class Solution:
                 n, l = num, 0
                 while n:
                     l += 1
-                    n &= n << 1
+                    n &= n << 1        # n &= n >> 1, this one is to calculate the longest continuous "1" subarray
                 area = max(area, l * (j - i + 1))
         return area
 ```
