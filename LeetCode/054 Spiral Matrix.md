@@ -1,3 +1,30 @@
+```
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix: return []
+        ans = []
+        d = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        m, n = len(matrix), len(matrix[0])
+        visited = set()
+        x, y = 0, 0
+        index = 0
+        dx, dy = 0, 1
+        for _ in range(m * n):
+            ans.append(matrix[x][y])
+            visited.add((x, y))
+            x1, y1 = x + dx, y + dy
+            if 0 <= x1 < m and 0 <= y1 < n and (x1, y1) not in visited:
+                x, y = x1, y1
+            else:
+                index = (index + 1) % 4
+                dx, dy = d[index]
+                x += dx
+                y += dy
+        return ans
+```
+
+
+```
 class Solution(object):
     def spiralOrder(self, matrix):
         if not matrix: return []
@@ -17,8 +44,10 @@ class Solution(object):
                 di = (di + 1) % 4
                 r, c = r + dr[di], c + dc[di]
         return ans
+```
 
 # layer-by-layer
+```
 class Solution(object):
     def spiralOrder(self, matrix):
         def spiral_coords(r1, c1, r2, c2):
@@ -42,6 +71,7 @@ class Solution(object):
             r1 += 1; r2 -= 1
             c1 += 1; c2 -= 1
         return ans
+```
 ----------------------------------------
 
 
