@@ -35,7 +35,7 @@ class Solution:
         return []
         
         ####
-                    if cur & backward:
+            if cur & backward:
                 ans = []
                 self.dfs(d, endWord, beginWord, [endWord], ans)
                 return ans
