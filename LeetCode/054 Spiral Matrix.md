@@ -23,7 +23,8 @@ class Solution:
         return ans
 ```
 
-
+## Leetcode
+#### Simulation
 ```
 class Solution(object):
     def spiralOrder(self, matrix):
@@ -46,7 +47,7 @@ class Solution(object):
         return ans
 ```
 
-# layer-by-layer
+#### layer-by-layer
 ```
 class Solution(object):
     def spiralOrder(self, matrix):
@@ -72,6 +73,3 @@ class Solution(object):
             c1 += 1; c2 -= 1
         return ans
 ```
-----------------------------------------
-
-
