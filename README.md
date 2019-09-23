@@ -8,6 +8,7 @@ UNFINISHED
 * 071
 * 126 
 * 131 Palindrome Partitioning: dynamic programming
+* 180
 * 188 Best Time to Buy and Sell Stock IV: don't understand FASTEST method
 * 341 Flatten Nested List Iterator
 * 438 Find All Anagrams in a String: Hash Value
