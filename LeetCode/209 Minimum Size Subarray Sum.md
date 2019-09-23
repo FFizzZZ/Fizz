@@ -1,4 +1,8 @@
 ## Leetcode
+
+
+
+#### Using two pointers, O(n)
 ```
 class Solution:
     def minSubArrayLen(self, s: int, nums: List[int]) -> int:
