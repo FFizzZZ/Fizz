@@ -46,3 +46,18 @@ https://blog.csdn.net/z_qifa/article/details/74440959
 ### 10. 如果要25匹马中选出跑得最快的3匹，每次只有5匹马同时跑，最少要比赛几次，才能确保得出结果？
 
 https://www.zhihu.com/question/19856916
+
+### 11. 给定用户登录时间和离线时间，统计每秒的在线人数。
+```
+class Solution:
+    def NumberPerSecond(self, nums):
+        n = 24 * 60 * 60
+        change = [0] * (n + 1)
+        online = [0] * (n + 1)
+        for a, b in nums:
+            change[a] += 1
+            change[b] -= 1
+        for i in range(1, n + 1):
+            online[i] = online[i - 1] + change[i]
+        return online
+```
