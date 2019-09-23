@@ -6,7 +6,6 @@ UNFINISHED
 * 068
 * 069
 * 071
-* 126 
 * 131 Palindrome Partitioning: dynamic programming
 * 180
 * 188 Best Time to Buy and Sell Stock IV: don't understand FASTEST method
