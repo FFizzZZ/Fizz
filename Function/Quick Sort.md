@@ -33,6 +33,24 @@ def quicksort(data, start, end):
     if idx < end:
         quicksort(data, idx + 1, end)
 ```
+##### Another Version
+```
+def quick_sort(nums, start, end):
+    if start >= end: return
+    idx = random.choice(range(start, end + 1))
+    val = nums[idx]
+    nums[start], nums[idx] = nums[idx], nums[start]
+    l, r = start, end
+    while l < r:
+        while l < r and nums[r] >= val:
+            r -= 1
+        nums[r], nums[l] = nums[l], nums[r]
+        while l < r and nums[l] <= val:
+            l += 1
+        nums[l], nums[r] = nums[r], nums[l]
+    quick_sort(nums, start, l - 1)
+    quick_sort(nums, l + 1, end)
+```
 
 ```
 def quick_sort(nums, start, end):
