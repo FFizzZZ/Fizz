@@ -33,3 +33,21 @@ def quicksort(data, start, end):
     if idx < end:
         quicksort(data, idx + 1, end)
 ```
+
+```
+def quick_sort(nums, start, end):
+    if start >= end:
+        return
+    val = nums[end]
+    l, r = start, end
+    while l < r:
+        while l < r and nums[l] <= val:
+            l += 1
+        while l < r and nums[r] >= val:
+            r -= 1
+        if l < r:
+            nums[l], nums[r] = nums[r], nums[l]
+    nums[l], nums[end] = nums[end], nums[l]
+    quick_sort(nums, start, l - 1)
+    quick_sort(nums, l + 1, end)
+```
