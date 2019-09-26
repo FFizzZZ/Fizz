@@ -1,6 +1,6 @@
 * https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95
 * 3升5升杯子求4升水 https://blog.csdn.net/lanchunhui/article/details/50594649
-* https://blog.csdn.net/lanchunhui/article/details/50593075
+* 扩展欧几里得算法及应用 https://blog.csdn.net/lanchunhui/article/details/50593075
 ```
 def ext_euclid(a, b):
      if b == 0:
