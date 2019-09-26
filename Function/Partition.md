@@ -12,3 +12,18 @@ def partition(s, start, end):
     s[small], s[end] = s[end], s[small]
     return small
 ```
+
+```
+def partition(nums, start, end):
+    l, r = start, end
+    pivot = nums[end]
+    while l < r:
+        while l < r and nums[l] <= pivot:
+            l += 1
+        while l < r and nums[r] >= pivot:
+            r -= 1
+        if l < r:
+            nums[l], nums[r] = nums[r], nums[l]
+    nums[end], nums[l] = nums[l], nums[end]
+    return l
+```
