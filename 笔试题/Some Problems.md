@@ -61,3 +61,7 @@ class Solution:
             online[i] = online[i - 1] + change[i]
         return online
 ```
+
+### 12. 100个人回答五道试题，有81人答对第一题，91人答对第二题，85人答对第三题，79人答对第四题，74人答对第五题，答对三道题或三道题以上的人算及格， 那么，在这100人中，至少有多少人及格。
+
+https://www.nowcoder.com/questionTerminal/14f690cac7fe4366beaccb6417f11a96
