@@ -57,22 +57,23 @@ class Solution:
 ```
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        def helper(numUsed, need, c):
-            nonlocal ret
-            times, remain = divmod(need, coins[c])
+        def f(cur, need, idx):
+            nonlocal ans
+            val = coins[idx]
+            times, remain = divmod(need, val)
+            tmp = times + cur
             if remain == 0:
-                cand = times + numUsed
-                if cand < ret: ret = cand
+                if tmp < ans: 
+                    ans = tmp
                 return
-            if numUsed + times >= ret:
-                return
-            if c == len(coins) - 1:
-                return
-            for numChosen in range(times, -1, -1):
-                helper(numUsed + numChosen, need - coins[c] * numChosen, c + 1)
-                
+            if idx == len(coins) - 1: return
+            if tmp >= ans: return
+            for num in range(times, -1, -1):
+                f(cur + num, need - num * val, idx + 1)
         coins.sort(reverse = True)
-        ret = float('inf')
-        helper(0, amount, 0)
-        return ret if ret < float('inf') else -1
+        ans = float('inf')
+        f(0, amount, 0)
+        return ans if ans < float('inf') else -1
 ```
+
+
