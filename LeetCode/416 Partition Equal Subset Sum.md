@@ -35,10 +35,6 @@ class Solution(object):
         return dp[target]
 ```
 ###### Finally, we get a optimized version using bits. It's really amazing!
-A tiny example, nums=[2, 3, 5], initial bits is 1, traversing through nums
-* when num=2, bits=101, which represents nums can sum to 0 and 2
-* when num=3, bits=101101, which represents nums can sum to 0, 2, 3, 5
-* when num=5, bits=10110101101, which represents nums can sum to 0, 2, 3, 5, 7, 8, 10
 ```
 class Solution(object):
     def canPartition(self, nums):
@@ -49,3 +45,8 @@ class Solution(object):
             bit |= bit << num
         return s & 1 == 0 and (bit >> (s // 2)) & 1 == 1
 ```
+
+A tiny example, nums=[2, 3, 5], initial bits is 1, traversing through nums
+* when num=2, bits=101, which represents nums can sum to 0 and 2
+* when num=3, bits=101101, which represents nums can sum to 0, 2, 3, 5
+* when num=5, bits=10110101101, which represents nums can sum to 0, 2, 3, 5, 7, 8, 10
