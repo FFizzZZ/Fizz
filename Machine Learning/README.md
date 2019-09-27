@@ -4,4 +4,5 @@
 * SMOTE过采样 https://www.cnblogs.com/Determined22/p/5772538.html
 * 优化算法 https://blog.csdn.net/u012328159/article/details/80311892
 * AUC计算 https://blog.csdn.net/qq_22238533/article/details/78666436
-* ANN近似最近邻算法 https://www.ryanligod.com/2018/11/27/2018-11-27%20HNSW%20%E4%BB%8B%E7%BB%8D/
+* HNSW https://www.ryanligod.com/2018/11/27/2018-11-27%20HNSW%20%E4%BB%8B%E7%BB%8D/
+* kd树 https://zhuanlan.zhihu.com/p/23966698
