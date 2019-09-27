@@ -31,6 +31,36 @@ class Solution:
                 ans = max(ans, up + down + 1)
         return ans
 ```
-                
+#### FASTEST
+```
+class Solution:
+    def longestMountain(self, A: List[int]) -> int:
+        n = len(A)
+        if n < 3: return 0
+        up = None
+        ans = 0     
+        for i in range(1, n):
+            if up == None:
+                if A[i] > A[i-1]:
+                    start = i - 1
+                    up = True
+            elif up == True:
+                if A[i] < A[i-1]:
+                    up = False
+                elif A[i] == A[i-1]:
+                    up = None
+            elif up == False:
+                tmp = i - start
+                if tmp > ans: ans = tmp
+                if A[i] > A[i-1]:
+                    start = i - 1
+                    up = True
+                elif A[i] == A[i-1]:
+                    up = None
+        if up == False:
+            tmp = i + 1 - start
+            if tmp > ans: ans = tmp
+        return ans
+```
         
         
