@@ -39,7 +39,7 @@ class Solution:
         else:
             return dp[-1]
 ```
-#### combination (slightly faster?)
+#### combination
 ```
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
@@ -53,4 +53,26 @@ class Solution:
         return -1 if dp[-1] > amount else dp[-1]
 
 ```
-
+#### FASTEST
+```
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        def helper(numUsed, need, c):
+            nonlocal ret
+            times, remain = divmod(need, coins[c])
+            if remain == 0:
+                cand = times + numUsed
+                if cand < ret: ret = cand
+                return
+            if numUsed + times >= ret:
+                return
+            if c == len(coins) - 1:
+                return
+            for numChosen in range(times, -1, -1):
+                helper(numUsed + numChosen, need - coins[c] * numChosen, c + 1)
+                
+        coins.sort(reverse = True)
+        ret = float('inf')
+        helper(0, amount, 0)
+        return ret if ret < float('inf') else -1
+```
