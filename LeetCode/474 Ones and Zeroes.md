@@ -13,7 +13,6 @@ class Solution:
 
 ## Leetcode
 ```
-from functools import lru_cache
 class Solution:
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
         counts = collections.defaultdict(int)
@@ -21,12 +20,10 @@ class Solution:
             zeros = s.count('0')
             counts[(zeros, len(s) - zeros)] += 1
         nums = list(counts.keys())
-        @lru_cache(None)
-        def dfs(idx, m, n):
+        def dfs(idx, m, n, d):
             if idx == len(nums): return 0
+            if (idx, m, n) in d: return d[idx, m, n]
             zeros, ones = nums[idx]
-            if zeros > m or ones > n:
-                return dfs(idx + 1, m, n)
             ans = 0
             q = counts[zeros, ones]
             if zeros > 0:
@@ -34,8 +31,9 @@ class Solution:
             if ones > 0:
                 q = min(q, n // ones)
             for i in range(q + 1):
-                tmp = i + dfs(idx + 1, m - i * zeros, n - i * ones)
+                tmp = i + dfs(idx + 1, m - i * zeros, n - i * ones, d)
                 ans = max(ans, tmp)
+            d[idx, m, n] = ans
             return ans
-        return dfs(0, m, n)
+        return dfs(0, m, n, dict())
 ```
