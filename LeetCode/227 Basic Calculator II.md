@@ -3,23 +3,23 @@
 ```
 class Solution:
     def calculate(self, s: str) -> int:
-        stack = []
-        op = "+"
         cur = 0
-        for char in s + "+":
+        op = "+"
+        stack = []
+        for char in s + "%":
             if char.isdigit():
-                cur = 10 * cur + int(char)
+                cur = cur * 10 + int(char)
             elif char != " ":
                 if op == "+":
                     stack.append(cur)
                 elif op == "-":
                     stack.append(-cur)
                 elif op == "*":
-                    stack.append(stack.pop() * cur)
+                    stack.append(cur * stack.pop())
                 else:
                     stack.append(int(stack.pop() / cur))
-                cur = 0
                 op = char
+                cur = 0
         return sum(stack)
 ```
 #### without stack
