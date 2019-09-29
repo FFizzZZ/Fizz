@@ -12,6 +12,7 @@ class Solution:
 ```
 
 ## Leetcode
+#### DFS with memorization
 ```
 class Solution:
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
@@ -36,4 +37,27 @@ class Solution:
             d[idx, m, n] = ans
             return ans
         return dfs(0, m, n, dict())
+```
+#### Dynamic Version (but much slower) 
+```
+class Solution:
+    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+        counts = collections.defaultdict(int)
+        for string in strs:
+            ones = string.count("1")
+            counts[ones, len(string) - ones] += 1
+        nums = list(counts.keys())
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for ones, zeros in nums:
+            for i in range(m, -1, -1):
+                for j in range(n, -1, -1):
+                    times = counts[ones, zeros]
+                    if ones > 0: times = min(times, j // ones)
+                    if zeros > 0: times = min(times, i // zeros)
+                    ans = 0
+                    for k in range(times + 1):
+                        tmp = k + dp[i - k * zeros][j - k * ones]
+                        ans = max(tmp, ans)
+                    dp[i][j] = ans
+        return dp[-1][-1]
 ```
