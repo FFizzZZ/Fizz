@@ -6,3 +6,4 @@
 * AUC计算 https://blog.csdn.net/qq_22238533/article/details/78666436
 * HNSW https://www.ryanligod.com/2018/11/27/2018-11-27%20HNSW%20%E4%BB%8B%E7%BB%8D/
 * kd树 https://zhuanlan.zhihu.com/p/23966698
+* sigmoid https://blog.csdn.net/qq_19645269/article/details/79551576
