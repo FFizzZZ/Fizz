@@ -56,17 +56,18 @@ class Solution:
 ```
 
 ```
-import bisect
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        dp = []
-        for num in nums:
-            index = bisect.bisect_left(dp,num)
-            if index > len(dp) - 1:
-                dp.append(num)
+        tails = []
+        size = 0
+        for x in nums:
+            idx = bisect.bisect_left(tails, x)
+            if idx == size:
+                size += 1
+                tails.append(x)
             else:
-                dp[index] = num
-        return len(dp)
+                tails[idx] = x
+        return size
 ```
             
             
