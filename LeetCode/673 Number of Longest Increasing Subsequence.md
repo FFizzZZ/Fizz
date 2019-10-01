@@ -41,23 +41,23 @@ class Solution(object):
 class Solution:
     def findNumberOfLIS(self, nums: List[int]) -> int:
         n = len(nums)
-        end = [float('inf')] * n
-        candidate = [[] for _ in range(n)]
-        cnt = [0] * n
+        tails = [float("inf")] * n
+        candidates = [[] for _ in range(n)]
+        counts = [0] * n
         for x in nums:
-            index = bisect.bisect_left(end, x)
-            end[index] = x
-            if index == 0:
-                count = 1
+            idx = bisect.bisect_left(tails, x)
+            tails[idx] = x
+            if idx == 0:
+                cnt = 1
             else:
-                while candidate[index - 1][0][0] >= x:
-                    cnt[index - 1] -= candidate[index - 1].pop(0)[1]
-                count = cnt[index - 1]
-            cnt[index] += count
-            candidate[index].append((x, count))
+                while candidates[idx - 1][0][0] >= x:
+                    counts[idx - 1] -= candidates[idx - 1].pop(0)[1]
+                cnt = counts[idx - 1]
+            counts[idx] += cnt
+            candidates[idx].append((x, cnt))
         for i in range(n - 1, -1, -1):
-            if cnt[i] > 0:
-                return cnt[i]
+            if counts[i] > 0:
+                return counts[i]
         return 0
 ```
         
