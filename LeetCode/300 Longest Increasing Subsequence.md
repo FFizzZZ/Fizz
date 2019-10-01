@@ -2,20 +2,16 @@
 ```
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        if not nums: return 0
         n = len(nums)
+        if n <= 1: return n
         dp = [1] * n
-        ans = 1
         for i in range(1, n):
-            tmp = 0
+            ans = 1
             for j in range(i):
-                if nums[i] > nums[j]:
-                    if tmp < dp[j]:
-                        tmp = dp[j]
-            dp[i] = tmp + 1
-            if dp[i] > ans:
-                ans = dp[i]
-        return ans
+                if nums[j] < nums[i]:
+                    if dp[j] + 1 > ans: ans = dp[j] + 1
+            dp[i] = ans
+        return max(dp)
 ```
 
 ## Leetcode
