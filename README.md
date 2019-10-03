@@ -14,6 +14,7 @@ UNFINISHED
 * 438 Find All Anagrams in a String: Hash Value
 * 698 Partition to K Equal Sum Subsets
 * 730 Count Different Palindromic Subsequences: don't understand FASTEST method
+* 982 Triples with Bitwise AND Equal To Zero: Venn Graph Method
 * 1143 Non-dp method
 
 
