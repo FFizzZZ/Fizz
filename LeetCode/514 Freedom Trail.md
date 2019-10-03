@@ -17,3 +17,23 @@ class Solution:
             dp = new_dp
         return min(dp.values()) + len(key)
 ```
+
+#### FASTER
+```
+from functools import lru_cache
+class Solution:
+    def findRotateSteps(self, ring: str, key: str) -> int:
+        m, n = len(key), len(ring)
+        @lru_cache(maxsize = None)
+        def dfs(ring, idx):
+            if idx == m: return 0
+            target = key[idx]
+            if ring[0] == target:
+                return dfs(ring, idx + 1)
+            anti = ring.find(target)
+            ans_anti = anti + dfs(ring[anti:] + ring[:anti], idx + 1)
+            clock = ring.rfind(target)
+            ans_clk = n - clock + dfs(ring[clock:] + ring[:clock], idx + 1)
+            return min(ans_anti, ans_clk)
+        return dfs(ring, 0) + m
+```
