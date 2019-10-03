@@ -14,7 +14,38 @@ class Solution:
         return ans
 ```
 
-#### Venn Graph
+#### Venn Diagram
+```
+class Solution:
+    def countTriplets(self, A: 'List[int]') -> 'int':
+        nums = []
+        for x in A:
+            nums.append(bin(x)[2:])
+        maxlen = max(len(row) for row in nums)
+        for idx, val in enumerate(nums):
+            extra = maxlen - len(val)
+            nums[idx] = "0" * extra + val
+        row, col = len(nums), len(nums[0])
+        ones = collections.defaultdict(set)
+        for j in range(col):
+            for i in range(row):
+                if nums[i][j] == "1":
+                    ones[j].add(i)        
+        Venn = collections.defaultdict(list)
+        cnt = 0
+        for j in range(col):
+            if len(ones[j]) != 0:
+                cnt += len(ones[j]) ** 3
+                for i in range(j, 0, -1):
+                    for pre in Venn[i]:
+                        intersection = pre & ones[j]
+                        if len(intersection) != 0:
+                            cnt += (-1) ** i * len(intersection) ** 3
+                            Venn[i + 1].append(intersection)
+                Venn[1].append(ones[j])
+        return row ** 3 - cnt
+````
+
 ```
 from math import ceil, log2
 class Solution:
