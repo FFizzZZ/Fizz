@@ -14,8 +14,8 @@ class Solution:
             if 0 <= x_new < N and 0 <= y_new < N:
                 ans += self.dfs(x_new, y_new, N, K - 1, direction, memo)
         ans /= 8
-        memo[K][x][y] = memo[K][N - 1 - x][y] = memo[K][x][N - 1 - y] = ans
-        memo[K][N - 1 - x][N - 1 - y] = memo[K][y][x] = memo[K][N - 1 - y][N - 1 - x] = ans
+        memo[K][x][y] = memo[K][N - 1 - x][y] = memo[K][x][N - 1 - y] = \
+        memo[K][N - 1 - x][N - 1 - y] = memo[K][y][x] = memo[K][N - 1 - y][N - 1 - x] = \
         memo[K][N - 1 - y][x] = memo[K][y][N - 1 - x] = ans
         return ans
 ```
