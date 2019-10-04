@@ -19,3 +19,10 @@ class Solution:
                 cnt2 -= 1
         return [x for x in [n1, n2] if nums.count(x) > len(nums) // 3]
 ```
+
+```
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        d = collections.Counter(nums)
+        return [key for key, val in enumerate(d) if val > len(nums) // 3]
+```
