@@ -2,19 +2,21 @@
 class Solution:
     def knightProbability(self, N: int, K: int, r: int, c: int) -> float:
         direction = [(2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)]
-        memo = dict()
-        return self.dfs(r, c, N, K, direction, memo)
+        memo = [[[-1] * N for _ in range(N)] for _ in range(K)]
+        return self.dfs(r, c, N, K - 1, direction, memo)
     def dfs(self, x, y, N, K, direction, memo):
-        if K == 0:
-            return 1 if 0 <= x < N and 0 <= y < N else 0
-        if (x, y, K) in memo: return memo[x, y, K]
+        if K == -1:
+            return 1
+        if memo[K][x][y] != -1: return memo[K][x][y]
         ans = 0
         for dx, dy in direction:
             x_new = x + dx; y_new = y + dy
             if 0 <= x_new < N and 0 <= y_new < N:
                 ans += self.dfs(x_new, y_new, N, K - 1, direction, memo)
         ans /= 8
-        memo[x, y, K] = memo[N - 1 - x, y, K] = memo[x, N - 1 - y, K] = memo[N - 1 - x, N - 1 - y, K] = ans
+        memo[K][x][y] = memo[K][N - 1 - x][y] = memo[K][x][N - 1 - y] = ans
+        memo[K][N - 1 - x][N - 1 - y] = memo[K][y][x] = memo[K][N - 1 - y][N - 1 - x] = ans
+        memo[K][N - 1 - y][x] = memo[K][y][N - 1 - x] = ans
         return ans
 ```
 
