@@ -14,4 +14,3 @@ We have to choose an odd x.
 The opponent will get N - x, which is a even.
 Reduce to the case even and he will win.
 
-So the N will change odd and even alternatively until N = 1.
