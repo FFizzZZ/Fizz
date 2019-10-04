@@ -14,3 +14,11 @@ class Solution:
             self.helper(i + 1, target - nums[i], k - 1, nums, path, ans)
             path.pop()
 ```
+
+## Leetcode
+```
+class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        combs = itertools.combinations(range(1, 10), k)
+        return [x for x in combs if sum(x) == n]
+```
