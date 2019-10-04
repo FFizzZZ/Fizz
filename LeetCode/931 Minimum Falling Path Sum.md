@@ -13,3 +13,16 @@ class Solution:
         memo[row, col] = ans
         return ans
 ```
+
+## Leetcode
+#### Dynamic Programming
+```
+class Solution(object):
+    def minFallingPathSum(self, A):
+        n = len(A[0])
+        for row in range(len(A) - 1, 0, -1):
+            tmp = A[row]
+            for i in range(n):
+                A[row - 1][i] += min(tmp[max(0, i - 1) : min(n, i + 2)])
+        return min(A[0])
+```
