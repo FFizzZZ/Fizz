@@ -5,8 +5,9 @@ class Solution:
         for x in nums:
             if x == 1:
                 cnt += 1
+                if cnt > ans:
+                    ans = cnt
             else:
-                ans = max(ans, cnt)
                 cnt = 0
-        return max(ans, cnt)
+        return ans
 ```
