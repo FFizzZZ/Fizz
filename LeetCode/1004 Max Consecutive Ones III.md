@@ -19,7 +19,7 @@ class Solution:
 ```
 
 ## Leetcode
-#### Amazing Algorithm!
+#### An Amazing Algorithm!
 ```
 class Solution:
     def longestOnes(self, A: List[int], K: int) -> int:
