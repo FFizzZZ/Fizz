@@ -17,3 +17,19 @@ class Solution:
                 ans = tmp
         return ans
 ```
+
+## Leetcode
+#### Amazing Algorithm!
+```
+class Solution:
+    def longestOnes(self, A: List[int], K: int) -> int:
+        i = 0
+        for j in range(len(A)):
+            if not A[j]:
+                K -= 1
+            if K < 0:
+                if not A[i]:
+                    K += 1
+                i += 1
+        return j - i + 1
+```
