@@ -37,11 +37,13 @@ class Solution:
         m, n = len(nums), len(nums[0])
         if m * n != r * c: return nums
         matrix = [[0] * c for _ in range(r)]
-        cnt = 0
+        row = col = 0
         for i in range(m):
             for j in range(n):
-                row, col = divmod(cnt, c)
                 matrix[row][col] = nums[i][j]
-                cnt += 1
+                col += 1
+                if col == c:
+                    row += 1
+                    col = 0
         return matrix
 ```
