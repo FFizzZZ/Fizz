@@ -7,17 +7,10 @@ class Solution:
         ans = 0
         n = len(nums)
         for i in range(n - 2):
+            k = i + 2
             if nums[i] == 0: continue
             for j in range(i + 1, n - 1):
-                idx = self.search(nums, j + 1, n, nums[i] + nums[j])
-                ans += idx - j - 1
+                k = bisect.bisect_left(nums, nums[i] + nums[j], k, n)
+                ans += k - j - 1
         return ans
-    def search(self, nums, l, r, target):
-        while l < r:
-            mid = (l + r) // 2
-            if nums[mid] >= target:
-                r = mid
-            else:
-                l = mid + 1
-        return l
 ```
