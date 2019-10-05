@@ -1,4 +1,4 @@
-##### My thoughy: "0" group in the middle will offer (N - 1) // 2 while on the two side will offer N // 2
+##### My thought: "0" group in the middle will offer (N - 1) // 2 while on the two side will offer N // 2
 ```
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
