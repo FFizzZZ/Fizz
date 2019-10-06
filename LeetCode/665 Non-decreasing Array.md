@@ -14,7 +14,7 @@ class Solution(object):
                 A[p-1] <= A[p+1] or A[p] <= A[p+2])
 ```
 
-#### FASTEST
+#### Another Method
 ```
 class Solution:
     def checkPossibility(self, nums: List[int]) -> bool:
