@@ -14,3 +14,18 @@ class Solution:
                 return int("".join(string))
         return num
 ```
+
+## Leetcode
+#### Use HashMap to record index
+```
+class Solution:
+    def maximumSwap(self, num: int) -> int:
+        A = list(map(int, str(num)))
+        last = {val: idx for idx, val in enumerate(A)}
+        for idx, val in enumerate(A):
+            for digit in range(9, val, -1):
+                if last.get(digit, -1) > idx:
+                    A[idx], A[last[digit]] = A[last[digit]], A[idx]
+                    return int("".join(map(str, A)))
+        return num
+```
