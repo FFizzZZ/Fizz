@@ -42,8 +42,8 @@ class Solution:
         ans3 = [0, k, 2 * k]
         w1, w2, w3 = sum(nums[:k]), sum(nums[k:2*k]), sum(nums[2*k:3*k])
         max1, max2, max3 = w1, w1 + w2, w1 + w2 + w3
-        idx1, idx2, idx3 = 1, k + 1, 2 * k + 1
-        while idx3 + k <= len(nums):
+        for idx1 in range(1, len(nums) - 3 * k + 1):
+            idx2 = idx1 + k; idx3 = idx2 + k
             w1 += - nums[idx1 - 1] + nums[idx1 + k - 1]
             w2 += - nums[idx2 - 1] + nums[idx2 + k - 1]
             w3 += - nums[idx3 - 1] + nums[idx3 + k - 1]
@@ -56,7 +56,6 @@ class Solution:
             if max2 + w3 > max3:
                 max3 = max2 + w3
                 ans3 = ans2 + [idx3]
-            idx1 += 1; idx2 += 1; idx3 += 1
         return ans3
 ```
 
