@@ -27,7 +27,7 @@ class Solution:
                 if A[i - 1] == B[j - 1]:
                     dp[j] = pre + 1
                 else:
-                    dp[j] = 0
+                    dp[j] = 0      # Pay Attention Here!
                 pre = tmp
             ans = max(ans, max(dp))
         return ans
