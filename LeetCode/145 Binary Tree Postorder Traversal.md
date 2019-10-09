@@ -43,30 +43,31 @@ class Solution:
             while root:
                 stack.append([root, False])
                 root = root.left
-            root, flag = stack[-1]
-            if flag:
+            node, visited = stack[-1]
+            if visited:
+                ans.append(node.val)
                 stack.pop()
-                ans.append(root.val)
-                root = None
             else:
                 stack[-1][1] = True
-                root = root.right
+                root = node.right
         return ans
 ```
 
 ```
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root: return []
         ans = []
         stack = [(root, False)]
         while stack:
-            node, flag = stack.pop()
-            if node:
-                if flag:
-                    ans.append(node.val)
-                else:
-                    stack.append((node, True))
+            node, visited = stack.pop()
+            if visited:
+                ans.append(node.val)
+            else:
+                stack.append((node, True))            
+                if node.right:
                     stack.append((node.right, False))
+                if node.left:
                     stack.append((node.left, False))
         return ans
 ```
