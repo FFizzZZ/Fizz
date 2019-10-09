@@ -33,23 +33,23 @@ class Solution:
         return dp[-1]
 ```
 
-#### FASTEST! But I don't understand...So sad.
+#### FASTEST! Change the question into finding longest increasing subsequence. SO AMAZING!
 ```
 class Solution:
-    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        if len(text1) > len(text2):
-            text1, text2 = text2, text1
-        m, n = len(text1), len(text2)
-        za = [-1]
-        
-        for t1 in text1:
-            loc = text2.find(t1, za[-1]+1)
-            if loc != -1:
-                za.append(loc)
-            for j in range(len(za)-2-int(loc!=-1),-1,-1):
-                loc = text2.find(t1, za[j]+1, za[j+1])
-                if loc != -1:
-                    za[j+1] = loc
-        print(za)
-        return len(za) - 1
+    def longestCommonSubsequence(self, s1: str, s2: str) -> int:
+        d = collections.defaultdict(list)
+        for i in range(len(s2) - 1, -1, -1):
+            d[s2[i]].append(i)
+        nums = []
+        for x in s1:
+            if x in d:
+                nums.extend(d[x])
+        ans = []
+        for x in nums:
+            idx = bisect.bisect_left(ans, x)
+            if idx == len(ans):
+                ans.append(x)
+            else:
+                ans[idx] = x
+        return len(ans)
 ```
