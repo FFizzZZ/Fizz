@@ -1,14 +1,8 @@
 ```
 class Solution:
     def postorderTraversal(self, root: TreeNode) -> List[int]:
-        ans = []
-        self.f(root, ans)
-        return ans
-    def f(self, root, ans):
-        if not root: return
-        self.f(root.left, ans)
-        self.f(root.right, ans)
-        ans.append(root.val)
+        if not root: return []
+        return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
 ```
 
 ## Leetcode
