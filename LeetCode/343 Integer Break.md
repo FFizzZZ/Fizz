@@ -25,7 +25,7 @@ class Solution:
 ```
 #### Maybe the fastest method
 ##### for any x >= 4, we have 2 * (x - 2) >= x, so we won't have a factor greater than 4.
-##### And why we choose 3 first? Because 3 * 3 > 2 * 2 * 2, so we would choose 3 if x 
+##### And why we choose 3 first? Because 3 * 3 > 2 * 2 * 2, so we would keep the number of 2 less than 3.
 ```
 class Solution:
     def integerBreak(self, n: int) -> int:
