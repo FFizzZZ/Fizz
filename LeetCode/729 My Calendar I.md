@@ -29,60 +29,18 @@ class MyCalendar:
         return True
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
-class Node:
-    def __init__(self,s,e):
-        self.e = e
-        self.s = s
-        self.left = None
-        self.right = None
-
-
-class MyCalendar(object):
-
+class MyCalendar:    
     def __init__(self):
-        self.root = None
+        self.intervals = []      
 
-    def book_helper(self,s,e,node):
-        if s>=node.e:
-            if node.right:
-                return self.book_helper(s,e,node.right)
-            else:
-                node.right = Node(s,e)
-                return True
-        elif e<=node.s:
-            if node.left:
-                return self.book_helper(s,e,node.left)
-            else:
-                node.left = Node(s,e)
-                return True
-        else:
+    def book(self, start: int, end: int) -> bool:
+        idx_right = bisect.bisect_right(self.intervals, start)
+        if idx_right % 2:  # try to insert to the middle of a booking
             return False
-        
-    def book(self, start, end):
-        """
-        :type start: int
-        :type end: int
-        :rtype: bool
-        """
-        if not self.root:
-            self.root = Node(start,end)
-            return True
-        return self.book_helper(start,end,self.root)
+        idx_left = bisect.bisect_left(self.intervals, end)
+        if idx_left != idx_right:
+            return False
+        self.intervals[idx_right:idx_right] = [start, end]
+        return True
 ```
