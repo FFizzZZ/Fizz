@@ -11,6 +11,17 @@ class Solution:
                 for row in range(m):
                     sums[row] += matrix[row][j]
                 cur = 0
+                res = float("-inf")
+                for x in sums:
+                    if cur < 0:
+                        cur = x
+                    else:
+                        cur += x
+                    if cur > res: res = cur
+                if res <= k:
+                    ans = max(ans, res)
+                    continue
+                cur = 0
                 array = [0]
                 res = float("-inf")
                 for x in sums:
