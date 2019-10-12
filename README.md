@@ -16,6 +16,7 @@ UNFINISHED
 * 718 Maximum Length of Repeated Subarray: Non-Dp Method!
 * 730 Count Different Palindromic Subsequences: don't understand FASTEST method
 * 982 Triples with Bitwise AND Equal To Zero: Venn Graph Method
+* 1157 Online Majority Element In Subarray：Other Method
 
 
 POINTS
