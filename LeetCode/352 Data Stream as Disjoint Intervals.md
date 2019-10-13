@@ -49,5 +49,5 @@ class SummaryRanges:
         self.end[end] = start
         
     def getIntervals(self) -> List[List[int]]:
-        return [[start, end] for start, end in sorted(self.start.items())]
+        return sorted([start, end] for start, end in self.start.items())
 ```
