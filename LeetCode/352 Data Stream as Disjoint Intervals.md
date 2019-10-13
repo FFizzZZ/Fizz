@@ -27,3 +27,27 @@ class SummaryRanges(object):
     def getIntervals(self):
         return self.intervals
 ```
+
+```
+class SummaryRanges:
+    def __init__(self):
+        self.start = {}
+        self.end = {}
+        self.visited = set()
+
+    def addNum(self, val: int) -> None:
+        if val in self.visited: return
+        self.visited.add(val)
+        start, end = val, val
+        if val + 1 in self.start:
+            end = self.start[val + 1]
+            self.start.pop(val + 1)
+        if val - 1 in self.end:
+            start = self.end[val - 1]
+            self.end.pop(val - 1)
+        self.start[start] = end
+        self.end[end] = start
+        
+    def getIntervals(self) -> List[List[int]]:
+        return [[start, end] for start, end in sorted(self.start.items())]
+```
