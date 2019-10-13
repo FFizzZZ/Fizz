@@ -17,23 +17,22 @@ class MyCalendarThree:
 
 ```
 class MyCalendarThree(object):
-	
-	def __init__(self):
-		self.data = [[-sys.maxsize, 0], [sys.maxsize, 0]]
-		self.k = 0
-	def book(self, start, end):
-		d,i = self.data, bisect.bisect_left(self.data, [start, 0])
-		if d[i][0] > start:
-			d.insert(i, [start, d[i-1][1]])
-
-		while d[i][0] < end:
-			d[i][1] += 1
-			self.k,i=max(self.k,d[i][1]),i+1
-
-		if d[i][0] > end:
-			d.insert(i, [end, d[i-1][1]-1])
-		
-		return self.k
+    def __init__(self):
+        self.data = [[sys.maxsize, 0], [sys.maxsize, 0]]
+        self.k = 0
+    
+    def book(self, start, end):
+        d = self.data
+        i = bisect.bisect_left(self.data, [start, 0])
+        if d[i][0] > start:
+            d.insert(i, [start, d[i - 1][1]])
+        while d[i][0] < end:
+            d[i][1] += 1
+            self.k = max(self.k, d[i][1])
+            i += 1
+        if d[i][0] > end:
+            d.insert(i, [end, d[i - 1][1] - 1])
+        return self.k 
 ```
 
 ```
