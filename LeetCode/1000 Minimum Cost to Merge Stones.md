@@ -41,7 +41,7 @@ class Solution:
             return res
         return dp(0, n - 1)
 ```
-        
+###### Bottom-up Version
 ```
 class Solution:
     def mergeStones(self, stones, K):
@@ -63,3 +63,7 @@ class Solution:
                     dp[i][j] += prefix[j + 1] - prefix[i]
         return dp[0][n - 1]
 ```
+
+###### Here I want to write down some thoughts about this transition equation.
+###### The first part should be booled down to one plie, and two part adding together would not be larger than K.
+###### Very Important!
