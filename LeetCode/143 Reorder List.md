@@ -40,9 +40,9 @@ class Solution:
         p, q = head, h
         # insert the second half the list into the first half appropriately
         while q:
-            p_nxt = p.next; q_nxt = q.next
-            p.next = q; q.next = p_nxt
-            p = p_nxt; q = q_nxt
+            q_nxt = q.next; p_nxt = p.next
+            q.next = p_nxt; p.next = q
+            q = q_nxt; p = p_nxt
     
     def reverseList(self, head):
         if not head or not head.next: return head
