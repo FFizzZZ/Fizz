@@ -17,7 +17,7 @@ class Solution:
         return dp[1][n]
 ```
 
-
+##### FASTEST
 ```
 from functools import lru_cache
 class Solution:
