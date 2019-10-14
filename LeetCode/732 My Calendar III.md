@@ -18,18 +18,19 @@ class MyCalendarThree:
 ```
 class MyCalendarThree:
     def __init__(self):
-        self.time = [[-sys.maxsize, 0], [sys.maxsize, 0]]
+        self.times = [[-sys.maxsize, 0], [sys.maxsize, 0]]
         self.ans = 0
 
     def book(self, start: int, end: int) -> int:
-        idx = bisect.bisect_left(self.time, [start, 0])
-        if self.time[idx][0] > start:
-            self.time.insert(idx, [start, self.time[idx - 1][1]])
-        while self.time[idx][0] < end:
-            self.time[idx][1] += 1
-            self.ans = max(self.ans, self.time[idx][1])
+        times = self.times
+        idx = bisect.bisect_left(times, [start, 0])
+        if times[idx][0] > start:
+            times.insert(idx, [start, times[idx - 1][1]])
+        while times[idx][0] < end:
+            times[idx][1] += 1
+            if times[idx][1] > self.ans: self.ans = times[idx][1]
             idx += 1
-        if self.time[idx][0] > end:
-            self.time.insert(idx, [end, self.time[idx - 1][1] - 1])
+        if times[idx][0] > end:
+            times.insert(idx, [end, times[idx - 1][1] - 1])
         return self.ans
 ```
