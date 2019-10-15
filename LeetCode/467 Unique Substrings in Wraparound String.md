@@ -11,8 +11,6 @@ class Solution:
             cur = p[i]
             if ord(cur) - ord(p[i - 1]) == 1 or cur == "a" and p[i - 1] == "z":
                 dp[i] = dp[i - 1] + 1
-            else:
-                dp[i] = 1
             d[cur] = max(d[cur], dp[i])
-        return sum(d.values())      
+        return sum(d.values())   
 ```
