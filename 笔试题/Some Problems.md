@@ -69,3 +69,19 @@ https://www.nowcoder.com/questionTerminal/14f690cac7fe4366beaccb6417f11a96
 ### 13. 过河问题
 
 https://blog.csdn.net/xiji333/article/details/88072469
+```
+n = int(input())
+nums = list(map(int, input().split(" ")))
+ans = 0
+nums.sort()
+dp = [0] * n
+dp[0] = nums[0]
+dp[1] = nums[1]
+dp[2] = sum(nums[:3])
+tmp = nums[0] + 2 * nums[1]
+for i in range(3, n):
+    a = nums[i - 1] + nums[i] + 2 * nums[0]
+    b = nums[i] + nums[0] + 2 * nums[1]
+    dp[i] = dp[i - 2] + (a if a < b else b)
+print(dp[-1])
+```
