@@ -68,20 +68,22 @@ https://www.nowcoder.com/questionTerminal/14f690cac7fe4366beaccb6417f11a96
 
 ### 13. 过河问题
 
+https://blog.csdn.net/hk627989388/article/details/77726301
 https://blog.csdn.net/xiji333/article/details/88072469
 ```
-n = int(input())
-nums = list(map(int, input().split(" ")))
-ans = 0
-nums.sort()
-dp = [0] * n
-dp[0] = nums[0]
-dp[1] = nums[1]
-dp[2] = sum(nums[:3])
-tmp = nums[0] + 2 * nums[1]
-for i in range(3, n):
-    a = nums[i - 1] + nums[i] + 2 * nums[0]
-    b = nums[i] + nums[0] + 2 * nums[1]
-    dp[i] = dp[i - 2] + (a if a < b else b)
-print(dp[-1])
+class Solution:
+    def CrossRiver(self, n, nums):
+        ans = 0
+        nums.sort()
+        if n == 1:
+            return nums[0]
+        elif n == 2:
+            return nums[1]
+        elif n == 3:
+            return sum(nums[:3])
+        else:
+            first, second = nums[1], sum(nums[:3])
+            for _ in range(n - 3):
+                first, second = second, min(second + nums[i] + nums[0], first + nums[0] + 2 * nums[1] + nums[i])
+            return second
 ```
