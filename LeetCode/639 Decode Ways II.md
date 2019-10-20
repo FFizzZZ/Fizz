@@ -5,24 +5,26 @@ class Solution:
         n = len(s)
         first = 1
         second = 9 if s[0] == "*" else (0 if s[0] == "0" else 1)
+        pre = s[0]
         M = 10 ** 9 + 7
-        for i in range(1, n):
-            if s[i] == "*":
+        for char in s[1:]:
+            if char == "*":
                 tmp = 9 * second
-                if s[i - 1] == "1":
+                if pre == "1":
                     tmp = (tmp + 9 * first) % M
-                elif s[i - 1] == "2":
+                elif pre == "2":
                     tmp = (tmp + 6 * first) % M
-                elif s[i - 1] == "*":
+                elif pre == "*":
                     tmp = (tmp + 15 * first) % M
             else:
-                tmp = second if s[i] != "0" else 0
-                if s[i - 1] == "1":
+                tmp = second if char != "0" else 0
+                if pre == "1":
                     tmp = (tmp + first) % M
-                elif s[i - 1] == "2" and s[i] <= "6":
+                elif pre == "2" and char <= "6":
                     tmp = (tmp + first) % M
-                elif s[i - 1] == "*":
-                    tmp = (tmp + (2 if s[i] <= "6" else 1) * first) % M
+                elif pre == "*":
+                    tmp = (tmp + (2 if char <= "6" else 1) * first) % M
             first, second = second, tmp
+            pre = char
         return second
 ```
