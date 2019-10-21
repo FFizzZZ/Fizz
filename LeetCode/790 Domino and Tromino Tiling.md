@@ -22,3 +22,9 @@ class Solution:
             first, second, third = second, third, (2 * third + first) % M
         return third
 ```
+
+dp[n]=dp[n-1]+dp[n-2]+ 2*(dp[n-3]+...+d[0])
+=dp[n-1]+dp[n-2]+dp[n-3]+dp[n-3]+2*(dp[n-4]+...+d[0])
+=dp[n-1]+dp[n-3]+(dp[n-2]+dp[n-3]+2*(dp[n-4]+...+d[0]))
+=dp[n-1]+dp[n-3]+dp[n-1]
+=2*dp[n-1]+dp[n-3]
