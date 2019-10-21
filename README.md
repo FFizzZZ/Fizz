@@ -35,4 +35,4 @@ POINTS
 * use iter() and next() to avoid in-place change!
 * format(2, '.2f'), '%.2f' % num
 * Stirling's Formula --> log(n!) ~ nlog(n)
-* i ^ 1 变换: 0, 1, 2, 3, 4, ... -> 1, 0, 3, 2, 5, ...
+* i ^ 1 变换: 0, 1, 2, 3, 4, ... -> 1, 0, 3, 2, 5, ...; (i + 1) ^ 1 - 1
