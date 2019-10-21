@@ -11,7 +11,7 @@ class Solution:
             dp[i] = (2 * dp[i - 1] + dp[i - 3]) % M
         return dp[-1]
 ```
-
+##### Optimized Version
 ```
 class Solution:
     def numTilings(self, N: int) -> int:
