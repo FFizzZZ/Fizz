@@ -40,3 +40,19 @@ if __name__ == '__main__':
     distance = dijkstra(graph_list, 0)
     print(distance)
 ```
+
+#### Heap
+```
+ans = [0] * len(graph_list)
+heap = [(0, 0)]
+visited = set()
+while heap:
+    dist, cur = heapq.heappop(heap)
+    if cur in visited: continue
+    visited.add(cur)
+    ans[cur] = dist
+    for nxt, val in enumerate(graph_list[cur]):
+        if nxt not in visited:
+            heapq.heappush(heap, (dist + val, nxt))
+print(ans)
+```
