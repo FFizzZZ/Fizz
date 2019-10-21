@@ -1,4 +1,7 @@
 ## Dijkstra Algorithm
+
+https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
 a.初始时，S只包含源点，即S＝{v}，v的距离为0。U包含除v外的其他顶点，即:U={其余顶点}，若v与U中顶点u有边，则<u,v>正常有权值，若u不是v的出边邻接点，则<u,v>权值为∞。
 
 b.从U中选取一个距离v最小的顶点k，把k，加入S中（该选定的距离就是v到k的最短路径长度）。
