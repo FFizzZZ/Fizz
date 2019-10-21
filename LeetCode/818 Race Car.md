@@ -5,8 +5,8 @@
 ```
 class Solution(object):
     def racecar(self, target):
-        dp = [0, 1, 4] + [float("inf")] * (target - 2)
-        for t in range(3, target + 1):
+        dp = [0] * (target + 1)
+        for t in range(1, target + 1):
             k = t.bit_length()
             if 2 ** k - 1 == t:
                 dp[t] = k
