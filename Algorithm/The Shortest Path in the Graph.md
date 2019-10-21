@@ -56,3 +56,7 @@ while heap:
             heapq.heappush(heap, (dist + val, nxt))
 print(ans)
 ```
+
+## Bellman-Ford Algorithm
+
+https://zh.wikipedia.org/wiki/%E8%B4%9D%E5%B0%94%E6%9B%BC-%E7%A6%8F%E7%89%B9%E7%AE%97%E6%B3%95
