@@ -5,15 +5,18 @@
 ```
 class Solution(object):
     def racecar(self, target):
-        dp = [0, 1, 4] + [float('inf')] * target
+        dp = [0, 1, 4] + [float("inf")] * (target - 2)
         for t in range(3, target + 1):
             k = t.bit_length()
-            if t == 2**k - 1:
+            if 2 ** k - 1 == t:
                 dp[t] = k
                 continue
-            for j in range(k - 1):
-                dp[t] = min(dp[t], dp[t - 2**(k - 1) + 2**j] + k - 1 + j + 2)
-            if 2**k - 1 - t < t:
-                dp[t] = min(dp[t], dp[2**k - 1 - t] + k + 1)
+            val = float("inf")
+            for i in range(k - 1):
+                tmp = dp[t - 2 ** (k - 1) + 2 ** i] + k - 1 + i + 2
+                if tmp < val: val = tmp
+            dp[t] = val
+            if 2 ** k - 1 - t < t:
+                dp[t] = min(dp[t], dp[2 ** k - 1 - t] + k + 1)
         return dp[target]
 ```
