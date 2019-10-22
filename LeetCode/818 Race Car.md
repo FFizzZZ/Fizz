@@ -11,13 +11,11 @@ class Solution(object):
             if 2 ** k - 1 == t:
                 dp[t] = k
                 continue
-            val = float("inf")
+            val = dp[2 ** k - 1 - t] + k + 1
             for i in range(k - 1):
                 tmp = dp[t - 2 ** (k - 1) + 2 ** i] + k - 1 + i + 2
                 if tmp < val: val = tmp
             dp[t] = val
-            if 2 ** k - 1 - t < t:
-                dp[t] = min(dp[t], dp[2 ** k - 1 - t] + k + 1)
         return dp[target]
 ```
 
