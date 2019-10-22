@@ -19,16 +19,16 @@ class Solution:
 ```
 class Solution:
     def minSwap(self, A: List[int], B: List[int]) -> int:
-        n = len(A)
-        swap, keep = 1, 0
-        for i in range(1, n):
-            if A[i - 1] >= B[i] or B[i - 1] >= A[i]:
-                swap += 1
-            elif A[i - 1] >= A[i] or B[i - 1] >= B[i]:
+        keep, swap = 0, 0
+        a, b = -1, -1
+        for i in range(len(A)):
+            if a >= A[i] or b >= B[i]:
                 swap, keep = keep + 1, swap
+            elif a >= B[i] or b >= A[i]:
+                swap += 1
             else:
-                Min = min(swap, keep)
-                keep = Min
-                swap = Min + 1
+                keep = min(swap, keep)
+                swap = keep + 1
+            a, b = A[i], B[i]
         return min(swap, keep)
 ```
