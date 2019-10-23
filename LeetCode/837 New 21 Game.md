@@ -2,7 +2,7 @@
 ```
 class Solution:
     def new21Game(self, N: int, K: int, W: int) -> float:
-        dp = [0] * max(N + 1, K + W + 1)
+        dp = [0] * (K + W + 1)
         for i in range(K, N + 1):
             dp[i] = 1
         s = min(N - K + 1, W)
