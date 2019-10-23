@@ -1,30 +1,23 @@
+## Leetcode
 ```
-class Solution:
-    def pushDominoes(self, dominoes: str) -> str:
-        n = len(dominoes)
-        if n == 1: return dominoes
-        dominoes = list(dominoes)
-        while True:
-            new = dominoes[:]
-            for i in range(n):
-                if dominoes[i] == ".":
-                    if i == 0:
-                        if dominoes[i + 1] == "L":
-                            new[i] = "L"
-                    elif i == n - 1:
-                        if dominoes[i - 1] == "R":
-                            new[i] = "R"
-                    else:
-                        if dominoes[i - 1] == "R":
-                            if dominoes[i + 1] == "L":
-                                new[i] = "."
-                            else:
-                                new[i] = "R"
-                        elif dominoes[i + 1] == "L":
-                            new[i] = "L"
-            if new != dominoes:
-                dominoes = new
-            else:
-                break
-        return "".join(dominoes)
+class Solution(object):
+    def pushDominoes(self, dominoes):
+        direction = [(-1, "L")] + [(i, c) for i, c in enumerate(dominoes) if c != "."] + [(len(dominoes), "R")]
+        ans = list(dominoes)
+        for (i, x), (j, y) in zip(direction, direction[1:]):
+            if x == y:
+                for mid in range(i + 1, j):
+                    ans[mid] = x
+            elif x > y:
+                for mid in range(i + 1, j):
+                    if mid - i == j - mid: ans[mid] = "."
+                    elif mid - i < j - mid: ans[mid] = "R"
+                    else: ans[mid] = "L"
+        return "".join(ans)
 ```
+        
+        
+        
+        
+        
+        
