@@ -16,7 +16,25 @@ class Solution(object):
         return "".join(ans)
 ```
         
-        
+    
+```
+class Solution(object):
+    def pushDominoes(self, dominoes):
+        n = len(dominoes)
+        force = [0] * n
+        f = 0
+        for i in range(n):
+            if dominoes[i] == "R": f = n
+            elif dominoes[i] == "L": f = 0
+            else: f = f - 1 if f > 0 else 0
+            force[i] += f
+        for i in range(n - 1, -1, -1):
+            if dominoes[i] == "L": f = n
+            elif dominoes[i] == "R": f = 0
+            else: f = f - 1 if f > 0 else 0
+            force[i] -= f
+        return "".join("." if f == 0 else "R" if f > 0 else "L" for f in force)
+```
         
         
         
