@@ -7,7 +7,6 @@ class Solution(object):
         for k in range(K, N + 1):
             dp[k] = 1.0
         S = min(N - K + 1, W)
-        # S = dp[k+1] + dp[k+2] + ... + dp[k+W]
         for k in range(K - 1, -1, -1):
             dp[k] = S / W
             S += dp[k] - dp[k + W]
