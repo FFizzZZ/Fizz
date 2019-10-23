@@ -37,5 +37,38 @@ class Solution(object):
 ```
         
         
-        
+#### FASTEST
+```
+class Solution:
+    def pushDominoes(self, dominoes: str) -> str:
+        ans = ""
+        falling = False
+        length = 0
+        for char in dominoes:
+            if char == ".":
+                length += 1
+                continue
+            elif char == "L":
+                if not falling:
+                    ans += "L" * length
+                else:
+                    ans += "R" * (length // 2)
+                    if length % 2 == 1: ans += "."
+                    ans += "L" * (length // 2)
+                falling = False
+            elif char == "R":
+                if falling:
+                    ans += "R" * length
+                else:
+                    ans += "." * length
+                falling = True
+            ans += char
+            length = 0
+        if length:
+            if falling:
+                ans += "R" * length
+            else:
+                ans += "." * length
+        return ans
+```
         
