@@ -14,3 +14,17 @@ class Solution:
             last[char] = idx
         return (dp[-1] - 1) % (10 ** 9 + 7)
 ```
+###### Optimized Version
+```
+class Solution:
+    def distinctSubseqII(self, S: str) -> int:
+        ans = 1
+        M = 10 ** 9 + 7
+        d = collections.defaultdict(int)
+        for char in S:
+            tmp = ans
+            ans += ans - d[char]
+            ans %= M
+            d[char] = tmp
+        return ans - 1
+```
