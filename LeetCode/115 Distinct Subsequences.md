@@ -14,12 +14,13 @@ class Solution:
 ```
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
-        dp = [1] + [0] * len(t)
-        indices = collections.defaultdict(list)
-        for i, c in reversed(list(enumerate(t))):
-            indices[c].append(i + 1)
-        for c in s:
-            for i in indices[c]:
-                    dp[i] += dp[i - 1]
+        d = collections.defaultdict(list)
+        for idx, char in reversed(list(enumerate(t))):
+            d[char].append(idx)
+        dp = [0] * (len(t) + 1)
+        dp[0] = 1
+        for char in s:
+            for j in d[char]:
+                dp[j + 1] += dp[j]
         return dp[-1]
 ```
