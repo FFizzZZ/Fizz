@@ -87,3 +87,8 @@ class Solution:
                 first, second = second, min(second + nums[i] + nums[0], first + nums[0] + 2 * nums[1] + nums[i])
             return second
 ```
+
+#### 14. 不等概率硬币产生等概率事件
+
+https://www.zhihu.com/question/304075115
+
