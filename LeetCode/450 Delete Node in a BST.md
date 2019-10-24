@@ -3,7 +3,7 @@
 ```
 class Solution:
     def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
-        if not root: return root
+        if not root: return
         if root.val > key:
             root.left = self.deleteNode(root.left, key)
         elif root.val < key:
@@ -11,17 +11,15 @@ class Solution:
         else:
             if not root.right:
                 return root.left
-            if not root.left:
-                return root.right
-            tmp = root.right
-            while tmp.left:
-                tmp = tmp.left
-            root.val = tmp.val
+            node = root.right
+            while node.left:
+                node = node.left
+            root.val = node.val
             root.right = self.deleteNode(root.right, root.val)
         return root
 ```
 
-#### Reconnnect (Best)
+#### Reconnnect (Better)
 ```
 class Solution:
     def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
