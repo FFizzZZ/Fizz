@@ -14,6 +14,24 @@ class Solution:
                 stack.append(char)
         return "".join(stack)
 ```
+###### Same Idea
+```
+class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        d = collections.Counter(s)
+        seen = set()
+        ans = []
+        for char in s:
+            if not char in seen:
+                while ans and ans[-1] > char and d[ans[-1]] > 1:
+                    d[ans[-1]] -= 1
+                    seen.discard(ans.pop())
+                ans.append(char)
+                seen.add(char)
+            else:
+                d[char] -= 1
+        return ''.join(ans)
+```
 
 
 
