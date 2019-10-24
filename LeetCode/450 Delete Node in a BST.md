@@ -1,3 +1,40 @@
+```
+class Solution:
+    def deleteNode(self, root: TreeNode, key: int) -> TreeNode:
+        dummy = TreeNode(0)
+        dummy.left = root
+        self.dfs(root, dummy, True, key)
+        return dummy.left
+    def dfs(self, root, pre, left, key):
+        if not root:
+            return
+        elif root.val == key:
+            if root.left:
+                tmp = None
+                node = root.left
+                while node.right:
+                    tmp = node
+                    node = node.right
+                if tmp:
+                    tmp.right = node.left
+                    node.left = root.left
+                node.right = root.right
+                if left:
+                    pre.left = node
+                else:
+                    pre.right = node    
+            else:
+                if left:
+                    pre.left = root.right
+                else:
+                    pre.right = root.right            
+        elif root.val > key:
+            self.dfs(root.left, root, True, key)
+        else:
+            self.dfs(root.right, root, False, key)
+```
+
+
 ## Leetcode
 #### Change the value
 ```
