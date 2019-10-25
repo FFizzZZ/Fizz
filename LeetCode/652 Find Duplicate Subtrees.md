@@ -16,6 +16,8 @@ class Solution(object):
         dfs(root)
         return ans
 ```
+###### Here I found a very important point: both preorder and postorder can work well while inorder fali in this case.
+###### So I guess that even with "#" inorder traversal can not determine the tree structure!
 
 #### Unique Identifier (Amazing!)
 ```
