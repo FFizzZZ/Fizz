@@ -1,6 +1,6 @@
 ## Leetcode
 
-#### DFS
+#### DFS: it is a preorder traversal
 ```
 class Solution(object):
     def findDuplicateSubtrees(self, root):
