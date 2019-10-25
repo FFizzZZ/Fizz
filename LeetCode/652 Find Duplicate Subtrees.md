@@ -37,4 +37,4 @@ class Solution(object):
         lookup(root)
         return ans
 ```
-##### In this method, which traversal to use doesn't matter since it use integer to record every distinct structure!
+###### In this method, which traversal to use doesn't matter since it use integer to record every distinct structure!
