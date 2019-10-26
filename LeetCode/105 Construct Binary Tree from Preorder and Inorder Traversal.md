@@ -71,14 +71,15 @@ class Solution:
 ```
 
 ```
-class Solution(object):
+class Solution:
     def buildTree(self, preorder, inorder):
         if not preorder: return None
-        d = {}
-        for i, v in enumerate(inorder):
-            d[v] = i
+        d = dict()
+        for idx, val in enumerate(inorder):
+            d[val] = idx
         root = TreeNode(preorder[0])
         stack = [root]
+        idx = 0
         for i in range(1, len(preorder)):
             val = preorder[i]
             node = TreeNode(val)
