@@ -50,24 +50,24 @@ class Solution(object):
 ## Iteration
 So difficult .... It takes me long time to understand. Oh my god!
 ```
-class Solution(object):
+class Solution:
     def buildTree(self, preorder, inorder):
-        if not preorder: return None   
-        head = TreeNode(preorder[0])
-        stack = [head]
-        j = 0
+        if not preorder: return None
+        root = TreeNode(preorder[0])
+        stack = [root]
+        idx = 0
         for i in range(1, len(preorder)):
-            temp = None
-            t = TreeNode(preorder[i])
-            while stack and stack[-1].val == inorder[j]:
-                temp = stack.pop()
-                j += 1
-            if temp:
-                temp.right = t
+            tmp = None
+            node = TreeNode(preorder[i])
+            while stack and stack[-1].val == inorder[idx]:
+                idx += 1
+                tmp = stack.pop()
+            if tmp:
+                tmp.right = node
             else:
-                stack[-1].left = t
-            stack.append(t)        
-        return head
+                stack[-1].left = node
+            stack.append(node)
+        return root
 ```
 
 ```
