@@ -52,3 +52,23 @@ class Solution:
             return root
         return helper()
 ```
+
+#### Iteration
+```
+class Solution:
+    def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
+        stack = [TreeNode(pre[0])]
+        idx = 0
+        for val in pre[1:]:
+            node = TreeNode(val)
+            while stack[-1].val == post[idx]:
+                stack.pop()
+                idx += 1
+            if stack[-1].left:
+                stack[-1].right = node
+            else:
+                stack[-1].left = node
+            stack.append(node)
+        return stack[0]
+```
+
