@@ -19,19 +19,20 @@ class Solution:
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
         if not postorder: return None
+        d = dict()
+        for idx, val in enumerate(inorder):
+            d[val] = idx
         head = TreeNode(postorder[-1])
         stack = [head]
-        j = -1
-        for i in range(len(postorder) - 2, -1, -1):
-            node = TreeNode(postorder[i])
-            temp = None
-            while stack and stack[-1].val == inorder[j]:
-                temp = stack.pop()
-                j -= 1
-            if temp:
-                temp.left = node
-            else:
+        for i in range(len(inorder) - 2, -1, -1):
+            val = postorder[i]
+            node = TreeNode(val)
+            if d[val] > d[stack[-1].val]:
                 stack[-1].right = node
+            else:
+                while stack and d[val] < d[stack[-1].val]:
+                    parent = stack.pop()
+                parent.left = node
             stack.append(node)
         return head
 ```
