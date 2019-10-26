@@ -21,14 +21,13 @@ class Solution:
     def constructFromPrePost(self, pre: List[int], post: List[int]) -> TreeNode:
         def make(i, j, N):
             if N == 0: return None
-            root = TreeNode(pre[i])
-            if N == 1: return root
-            for L in range(N):
-                if post[j + L - 1] == pre[i + 1]:
-                    break
-            root.left = make(i + 1, j, L)
-            root.right = make(i + L + 1, j + L, N - 1 - L)
-            return root
+            node = TreeNode(pre[i])
+            if N == 1: return node
+            idx = post.index(pre[i + 1], j, j + N)
+            L = idx - j + 1
+            node.left = make(i + 1, j, L)
+            node.right = make(i + 1 + L, j + L, N - L - 1)
+            return node
         return make(0, 0, len(pre))
 ```
 
