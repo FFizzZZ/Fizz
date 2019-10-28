@@ -29,25 +29,3 @@ class Solution:
             stack.append(val)
         return ans
 ```
-
-```
-class Solution:
-    def nextGreaterElements(self, nums: List[int]) -> List[int]:
-        if not nums: return []
-        stack = []
-        ans = [float("inf")] * len(nums)
-        for idx, val in enumerate(nums):
-            while stack and nums[stack[-1]] < val:
-                ans[stack.pop()] = val
-            stack.append(idx)
-        Max = max(nums)
-        while nums[stack[-1]] < Max:
-            i = stack.pop()
-            for j in range(i):
-                if nums[j] > nums[i]:
-                    ans[i] = nums[j]
-                    break
-        for i in stack:
-            ans[i] = -1
-        return ans
-```
