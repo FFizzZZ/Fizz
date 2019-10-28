@@ -16,18 +16,18 @@ class Solution:
 ## Leetcode
 ```
 class Solution:
-    def nextGreaterElements(self, arr: List[int]) -> List[int]:
-        stack = arr[::-1]
-        for i in range(len(arr)-1, -1, -1):
-            tmp = arr[i]
-            while stack and stack[-1] <= arr[i]:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        stack = nums[::-1]
+        for i in range(len(nums) - 1, -1, -1):
+            tmp = nums[i]
+            while stack and stack[-1] <= nums[i]:
                 stack.pop()
             if stack:
-                arr[i] = stack[-1]
+                nums[i] = stack[-1]
             else:
-                arr[i] = -1
+                nums[i] = -1
             stack.append(tmp)
-        return arr
+        return nums
 ```
 
 ```
