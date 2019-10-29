@@ -22,9 +22,9 @@ class Solution:
             if char == ")":
                 tmp = ""
                 while stack and stack[-1] != "(":
-                    tmp += stack.pop()[::-1]
+                    tmp = stack.pop() + tmp
                 stack.pop()
-                stack.append(tmp)
+                stack.append(tmp[::-1])
             else:
                 stack.append(char)
         return "".join(stack)
