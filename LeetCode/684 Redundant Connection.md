@@ -20,6 +20,23 @@ class Solution:
             graph[v].add(u)
 ```
 
+```
+class Solution:
+    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        parent = list(range(len(edges) + 1))
+        for u, v in edges:
+            uroot = self.find(u, parent)
+            vroot = self.find(v, parent)
+            if uroot == vroot:
+                return u, v
+            parent[uroot] = vroot
+        
+    def find(self, x, parent):
+        if x != parent[x]:
+            parent[x] = self.find(parent[x], parent)
+        return parent[x]
+```
+
 ## Union-Find
 ```
 class dsu:
