@@ -24,12 +24,12 @@ class Solution:
 ```
 class dsu:
     def __init__(self):
-        self.par = list(range(10001))
+        self.par = list(range(1001))
         self.rnk = [0] * 1001
     def find(self, x):
-        if self.par[x] != x:
-            self.par[x] = self.find(self.par[x])
-        return self.par[x]
+        while self.par[x] != x:
+            x = self.par[x]
+        return x
     def union(self, x, y):
         xroot, yroot = self.find(x), self.find(y)
         if xroot == yroot:
@@ -43,6 +43,28 @@ class dsu:
             self.rnk[xroot] += 1
         return True
 
+class Solution:
+    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        tmp = dsu()
+        for edge in edges:
+            if not tmp.union(*edge):
+                return edge
+```
+
+```
+class dsu:
+    def __init__(self):
+        self.par = list(range(1001))
+    def find(self, x):
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+    def union(self, x, y):
+        rootx, rooty = self.find(x), self.find(y)
+        if rootx == rooty: return False
+        self.par[self.find(x)] = self.find(y)
+        return True
+    
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         tmp = dsu()
