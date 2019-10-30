@@ -12,6 +12,7 @@
 * 341 Flatten Nested List Iterator
 * 371 Sum of Two Integers
 * 438 Find All Anagrams in a String: Hash Value
+* 456: FASTEST method not understood
 * 698 Partition to K Equal Sum Subsets
 * 718 Maximum Length of Repeated Subarray: Non-Dp Method!
 * 730 Count Different Palindromic Subsequences: don't understand FASTEST method
