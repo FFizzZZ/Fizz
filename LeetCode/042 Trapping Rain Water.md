@@ -2,23 +2,24 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
         m = 0
-        n = len(height)
-        l, r = 0, n - 1
-        cnt = 0
-        while l <= r:
+        l, r = 0, len(height) - 1
+        ans = 0
+        while l < r:
             if height[l] < height[r]:
-                if height[l] < m:
-                    cnt += m - height[l]
+                diff = m - height[l]
+                if diff > 0:
+                    ans += diff
                 else:
-                    m = height[l]
+                    m -= diff
                 l += 1
             else:
-                if height[r] < m:
-                    cnt += m - height[r]
+                diff = m - height[r]
+                if diff > 0:
+                    ans += diff
                 else:
-                    m = height[r]
+                    m -= diff
                 r -= 1
-        return cnt
+        return ans
 ```
 ## Leetcode
 #### dynamic programming for leftmax and rightmax
