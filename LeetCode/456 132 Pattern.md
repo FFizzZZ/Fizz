@@ -36,3 +36,30 @@ class Solution:
                 stack.append(nums[i])
         return False
 ```
+
+
+#### FASTEST but NOT UNDERSTOOD
+```
+class Solution:
+    def find132pattern(self, nums: List[int]) -> bool:
+        if len(nums) < 3: return False
+        stck = []
+        mi, mx = nums[0], nums[0]
+        for n in nums[1:]:
+            if n >= mx:
+                mx = n
+                while stck:
+                    if n <= stck[-1][0]:
+                        break
+                    elif n < stck[-1][1]:
+                        return True
+                    else:
+                        stck.pop()
+            elif n > mi:
+                return True
+            else:
+                stck.append((mi, mx))
+                mi = mx = n
+        return False
+```
+
