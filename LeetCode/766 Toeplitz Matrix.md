@@ -1,5 +1,6 @@
 ## Leetcode
 
+#### Group by Category
 ```
 class Solution:
     def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
@@ -13,6 +14,7 @@ class Solution:
         return True
 ```
 
+#### Compare with Top-Left Neighbor
 ```
 class Solution:
     def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
