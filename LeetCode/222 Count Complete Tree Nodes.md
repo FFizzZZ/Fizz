@@ -33,14 +33,13 @@ class Solution:
     def countNodes(self, root: TreeNode) -> int:
         if not root:
             return 0
-        left, right = map(self.depth, (root.left, root.right))
+        left, right = map(self.depth, [root.left, root.right])
         if left == right:
             return 2 ** left + self.countNodes(root.right)
         else:
             return 2 ** right + self.countNodes(root.left)
     
     def depth(self, node):
-        if not node:
-            return 0
-        return 1 + self.depth(node.left)
+        if not node: return 0
+        return self.depth(node.left) + 1
 ```
