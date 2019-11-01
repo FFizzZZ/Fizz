@@ -7,7 +7,8 @@ class Solution:
         return -1
 ```
 
-##
+## Leetcode
+
 ```
 class Solution:
     def dominantIndex(self, nums: List[int]) -> int:
