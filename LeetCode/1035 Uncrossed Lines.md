@@ -30,3 +30,23 @@ class Solution:
                 dp[j + 1] = max(dp[:j + 1]) + 1
         return max(dp)
 ```
+
+```
+class Solution:
+    def maxUncrossedLines(self, A, B) -> int:
+        d = collections.defaultdict(list)
+        for i in range(len(B) - 1, -1, -1):
+            d[B[i]].append(i)
+        nums = []
+        for x in A:
+            if x in d:
+                nums.extend(d[x])
+        ans = []
+        for x in nums:
+            idx = bisect.bisect_left(ans, x)
+            if idx == len(ans):
+                ans.append(x)
+            else:
+                ans[idx] = x
+        return len(ans)
+```
