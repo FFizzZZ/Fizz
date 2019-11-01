@@ -22,11 +22,11 @@ class Solution:
 class Solution:
     def maxUncrossedLines(self, A, B) -> int:
         d = collections.defaultdict(list)
-        for idx, val in enumerate(A):
+        for idx, val in reversed(list(enumerate((A)))):
             d[val].append(idx)
         dp = [0] * (len(A) + 1)
         for x in B:
-            for j in reversed(d[x]):
+            for j in d[x]:
                 dp[j + 1] = max(dp[:j + 1]) + 1
         return max(dp)
 ```
