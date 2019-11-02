@@ -33,6 +33,19 @@ class Solution:
         return dp[-1]
 ```
 
+```
+class Solution:
+    def longestCommonSubsequence(self, s1: str, s2: str) -> int:
+        d = collections.defaultdict(list)
+        for idx, char in reversed(list(enumerate(s2))):
+            d[char].append(idx)
+        dp = [0] * (len(s2) + 1)
+        for char in s1:
+            for j in d[char]:
+                dp[j + 1] = max(dp[:j + 1]) + 1
+        return max(dp)
+```
+
 #### FASTEST! Change the question into finding longest increasing subsequence. SO AMAZING!
 ```
 class Solution:
