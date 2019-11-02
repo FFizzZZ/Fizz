@@ -22,16 +22,14 @@ class Solution:
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         l = ans = 0
-        d = {}
-        for r, v in enumerate(s):
-            if v in d:
-                temp = d[v] + 1
-                if temp > l:
-                    l = temp
-            temp = r - l + 1
-            if temp > ans:
-                ans = temp
-            d[v] = r
+        d = dict()
+        for r, val in enumerate(s):
+            if val in d:
+                if d[val] + 1 > l:
+                    l = d[val] + 1
+            tmp = r - l + 1
+            if tmp > ans: ans = tmp
+            d[val] = r
         return ans
 ```
 
