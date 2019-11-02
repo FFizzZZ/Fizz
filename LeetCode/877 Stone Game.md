@@ -32,7 +32,6 @@ class Solution:
     def stoneGame(self, piles: List[int]) -> bool:
         n = len(piles)
         dp = [[0] * n for _ in range(n)]
-        
         for d in range(n):
             for i in range(n - d):
                 if d == 0:
@@ -40,6 +39,20 @@ class Solution:
                 else:
                     dp[i][i + d] = max(piles[i] - dp[i + 1][i + d], piles[i + d] - dp[i][i + d - 1])
         return dp[0][-1]
+```
+
+```
+class Solution:
+    def stoneGame(self, piles: List[int]) -> bool:
+        n = len(piles)
+        dp = [[0] * n for _ in range(n)]
+        for j in range(n):
+            for i in range(j, -1, -1):
+                if i == j:
+                    dp[i][j] = piles[i]
+                else:
+                    dp[i][j] = max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1])
+        return True if dp[0][-1] else False
 ```
 #### Math
 ```
