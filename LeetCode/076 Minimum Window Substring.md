@@ -1,26 +1,3 @@
-```
-class Solution:
-    def minWindow(self, s: str, t: str) -> str:
-        d = collections.Counter(t)
-        l, r = 0, 0
-        count = len(d)
-        start, end = 0, float('inf')
-        for r, v in enumerate(s):
-            if v in d:
-                d[v] -= 1
-                if d[v] == 0: count -= 1
-            while count == 0:
-                temp = s[l]
-                if temp in d:
-                    d[temp] += 1
-                    if d[temp] > 0: 
-                        count += 1
-                        if r - l < end - start:
-                            start, end = l, r
-                l += 1
-        return '' if end == float('inf') else s[start:end+1]
-```
-
 ## Leetcode Solution
 ```
 from collections import Counter
@@ -105,26 +82,24 @@ class Solution:
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         d = collections.defaultdict(int)
-        for char in t:
-            d[char] += 1
-        l, r = 0, float("inf")
-        cnt = len(t)
-        ans = ""
+        for ch in t:
+            d[ch] += 1
         i = 0
-        for j, char in enumerate(s, 1):
-            if d[char] > 0:
+        l, r = 0, float('inf')
+        cnt = len(t)
+        for j, ch in enumerate(s):
+            if d[ch] > 0:
                 cnt -= 1
-            d[char] -= 1
+            d[ch] -= 1
             if cnt == 0:
                 while d[s[i]] < 0:
                     d[s[i]] += 1
                     i += 1
-                if j - i < r - l:
+                tmp = j - i + 1
+                if tmp < r - l + 1:
                     l, r = i, j
                 d[s[i]] += 1
-                i += 1
                 cnt += 1
-        return s[l: r] if r != float("inf") else "" 
-    
-
+                i += 1
+        return s[l: r + 1] if r != float('inf') else ""
 ```
