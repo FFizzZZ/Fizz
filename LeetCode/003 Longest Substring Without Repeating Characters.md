@@ -36,16 +36,16 @@ class Solution:
 ```
 class Solution:
     def lengthOfLongestSubstring(self, s: 'str') -> 'int':
-        sub = ''
-        res = ''
-        for i in s:
-            if not i in sub:
-                sub += i
+        cur = ""
+        ans = 0
+        for char in s:
+            if char not in cur:
+                cur += char
             else:
-                if len(res) < len(sub):
-                    res = sub
-                sub = sub.split(i)[-1] + i
-        return max(len(sub), len(res))
+                if len(cur) > ans:
+                    ans = len(cur)
+                cur = cur.split(char)[-1] + char
+        return max(len(cur), ans)
 ```
 
 
