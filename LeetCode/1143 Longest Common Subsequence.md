@@ -38,12 +38,12 @@ class Solution:
 class Solution:
     def longestCommonSubsequence(self, s1: str, s2: str) -> int:
         d = collections.defaultdict(list)
-        for i in range(len(s2) - 1, -1, -1):
-            d[s2[i]].append(i)
+        for idx, char in reversed(list(enumerate(s2))):
+            d[char].append(idx)
         nums = []
-        for x in s1:
-            if x in d:
-                nums.extend(d[x])
+        for char in s1:
+            if char in d:
+                nums.extend(d[char])
         ans = []
         for x in nums:
             idx = bisect.bisect_left(ans, x)
