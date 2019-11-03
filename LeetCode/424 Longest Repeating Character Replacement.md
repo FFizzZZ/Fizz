@@ -30,3 +30,7 @@ class Solution:
                 start += 1
         return len(s) - start
 ```
+###### This algorithm is very good, I would like to write down some points:
+* Since we want to find the longest substring, we don't need to shrink the window.
+* If the current maximum is smaller than previous one, we don't need to update it. Because start will increase by one.
+
