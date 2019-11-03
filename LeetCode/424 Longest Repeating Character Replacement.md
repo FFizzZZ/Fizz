@@ -15,6 +15,9 @@ class Solution:
             ans = max(ans, end - start + 1)
         return ans
 ```
+##### Here I want to point that the WHILE clause doesn't guarantee the subtring is valid.
+##### s = "AABABBA" and k = 1. You can find it! 
+
 #### FASTEST       
 ```
 class Solution:
