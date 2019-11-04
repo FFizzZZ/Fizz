@@ -17,6 +17,7 @@ class Solution:
                 r -= 1
         return nums[r]
 ```
+
 ```
 class Solution:
     def findMin(self, nums: List[int]) -> int:
@@ -24,12 +25,14 @@ class Solution:
         while l < r:
             mid = (l + r) // 2
             val = nums[mid]
-            if val == nums[-1]:
-                return min(nums)
-            if val > nums[-1]:
+            if val > nums[r]:
                 l = mid + 1
-            else:
+            elif val < nums[r]:
                 r = mid
+            else:
+                if val == nums[l]:
+                    l, r = l + 1, r - 1
+                else:
+                    r = mid
         return nums[r]
 ```
-
