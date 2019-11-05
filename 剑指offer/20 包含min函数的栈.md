@@ -5,10 +5,10 @@ class Solution:
         self.min_stack = []
     def push(self, node):
         self.stack.append(node)
-        if not self.min_stack:
+        if not self.min_stack or self.min_stack[-1] > node:
             self.min_stack.append(node)
         else:
-            self.min_stack.append(min(node, self.min_stack[-1]))
+            self.min_stack.append(self.min_stack[-1])
     def pop(self):
         self.stack.pop()
         self.min_stack.pop()
