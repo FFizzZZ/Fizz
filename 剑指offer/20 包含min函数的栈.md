@@ -1,3 +1,4 @@
+#### Two Stack
 ```
 class Solution:
     def __init__(self):
@@ -35,4 +36,24 @@ class Solution:
         return self.stack[-1]
     def min(self):
         return self.min_stack[-1]
+```
+
+#### One Stack
+```
+class Solution:
+    def __init__(self):
+        self.stack = []
+        self.Min = float("inf")
+    def push(self, node):
+        if self.Min >= node:
+            self.stack.append(self.Min)
+            self.Min = node
+        self.stack.append(node)
+    def pop(self):
+        if self.stack.pop() == self.Min:
+            self.Min = self.stack.pop()
+    def top(self):
+        return self.stack[-1]
+    def min(self):
+        return self.Min
 ```
