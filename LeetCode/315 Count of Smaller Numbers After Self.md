@@ -27,19 +27,16 @@ class Solution:
 #### FASTEST
 ```
 class Solution:
-    def countSmaller(self, nums: List[int]) -> List[int]:
+    def countSmaller(self, nums):
         if not nums: return []
-        sortednums = [nums[-1]]
-        ans = [0]
-        for i in range(len(nums) - 2, -1, -1):
-            val = nums[i]
-            idx = bisect.bisect_left(sortednums, val)
+        stk = []
+        ans = []
+        for x in reversed(nums):
+            idx = bisect.bisect_left(stk, x)
             ans.append(idx)
-            sortednums[idx:idx] = [val]
+            stk[idx:idx] = [x]
         return ans[::-1]
 ```
-
-
 
 #### MergeSort
 ```
