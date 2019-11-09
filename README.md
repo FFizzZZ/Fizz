@@ -9,6 +9,7 @@
 * 131 Palindrome Partitioning: dynamic programming
 * 180
 * 188 Best Time to Buy and Sell Stock IV: don't understand FASTEST method
+* 218
 * 341 Flatten Nested List Iterator
 * 371 Sum of Two Integers
 * 438 Find All Anagrams in a String: Hash Value
