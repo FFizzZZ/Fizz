@@ -10,11 +10,8 @@ class Solution:
         else:
             return first_match and self.isMatch(s[1:], p[1:])
 ```
-# Solutions
-Dynamic Programming
-As the problem has an optimal substructure, it is natural to cache intermediate results. We ask the question dp(i, j): does 
-text[i:] and pattern[j:] match? We can describe our answer in terms of answers to questions involving smaller strings.
-# Top-down Variation
+
+# Recustion with Memorization
 ```
 class Solution(object):
     def isMatch(self, s, p):
@@ -33,7 +30,7 @@ class Solution(object):
         return dp(0, 0)
 ```
 
-# Bottom-up
+# Dynamic Programming
 ```
 class Solution(object):
     def isMatch(self, s, p):
@@ -48,4 +45,21 @@ class Solution(object):
                 else:
                     dp[i][j] = first and dp[i + 1][j + 1]
         return dp[0][0]
+```
+
+```
+class Solution:
+    def isMatch(self, s, pattern):
+        m, n = len(s), len(pattern)
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = True
+        for i in range(m + 1):
+            for j in range(1, n + 1):
+                if j > 1 and pattern[j - 1] == "*":
+                    pre = i > 0 and pattern[j - 2] in [s[i - 1], "."]
+                    dp[i][j] = dp[i][j - 2] or pre and dp[i - 1][j]
+                else:
+                    cur = i > 0 and pattern[j - 1] in [s[i - 1], "."]
+                    dp[i][j] = cur and dp[i - 1][j - 1]
+        return dp[-1][-1]
 ```
