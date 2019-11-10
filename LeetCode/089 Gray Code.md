@@ -1,10 +1,11 @@
+## Leetcode
 ```
 class Solution:
     def grayCode(self, n):
-        results = [0]
+        ans = [0]
         for i in range(n):
-            results += [x + 2 ** i for x in reversed(results)]
-        return results
+            ans += [x + (1 << i) for x in reversed(ans)]
+        return ans
 ```
 
 ## Formula
