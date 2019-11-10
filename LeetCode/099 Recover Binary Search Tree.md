@@ -52,26 +52,25 @@ class Solution:
 ```
 class Solution:
     def recoverTree(self, root):
-        first, second, prev = None, None, None 
-        cur = root
-        while cur:
-            if prev and cur.val < prev.val:
+        first = second = pre = None
+        while root:
+            if pre and pre.val > root.val:
                 if not first:
-                    first = prev
-                second = cur 
-            if cur.left: 
-                pred = cur.left
-                while pred.right and pred.right != cur:
-                    pred = pred.right
-                if pred.right == cur: 
-                    pred.right = None
-                    prev = cur
-                    cur = cur.right
-                else: 
-                    pred.right = cur
-                    cur = cur.left
+                    first = pre
+                second = root
+            if root.left:
+                node = root.left
+                while node.right and node.right != root:
+                    node = node.right
+                if not node.right:
+                    node.right = root
+                    root = root.left
+                else:
+                    node.right = None
+                    pre = root
+                    root = root.right
             else:
-                prev = cur
-                cur = cur.right
+                pre = root
+                root = root.right
         first.val, second.val = second.val, first.val
 ```
