@@ -1,23 +1,20 @@
 ```
 class Solution:
     def trap(self, height: List[int]) -> int:
-        m = 0
+        ans = lower = 0
         l, r = 0, len(height) - 1
-        ans = 0
         while l < r:
             if height[l] < height[r]:
-                diff = m - height[l]
-                if diff > 0:
-                    ans += diff
+                if height[l] < lower:
+                    ans += lower - height[l]
                 else:
-                    m -= diff
+                    lower = height[l]
                 l += 1
             else:
-                diff = m - height[r]
-                if diff > 0:
-                    ans += diff
+                if height[r] < lower:
+                    ans += lower - height[r]
                 else:
-                    m -= diff
+                    lower = height[r]
                 r -= 1
         return ans
 ```
