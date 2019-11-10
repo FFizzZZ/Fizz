@@ -1,11 +1,14 @@
 ## Recurse
 ```
 class Solution:
-    def isValidBST(self, root, left = float('-inf'), right = float('inf')):
+    def isValidBST(self, root: TreeNode) -> bool:
+        return self.dfs(root, float("-inf"), float("inf"))
+        
+    def dfs(self, root, lower, upper):
         if not root: return True
-        if root.val <= left or root.val >= right:
+        if root.val <= lower or root.val >= upper:
             return False
-        return self.isValidBST(root.left, left, root.val) and self.isValidBST(root.right, root.val, right)
+        return self.dfs(root.left, lower, root.val) and self.dfs(root.right, root.val, upper)
 ```
     
 ---------------------------
