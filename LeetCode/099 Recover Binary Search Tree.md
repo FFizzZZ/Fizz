@@ -23,18 +23,17 @@ class Solution:
 ```
 class Solution:
     def recoverTree(self, root):
-        first, second = None, None
-        pre = None
+        first = second = pre = None
         while root:
             if root.left:
-                p = root.left
-                while p.right and p.right != root:
-                    p = p.right
-                if not p.right:
-                    p.right = root
+                node = root.left
+                while node.right and node.right != root:
+                    node = node.right
+                if not node.right:
+                    node.right = root
                     root = root.left
                 else:
-                    p.right = None
+                    node.right = None
                     if pre and pre.val > root.val:
                         if not first:
                             first = pre
