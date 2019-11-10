@@ -4,18 +4,18 @@ class Solution:
         if not root: return []
         right = 1
         ans = []
-        queue = [root]
+        queue = collections.deque([root])
         while queue:
-            res = []
+            tmp = []
             for _ in range(len(queue)):
-                root = queue.pop(0)
-                if right:
-                    res.append(root.val)
-                else:
-                    res.insert(0, root.val)
-                if root.left: queue.append(root.left)
-                if root.right: queue.append(root.right) 
-            ans.append(res)
+                node = queue.popleft()
+                tmp.append(node.val)
+                if node.left: queue.append(node.left)
+                if node.right: queue.append(node.right)
+            if right: 
+                ans.append(tmp)
+            else:
+                ans.append(tmp[::-1])
             right = 1 - right
         return ans
 ```
