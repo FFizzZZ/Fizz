@@ -1,4 +1,4 @@
-Input: [[["Python", "Java"], "R"], ["Kobe", "James"]]
+Input: [[["Python", "Java"], "R"], ["Kobe", "James"]]  
 Output: ((Python OR Java) AND R) AND (Kobe OR James)
 
 My Solution:
