@@ -41,7 +41,7 @@ class Solution:
                     ans.append(stack.pop())
                 stack.pop()
             else:
-                while stack and order[stack[-1]] > order[char]:
+                while stack and order[stack[-1]] > order[char]:  # Pay Attention to Here!
                     ans.append(stack.pop())
                 stack.append(char)
         while stack:
