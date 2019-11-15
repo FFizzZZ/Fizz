@@ -6,7 +6,14 @@ class Solution:
                 for j in range(len(nums) - 1, i - 1, -1):
                     if nums[j] > nums[i - 1]:
                         nums[j], nums[i - 1] = nums[i - 1], nums[j]
-                        nums[i:] = nums[i:][::-1]
+                        self.reverse(nums, i, len(nums) - 1)
                         return
-        nums[:] = nums[::-1]
+        self.reverse(nums, 0, len(nums) - 1)
+        
+    def reverse(self, nums, l, r):
+        if l == r: return
+        while l < r:
+            nums[l], nums[r] = nums[r], nums[l]
+            l += 1
+            r -= 1
 ```
