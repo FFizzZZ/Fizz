@@ -1,44 +1,23 @@
 ## Leetcode
 
-#### Brute Force
+#### Heap
 ```
 class Solution(object):
     def mergeKLists(self, lists):
-        vals = []
-        head = node = ListNode(0)
-        for x in lists:
-            while x:
-                vals.append(x.val)
-                x = x.next
-        vals.sort()
-        for val in vals:
-            node.next = ListNode(val)
-            node = node.next
-        return head.next
-```
-
-
-#### Compare one by one
-```
-from queue import PriorityQueue
-class Solution(object):
-    def mergeKLists(self, lists):
-        head = point = ListNode(0)
-        q = PriorityQueue()
-        n = 0
-        for l in lists:
-            if l:
-                q.put([l.val, n, l])
-                n += 1
-        while not q.empty():
-            val, _, node = q.get()
-            point.next = ListNode(val)
-            point = point.next
-            node = node.next
+        heap = []
+        for idx, node in enumerate(lists):
             if node:
-                q.put([node.val, n, node])
-                n += 1
-        return head.next 
+                heapq.heappush(heap, [node.val, idx])
+        head = pre = ListNode(0)
+        while heap:
+            val, idx = heapq.heappop(heap)
+            node = lists[idx]
+            pre.next = node
+            pre = node
+            if node.next:
+                heapq.heappush(heap, [node.next.val, idx])
+                lists[idx] = node.next
+        return head.next
 ```
 
 #### Merge with Divide And Conquer
