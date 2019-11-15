@@ -11,7 +11,6 @@ class Solution:
         self.reverse(nums, 0, len(nums) - 1)
         
     def reverse(self, nums, l, r):
-        if l == r: return
         while l < r:
             nums[l], nums[r] = nums[r], nums[l]
             l += 1
