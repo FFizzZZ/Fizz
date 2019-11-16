@@ -19,18 +19,15 @@ class Solution:
 ```
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        count = 0
-        end = 0
-        index = 0
-        for idx in range(len(nums) - 1):
-            val = nums[idx]
-            if idx + val > end:
-                end = idx + val
+        index = end = count = 0
+        for i in range(len(nums) - 1):
+            if i + nums[i] > end:
+                end = i + nums[i]
             if end >= len(nums) - 1:
                 return count + 1
-            if idx == index:
-                count += 1
+            if i == index:
                 index = end
+                count += 1
         return count
 ```
 
