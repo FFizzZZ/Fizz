@@ -1,29 +1,30 @@
 ### Recurse
 ```
-class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+class Solution(object):
+    def permute(self, nums):
         ans = []
-        self.f(nums, [], ans)
+        self.helper(nums, [], ans)
         return ans
-    def f(self, nums, path, ans):
+        
+    def helper(self, nums, path, ans):
         if not nums:
             ans.append(path[:])
         else:
             for i in range(len(nums)):
                 path.append(nums[i])
-                self.f(nums[:i] + nums[i + 1:], path, ans)
+                self.helper(nums[:i] + nums[i + 1:], path, ans)
                 path.pop()
 ```        
 ### Iteration     
 ```
 class Solution(object):
     def permute(self, nums):
-        res = [[]]
-        for i in nums:
-            new = []
-            for j in res:
-                for k in range(len(j)+1):
-                    new.append(j[:k]+[i]+j[k:])
-            res = new
-        return res
+        ans = [[]]
+        for x in nums:
+            tmp = []
+            for y in ans:
+                for i in range(len(y) + 1):
+                    tmp.append(y[:i] + [x] + y[i:])
+            ans = tmp
+        return ans
 ```
