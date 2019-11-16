@@ -1,4 +1,5 @@
 #### 先对角线，然后列互换
+```
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """
@@ -12,6 +13,7 @@ class Solution:
         for j in range(mid+1):
             for i in range(n):
                 matrix[i][j], matrix[i][n-1-j] = matrix[i][n-1-j], matrix[i][j]
+```
 
 #### 一圈一圈往里换
 ```
