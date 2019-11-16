@@ -31,7 +31,7 @@ class Solution:
             if nums[i] < 1 or nums[i] >= n + 1:
                 nums[i] = 0
         for i in range(n):
-            if nums[i] != 0:
+            if nums[i] % (n + 1) != 0:
                 nums[nums[i] % (n + 1) - 1] += n + 1
         for i in range(n):
             if nums[i] <= n:
