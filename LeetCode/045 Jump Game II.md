@@ -5,12 +5,12 @@ class Solution:
         index = 0
         while index < len(nums) - 1:
             count += 1
-            end = index + nums[index]
+            end = nums[index] + index
             if end >= len(nums) - 1: return count
-            temp = 0
+            tmp = 0
             for i in range(index + 1, end + 1):
-                if i + nums[i] > temp:
-                    temp = i + nums[i]
+                if i + nums[i] > tmp:
+                    tmp = i + nums[i]
                     index = i
         return count
 ```
