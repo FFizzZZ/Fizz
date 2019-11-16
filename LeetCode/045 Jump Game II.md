@@ -31,6 +31,21 @@ class Solution:
         return count
 ```
 
+```
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        end = reach = count = 0
+        for idx, val in enumerate(nums):
+            if idx + val > reach:
+                reach = idx + val
+            if idx == end:
+                if end >= len(nums) - 1:
+                    return count
+                count += 1
+                end = reach
+        return count
+```
+
 ### 顺挂摸藤，必须排掉较差的情况，否则超过时间限制
 ```
 class Solution:
