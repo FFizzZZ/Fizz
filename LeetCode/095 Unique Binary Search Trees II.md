@@ -1,3 +1,4 @@
+## Recursion
 ```
 class Solution:
     def generateTrees(self, n: int) -> List[TreeNode]:
@@ -15,32 +16,32 @@ class Solution:
         return ans or [None]
 ```
 
-## use memo to record
+#### With Memorization
 ```
 class Solution:
     def generateTrees(self, n: int) -> List[TreeNode]:
-        d = {}
-        return self.f(1, n, d) if n else []
-    def f(self, l, r, d):
-        if (l, r) in d: return d[(l, r)]
+        memo = dict()
+        return self.helper(1, n, memo) if n else []
+        
+    def helper(self, l, r, memo):
+        if (l, r) in memo: return memo[l, r]
         ans = []
         for i in range(l, r + 1):
-            for j in self.f(l, i - 1, d):
-                for k in self.f(i + 1, r, d):
+            for left in self.helper(l, i - 1, memo):
+                for right in self.helper(i + 1, r, memo):
                     node = TreeNode(i)
-                    node.left = j
-                    node.right = k
+                    node.left = left
+                    node.right = right
                     ans.append(node)
         ans = ans or [None]
-        d[(l, r)] = ans
+        memo[l, r] = ans
         return ans
 ```
 
 
 
----------------------------
 
-## dynamic programming
+## Dynamic Programming
 ```
 class Solution:
     def generateTrees(self, n):
@@ -59,7 +60,7 @@ class Solution:
                             dp[i][j].append(node)
         return dp[1][n]
 ```
-Another direction
+#### Another direction
 ```
 class Solution:
     def generateTrees(self, n):
