@@ -42,13 +42,14 @@ Recursive (Backtracking)
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         ans = []
-        self.f(0, nums, [], ans)
+        self.helper(0, nums, [], ans)
         return ans
-    def f(self, start, nums, path, ans):
+    
+    def helper(self, idx, nums, path, ans):
         ans.append(path[:])
-        for i in range(start, len(nums)):
+        for i in range(idx, len(nums)):
             path.append(nums[i])
-            self.f(i + 1, nums, path, ans)
+            self.helper(i + 1, nums, path, ans)
             path.pop()
 ```
 
