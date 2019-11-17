@@ -1,15 +1,16 @@
 ```
 class Solution:
     def generateTrees(self, n: int) -> List[TreeNode]:
-        return self.f(1, n) if n else []
-    def f(self, l, r):
+        return self.helper(1, n) if n else []
+        
+    def helper(self, l, r):
         ans = []
         for i in range(l, r + 1):
-            for j in self.f(l, i - 1):
-                for k in self.f(i + 1, r):
+            for left in self.helper(l, i - 1):
+                for right in self.helper(i + 1, r):
                     node = TreeNode(i)
-                    node.left = j
-                    node.right = k
+                    node.left = left
+                    node.right = right
                     ans.append(node)
         return ans or [None]
 ```
