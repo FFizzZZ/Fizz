@@ -1,24 +1,25 @@
 ## Leetcode
 #### Topological Sort
 ```
-class Solution(object):
-    def canFinish(self, n, p):
-        matrix = [[] for _ in range(n)]
-        degree = [0] * n
-        for now, pre in p:
-            matrix[pre].append(now)
-            degree[now] += 1
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        matrix = [[] for _ in range(numCourses)]
+        degree = [0] * numCourses
+        for cur, pre in prerequisites:
+            matrix[pre].append(cur)
+            degree[cur] += 1
         queue = []
-        for i in range(n):
-            if degree[i] == 0: queue.append(i)
+        for i in range(numCourses):
+            if degree[i] == 0:
+                queue.append(i)
         while queue:
             cur = queue.pop()
-            n -= 1
-            for i in matrix[cur]:
-                degree[i] -= 1
-                if degree[i] == 0:
-                    queue.append(i)
-        return n == 0
+            numCourses -= 1
+            for nxt in matrix[cur]:
+                degree[nxt] -= 1
+                if degree[nxt] == 0:
+                    queue.append(nxt)
+        return numCourses == 0
 ```
 
 ```
