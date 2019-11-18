@@ -23,41 +23,25 @@ class Solution:
 ```
 
 ```
-class Solution(object):
-  def canFinish(self, numCourses, prerequisites):
-      graph = [[] for _ in xrange(numCourses)]
-      visit = [0 for _ in xrange(numCourses)]
-      for x, y in prerequisites:
-          graph[x].append(y)
-      def dfs(i):
-          if visit[i] == -1:
-              return False
-          if visit[i] == 1:
-              return True
-          visit[i] = -1
-          for j in graph[i]:
-              if not dfs(j):
-                  return False
-          visit[i] = 1
-          return True
-      for i in xrange(numCourses):
-          if not dfs(i):
-              return False
-      return True
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graph = [[] for _ in range(numCourses)]
+        visited = [0] * numCourses
+        for cur, pre in prerequisites:
+            graph[cur].append(pre)
+        def dfs(cur):
+            if visited[cur] == -1:
+                return False
+            if visited[cur] == 1:
+                return True
+            visited[cur] = -1
+            for pre in graph[cur]:
+                if not dfs(pre):
+                    return False
+            visited[cur] = 1
+            return True
+        for cur in range(numCourses):
+            if not dfs(cur):
+                return False
+        return True
 ```
-        
-        
-        
-        
-        
-        
-     
-
-
-
-
-
-
-
-
-    
