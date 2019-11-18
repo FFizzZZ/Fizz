@@ -5,30 +5,30 @@ class Trie:
         self.root = {}
 
     def insert(self, word: str) -> None:
-        p = self.root
-        for c in word:
-            if c not in p:
-                p[c] = {}
-            p = p[c]
-        p['#'] = True
+        cur = self.root
+        for char in word:
+            if char not in cur:
+                cur[char] = dict()
+            cur = cur[char]
+        cur['#'] = True
 
     def search(self, word: str) -> bool:
-        p = self.find(word)
-        if p and '#' in p: return True
+        cur = self.find(word)
+        if cur and '#' in cur:
+            return True
         return False
+        
 
     def startsWith(self, prefix: str) -> bool:
-        p = self.find(prefix)
-        if p: return True
-        return False
-    
-    def find(self, prefix):
-        p = self.root
-        for c in prefix:
-            if c not in p:
-                return None
-            p = p[c]
-        return p
+        return True if self.find(prefix) else False
+        
+    def find(self, prefix: str):
+        cur = self.root
+        for char in prefix:
+            if char not in cur:
+                return
+            cur = cur[char]
+        return cur
 ```
 ------------------------------------------------------------------------------------
 ```
