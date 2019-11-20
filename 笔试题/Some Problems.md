@@ -92,3 +92,7 @@ class Solution:
 
 https://www.zhihu.com/question/304075115
 
+#### 15. 有2019个自然数，去掉其中任何一个数，其余2018个数都可以分为两组，每组都是1009个数，且这两组数的和相等。问：这2019个数一定完全相同吗？
+
+https://zhuanlan.zhihu.com/p/70287740
+
