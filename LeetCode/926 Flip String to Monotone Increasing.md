@@ -12,3 +12,22 @@ class Solution:
             if tmp < ans: ans = tmp
         return ans
 ```
+
+
+## One Pass
+```
+class Solution:
+    def minFlipsMonoIncr(self, S: str) -> int:
+        flip = one = 0
+        for char in S:
+            if char == '0':
+                if one == 0:
+                    continue
+                else:
+                    flip += 1
+            else:
+                one += 1
+            if flip > one:
+                flip = one
+        return flip
+```
