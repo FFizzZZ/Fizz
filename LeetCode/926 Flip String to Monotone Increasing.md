@@ -31,3 +31,20 @@ class Solution:
                 flip = one
         return flip
 ```
+###### I think this one is more intuitive.
+```
+class Solution:
+    def minFlipsMonoIncr(self, S: str) -> int:
+        ans = 0
+        flip = one = 0
+        for char in S:
+            if char == '0':
+                if one == 0: continue
+                else: flip += 1
+            else:
+                one += 1
+            if flip > one:
+                ans += one
+                flip = one = 0
+        return ans + flip
+```
