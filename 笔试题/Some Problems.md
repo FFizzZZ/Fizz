@@ -96,3 +96,8 @@ https://www.zhihu.com/question/304075115
 
 https://zhuanlan.zhihu.com/p/70287740
 
+#### 16. 数组a是一个从小到大排序的正整数数组，求不能被数组a的任意子序列和表达的最小正整数.
+
+设dp[i]为前n个数不能表达的最小正整数  
+if nums[i] > dp[i], then dp[i + 1] = dp[i];  
+else if nums[i] <= dp[i], then dp[i + 1] = dp[i] + nums[i];
