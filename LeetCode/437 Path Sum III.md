@@ -35,3 +35,21 @@ class Solution(object):
         self.dfs(root.right, target, currPathSum, cache)
         cache[currPathSum] -= 1
 ```
+
+
+```
+class Solution(object):
+    def pathSum(self, root, target):
+        d = collections.defaultdict(int)
+        d[0] = 1
+        return self.dfs(root, 0, target, d)
+    
+    def dfs(self, root, cur, target, d):
+        if not root: return 0
+        cur += root.val
+        ans = d[cur - target]
+        d[cur] += 1
+        ans += self.dfs(root.left, cur, target, d) + self.dfs(root.right, cur, target, d)
+        d[cur] -= 1
+        return ans
+```
