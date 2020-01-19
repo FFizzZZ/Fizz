@@ -11,12 +11,11 @@ class Solution:
 ```
 
 ## Fastest
+
 ```
 class Solution:
     def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
         if not s or not t:
             return not s and not t
-        if s.val == t.val and self.isSubtree(s.left, t.left) and self.isSubtree(t.right, s.right):
-            return True
-        return (s.left and self.isSubtree(s.left, t)) or (s.right and self.isSubtree(s.right, t))
+        return s.val == t.val and self.isSubtree(s.left, t.left) and self.isSubtree(t.right, s.right) or self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
 ```
