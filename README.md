@@ -38,3 +38,10 @@
 * format(2, '.2f'), '%.2f' % num
 * Stirling's Formula --> log(n!) ~ nlog(n)
 * i ^ 1 变换: 0, 1, 2, 3, 4, ... -> 1, 0, 3, 2, 5, ...; (i + 1) ^ 1 - 1
+
+
+### Problems
+* https://leetcode.com/problems/subtree-of-another-tree/submissions/
+* https://leetcode.com/problems/cheapest-flights-within-k-stops/
+* https://leetcode.com/problems/super-washing-machines/submissions/
+* https://leetcode.com/problems/sudoku-solver/solution/
