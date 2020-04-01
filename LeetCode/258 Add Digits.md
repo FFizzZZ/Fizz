@@ -18,3 +18,4 @@ class Solution:
             return 0
         return 1 + (num - 1) % 9
 ```
+证明 https://www.zhihu.com/question/30972581
