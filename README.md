@@ -1,4 +1,8 @@
 # Fizz
+
+### C
+* INT_MIN (-INT_MAX - 1)  https://blog.csdn.net/xiaoyilong2007101095/article/details/86163077
+
 ### Leetcode
 * 037 Sudoku Solver
 * 056 Merge Intervals: haven't inspected the Connected Components Method 
