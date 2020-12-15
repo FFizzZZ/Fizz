@@ -54,3 +54,4 @@
 ### Websites
 * https://marklodato.github.io/visual-git-guide/index-zh-cn.html
 * 基数排序 https://www.runoob.com/w3cnote/counting-sort.html
+* https://www.doc-developpement-durable.org/file/Projets-informatiques/cours-&-manuels-informatiques/Linux/Linux%20Kernel%20Development,%203rd%20Edition.pdf
