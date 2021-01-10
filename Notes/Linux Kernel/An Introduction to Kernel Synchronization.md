@@ -13,3 +13,10 @@
   3. *Kernel preemption* - Because the kernel is preemptive, one task in the kernel can preempt another.
   4. *Sleeping and synchronization with user-space* - A task in the kernel can sleep and thus invoke the scheduler, resulting in the running of a new process.
   5. *Symmetrical multiprocessing* - Two or more processors can execute kernel code at exactly the same time.
+* **safe**
+  1. Code that is safe from concurrent access from an interrupt handler is said to be *interrupt-safe*.
+  2. Code that is safe from concurrency on symmetrical multiprocessing machines is *SMP-safe*.
+  3. Code that is safe from concurrency with kernel preemption is *preempt-safe*.
+  
+  
+ ### DeadLocks
