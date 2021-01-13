@@ -1,6 +1,6 @@
 # Kernel Synchronization Methods
 
 ### Atomic Operations
-typedef struct {
-  volatile int counter;
+typedef struct {\n
+  volatile int counter;\n
 } atomic_t;
