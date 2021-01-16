@@ -5,6 +5,7 @@
 
 ### Spin Locks
 * Spin locks are not recursive.
+
 * Spin locks provide a quick and simple lock. The spinning behavior is optimal for short hold times and code that cannot sleep (interrupt handlers, for example).
 * If a lock is used in an interrupt handler, you must also disable local interrupts (interrupt requests on the current processor) before obtaining the lock. Otherwise, it is possible to reacquire the lock. This is an example of the double-acquire deadlock.
 
