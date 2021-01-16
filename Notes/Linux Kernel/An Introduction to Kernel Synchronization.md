@@ -6,6 +6,7 @@
 
 ### Locking
 * **pseudo-concurrency**: two things do not actually happen at the same time but interleave with each other such that they might as well.
+
 * **true concurrency**: If you have a symmetrical multiprocessing machine, two processes can actually be executed in a critical region at the exact same time.
 * **Cause**
   1. *Interrupts* - An interrupt can occur asynchronously at almost any time, interrupting the currently executing code.
@@ -25,5 +26,6 @@
 
 ### Contention and Scalability
 * The tern *lock contention*, or simply *contention*, describes a lock currently in use but that another thread is trying to acquire.
+
 * *Scalability* is a measurement of how well a system can be expanded.
 * Locking that is too coarse results in poor scalability if there is high lock contention, whereas locking that is too fine results in wasteful overhead if there is little lock contention。
