@@ -21,3 +21,5 @@
 * You cannot hold a spin lock while you acquire a semaphore, because you might have to sleep while waiting for the semaphore, and you cannot sleep while holding a spin lock.
 
 * Additionally, unlike spin locks, semaphores do not disable kernel preemption and, consequently, code holding a semaphore can be preempted.
+
+If an user-space process obtain a spin lock and be interrupted, what would happen?
