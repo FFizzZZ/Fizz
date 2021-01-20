@@ -25,5 +25,6 @@
 ### Reader-Writer Semaphores
 * Reader-writer semaphoers have a unique method that their reader-writer spin lock cousins do not have: *downgrade_write()*. This function atomically converts an acquired write lock to a read lock.
 
-
-If an user-space process obtain a spin lock and be interrupted, what would happen?
+#### Question
+* If an user-space process obtain a spin lock and be interrupted, what would happen?
+* Why RW semaphores has downgrade_write() while RW spin lock not?
