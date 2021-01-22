@@ -31,8 +31,7 @@
 * A process cannot exit while holding a mutex.
 * A mutex cannot be acquired by an interrupt handler or bottom half, even with *mutex_trylock()*.
 
-### Spin Locks Versus Mutexes
-![](https://github.com/FFizzZZ/Fizz/blob/master/Algorithm/Pictures/硬币.png)
+
 
 #### Question
 * If an user-space process obtain a spin lock and be interrupted, what would happen?
