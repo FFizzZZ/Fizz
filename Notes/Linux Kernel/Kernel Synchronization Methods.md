@@ -25,6 +25,12 @@
 ### Reader-Writer Semaphores
 * Reader-writer semaphoers have a unique method that their reader-writer spin lock cousins do not have: *downgrade_write()*. This function atomically converts an acquired write lock to a read lock.
 
+### Mutexes
+* Whoever locked a mutex must unlock it.
+* Recursive locks and unlocks are not allowed.
+* A process cannot exit while holding a mutex.
+* A mutex cannot be acquired by an interrupt handler or bottom half, even with *mutex_trylock()*.
+
 #### Question
 * If an user-space process obtain a spin lock and be interrupted, what would happen?
 * Why RW semaphores has downgrade_write() while RW spin lock not?
