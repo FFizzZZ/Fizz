@@ -35,6 +35,9 @@
 * It works by maintaining a sequence counter. Whenever the data in question is written to, a lock is obtained and a sequence number is incremented.
 * Seq locks, however, favor writers over readers. An acquisition of the write lock always succeeds as long as there are no other writers.
 
+### Ordering and Barriers
+* It is possible to instruct the compiler not to reorder instructions around a given point. These instructions are called *barriers*,
+
 #### Question
 * If an user-space process obtain a spin lock and be interrupted, what would happen?
 * Why RW semaphores has downgrade_write() while RW spin lock not?
