@@ -2,3 +2,5 @@
 * Dynamic timer: the facility used to schedule events that run once after a specified time has elapsed.
 
 ### Kernel Notion of Time
+* The frequency of the system timer (the tick rate) is programmed on system boot based on a static preprocessor define, HZ.
+* Picking the right value, like a successful relationship, is all about compromise.
