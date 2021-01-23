@@ -31,7 +31,9 @@
 * A process cannot exit while holding a mutex.
 * A mutex cannot be acquired by an interrupt handler or bottom half, even with *mutex_trylock()*.
 
-
+### Sequential Locks
+* It works by maintaining a sequence counter. Whenever the data in question is written to, a lock is obtained and a sequence number is incremented.
+* Seq locks, however, favor writers over readers. An acquisition of the write lock always succeeds as long as there are no other writers.
 
 #### Question
 * If an user-space process obtain a spin lock and be interrupted, what would happen?
