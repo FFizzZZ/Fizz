@@ -6,3 +6,8 @@
 * Picking the right value, like a successful relationship, is all about compromise.
 
 ### Jiffies
+
+
+
+#### Question
+* Why macros, such as *time_before(unknown, known)* can prevent errors because of wraparound?
