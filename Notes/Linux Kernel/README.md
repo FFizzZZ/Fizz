@@ -7,5 +7,7 @@
 ### Problems
 * If an user-space process obtain a spin lock and be interrupted, what would happen?
 * Why RW semaphores has downgrade_write() while RW spin lock not?
+* Why macros, such as *time_before(unknown, known)* can prevent errors because of wraparound?
+
 
 
