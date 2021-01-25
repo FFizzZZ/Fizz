@@ -6,5 +6,5 @@
 * A registered softirq must be marked before it will execute. This is called *raising the softirq*. Usually, an interrupt handler marks its softirq for execution before returning.
 ###### Pending softirqs are checked for and executed in the following places:
     1. In the return from hardware interrupt code path.
-    2. In the *ksoftirqd* kernel thread.
+    2. In the ksoftirqd kernel thread.
     3. In any code that explicitly checks for and executes pending softirqs, such as the networking subsytem.
