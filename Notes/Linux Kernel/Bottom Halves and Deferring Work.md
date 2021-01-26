@@ -36,3 +36,21 @@ if (pending) {
 
 
 ### ksoftirqd
+* The solution ultimately implemented in the kernel is to **not** immediately process reactivated softirqs. Instead, if the number of softirqs grows excessive, the kernel wakes up a family of kernel threads to handle the load. The kernel threads run with the lowest possible priority (nice value of 19), which ensures they do not run in lieu of anything important.
+* There is one thread per processor.
+```
+for (;;) {
+    if (!softirq_pending(cpu))
+        schedule();
+    
+    set_current_state(TASK_RUNNING);
+    
+    while (softirq_pending(cpu)) {
+        do_softirq();
+        if (need_resched())
+            schedule();
+    }
+    
+    set_current_state(TASK_INTERRUPTIBLE);
+}
+```
