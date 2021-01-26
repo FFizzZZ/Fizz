@@ -55,3 +55,7 @@ for (;;) {
 }
 ```
 * Note that it does this repeatedly to handle any reactivated softirqs. The softirq kernel threads are awakened whenever do_softirq() detects an executed kernel thread reactivating itself.
+
+
+### Work Queues
+* Work queues defer work into a kernel thread - this bottom half always runs in process context. Normally, it is easy to decide between using work queues and softirqs. If the deferred work needs to sleep, work queues are used.
