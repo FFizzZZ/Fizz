@@ -17,7 +17,7 @@ pending = local_softirq_pending();
 if (pending) {
     struct softirq_action *h;
     
-    /* retset the pending bitmask */
+    /* retset the pending bitmask, actually with local interrupts disabled but omitted here. */
     set_softirq_pending(0);
     
     h = softirq_vec;
