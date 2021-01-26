@@ -41,6 +41,18 @@ if (pending) {
         5. Raise the TASKLET_SOFTIRQ or HI_SOFTIRQ softirq, so do_softirq() executes this tasklet in the near future.
         6. Restore interrupts to their previous state and return.
 
+###### tasklet_action() and tasklet_hi_action(), are the heart of tasklet processing. Let’s look at the steps these handlers perform:
+        1. Disable local interrupt delivery (there is no need to first save their state because the code here is always called as a softirq handler and interrupts are always enabled) and retrieve the tasklet_vec or tasklet_hi_vec list for this processor.
+        2. Clear the list for this processor by setting it equal to NULL.
+        3. Enable local interrupt delivery.Again, there is no need to restore them to their previous state because this function knows that they were always originally enabled.
+        4. Loop over each pending tasklet in the retrieved list.
+        5. If this is a multiprocessing machine, check whether the tasklet is running on another processor by checking the TASKLET_STATE_RUN flag. If it is currently running, do not execute it now and skip to the next pending tasklet. (Recall that only one tasklet of a given type may run concurrently.)
+        6. If the tasklet is not currently running, set the TASKLET_STATE_RUN flag, so another processor will not run it.
+        7. Check for a zero count value, to ensure that the tasklet is not disabled. If the tasklet is disabled, skip it and go to the next pending tasklet.
+        8. We now know that the tasklet is not running elsewhere, is marked as running so it will not start running elsewhere, and has a zero count value. Run the tasklet handler.
+        9. After the tasklet runs, clear the TASKLET_STATE_RUN flag in the tasklet’s state field.
+        10. Repeat for the next pending tasklet, until there are no more scheduled tasklets waiting to run.
+
 ### ksoftirqd
 * The solution ultimately implemented in the kernel is to **not** immediately process reactivated softirqs. Instead, if the number of softirqs grows excessive, the kernel wakes up a family of kernel threads to handle the load. The kernel threads run with the lowest possible priority (nice value of 19), which ensures they do not run in lieu of anything important.
 * There is one thread per processor.
