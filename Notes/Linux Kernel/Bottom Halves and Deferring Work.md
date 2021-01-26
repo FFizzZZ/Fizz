@@ -10,6 +10,16 @@
     3. In any code that explicitly checks for and executes pending softirqs, such as the networking subsystem.
 * The softirq handlers run with interrupts enabled and cannot sleep. The raison detre to softirqs is scalability. If you do not need to scale to infinitely many processors, then use a tasklet. Tasklets are essentially softirqs in which multiple instances of the same handler cannot run concurrently on multiple processors.
 
+```
+u32 pending;
+
+pending = local_softirq_pending();
+if (pending) {
+    struct softirq_action *h;
+    
+    /* retset the pending bitmask */
+    
+```
 
 ### Tasklets
 * Tasklets are implemented on top of softirqs, they are softirqs, represented by two softirqs: HI_SOFTIRQ and TASKLET_SOFTIRQ.
