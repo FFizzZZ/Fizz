@@ -14,3 +14,6 @@
 ### Tasklets
 * Tasklets are implemented on top of softirqs, they are softirqs, represented by two softirqs: HI_SOFTIRQ and TASKLET_SOFTIRQ.
 * Scheduled tasklets (the equivalent of raised softirqs) are stored in two per-processors structures: *tasklet_vec* (for regular tasklets) and *tasklet_hi_vec* (for higher-priority tasklets).
+
+
+### ksoftirqd
