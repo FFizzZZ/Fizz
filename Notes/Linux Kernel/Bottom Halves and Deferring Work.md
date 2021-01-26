@@ -54,3 +54,4 @@ for (;;) {
     set_current_state(TASK_INTERRUPTIBLE);
 }
 ```
+* Note that it does this repeatedly to handle any reactivated softirqs. The softirq kernel threads are awakened whenever do_softirq() detects an executed kernel thread reactivating itself.
