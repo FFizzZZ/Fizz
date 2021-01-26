@@ -33,7 +33,13 @@ if (pending) {
 ### Tasklets
 * Tasklets are implemented on top of softirqs, they are softirqs, represented by two softirqs: HI_SOFTIRQ and TASKLET_SOFTIRQ.
 * Scheduled tasklets (the equivalent of raised softirqs) are stored in two per-processors structures: *tasklet_vec* (for regular tasklets) and *tasklet_hi_vec* (for higher-priority tasklets).
-
+###### Let's Look at the steps tasklet_schedule() undertakes:
+        1. Check whether the tasklet's state is TASKLET_STATE_SCHED. If it is, the tasklet is already scheduled to run and the function can immediately return.
+        2. Call __tasklet_schedule().
+        3. Save the state of the interrupt system, and then disable local interrupts. This ensures tah nothing on this processor will mess with the tasklet code while tasklet_schedule() is manipulating the tasklets.
+        4. Add the tasklet to be scheduled to the head of the tasklet_vec or tasklet_hi_vec linked list, which is unique to each processor in the system.
+        5. Raise the TASKLET_SOFTIRQ or HI_SOFTIRQ softirq, so do_softirq() executes this tasklet in the near future.
+        6. Restore interrupts to their previous state and return.
 
 ### ksoftirqd
 * The solution ultimately implemented in the kernel is to **not** immediately process reactivated softirqs. Instead, if the number of softirqs grows excessive, the kernel wakes up a family of kernel threads to handle the load. The kernel threads run with the lowest possible priority (nice value of 19), which ensures they do not run in lieu of anything important.
