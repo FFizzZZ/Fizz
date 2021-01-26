@@ -9,3 +9,7 @@
     2. In the ksoftirqd kernel thread.
     3. In any code that explicitly checks for and executes pending softirqs, such as the networking subsytem.
 * The softirq handlers run with interrupts enabled and cannot sleep. The raison detre to softirqs is scalability. If you do not need to scale to infinitely many processors, then use a tasklet. Tasklets are essentially softirqs in which multiple instances of the same handler cannot run concurrently on multiple processors.
+
+
+### Tasklets
+* Tasklets are implemented on top of softirqs, they are softirqs, represented by two softirqs: HI_SOFTIRQ and TASKLET_SOFTIRQ.
