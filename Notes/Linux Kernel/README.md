@@ -1,4 +1,5 @@
 # Some Links
+* Book https://www.doc-developpement-durable.org/file/Projets-informatiques/cours-&-manuels-informatiques/Linux/Linux%20Kernel%20Development,%203rd%20Edition.pdf
 * Module https://www.kancloud.cn/yueqian_scut/emlinux/106822
 
 ### Todo
