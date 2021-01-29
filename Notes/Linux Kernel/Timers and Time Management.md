@@ -26,6 +26,10 @@
     5. Update the wall time, which is stored in xtime.
     6. Calculate the infamous load average.
 
+### Timers
+* Timers - sometimes called dynamic timers or kernel timers - are essential for managing the flow of time in kernel code.
+* The kernel runs the timer handler when the current tick count is equal or greater than the specified expiration. Typically, timers are run fairly close to their expiration; however, they might be delayed until the first timer tick after their expiration. Consequently. timers cannot be used to implement any sort of hard real-time processing.
+
 
 #### Question
 * Why macros, such as *time_before(unknown, known)* can prevent errors because of wraparound?
