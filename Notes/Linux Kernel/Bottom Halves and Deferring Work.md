@@ -88,3 +88,18 @@ for (;;) {
     run_workqueue(cwq);
 }
 ```
+
+###### The function run_workqueue(), in turn, actually performs the deferred work:
+```
+while (!list_empty(&cwq->worklist)) {
+    struct work_struct *work;
+    work_func_t f;
+    void *data;
+    
+    work = list_entry(cwq->worklist.next, struct work_struct, entry);
+    f = work->func;
+    list_del_init(cwq->worklist.next);
+    work_clear_pending(work);
+    f(work);
+}
+```
