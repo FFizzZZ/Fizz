@@ -77,3 +77,14 @@ for (;;) {
 
 ### Work Queues
 * Work queues defer work into a kernel thread - this bottom half always runs in process context. Normally, it is easy to decide between using work queues and softirqs. If the deferred work needs to sleep, work queues are used.
+
+###### Let's look at the heart of worker_thread(), simplified:
+```
+for (;;) {
+    prepare_to_wait(&cwq->more_work, &wait, TASK_INTERRUPTIBLE);
+    if (list_empty(&cwq->worklist)
+        schedule();
+    finish_wait(&cwq->more_work, &wait);
+    run_workqueue(cwq);
+}
+```
