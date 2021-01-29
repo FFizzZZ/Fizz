@@ -30,7 +30,7 @@
 * Timers - sometimes called dynamic timers or kernel timers - are essential for managing the flow of time in kernel code.
 * The kernel runs the timer handler when the current tick count is equal or greater than the specified expiration. Typically, timers are run fairly close to their expiration; however, they might be delayed until the first timer tick after their expiration. Consequently, timers cannot be used to implement any sort of hard real-time processing.
 * To deactivate the timer and wait until a potentially executing handler for the timer exits, use del_timer_sync(). Unlike del_timer(), del_timer_sync() cannot be used from interrupt context.
-* The kernel executes timers in bottom-half context, as softirqs, after the timer interrupt completes.
+* The kernel executes timers in bottom-half context, as softirqs, after the timer interrupt completes. The TIMER_SOFTIRQ softirq is handled by run_timer_softirq(). This function runs all the expired timers (if any) on the current processor.
 ```
 update_process_times() -> run_local_timers()
 
@@ -41,7 +41,7 @@ void run_local_timers(void)
     softlockup_tick();
 }
 ```
-
+* Timers are stored in linked list. The kernel partitions timers into five groups based on their expiration value. Timers move down through the groups as their expiration time draws close.
 
 #### Question
 * Why macros, such as *time_before(unknown, known)* can prevent errors because of wraparound?
