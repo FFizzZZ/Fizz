@@ -4,3 +4,5 @@
 
 #### Segmentation: Generalized Base/Bounds
 * The idea is simple: instead of having just one base and bounds pair in our MTU, why not have a base and bouds pair per logical *sement* of the address space?
+
+#### Which Segment Are We Referring to?
