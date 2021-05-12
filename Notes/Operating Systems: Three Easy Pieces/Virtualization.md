@@ -1,5 +1,5 @@
 ## Address Translation
-* limited direct execution (LDE）：for the most part, let the program run directly on the hardware; however, at certain key points in time, arrange so that the OS gets involved and makes sure the "right" things happens.
+* limited direct execution (LDE): for the most part, let the program run directly on the hardware; however, at certain key points in time, arrange so that the OS gets involved and makes sure the "right" things happens.
 #### Dynamic (Hardware-based) Relocation
 * two hardware registers within each cpu: one is called the *base* register, and the other the *bounds*.
 * physical address = virtual address + base
