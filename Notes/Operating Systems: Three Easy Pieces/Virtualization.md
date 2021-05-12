@@ -35,4 +35,12 @@ else {
 
 ## Free-Space Management
 #### Low-level Mechanisms
-* Splitting and Coalescing
+##### Splitting and Coalescing
+##### Tracking The Size of Allocated Regions
+* To accomplish this task, most allocators store a little bit of extra information in a header block which is kept in memory, usually just before the handed-out chunk of memory. 
+```
+typedef struct {
+  int size;
+  int magic;    /* provide addtional integrity checking */
+} header_t;
+```
