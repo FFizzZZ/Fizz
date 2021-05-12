@@ -18,11 +18,12 @@
 #### Which Segment Are We Referring to?
 * One common approach, sometimes referred to as an *explicit* approach, is to chop up the address space into segments based on the top few bits of the virtual address.
 ```
-segment = virtualAddr & SEG_MASK) >> SEG_SHIFT;
-offset = virtualAddr & OFFSET_MASK
+segment = virtual_addr & SEG_MASK) >> SEG_SHIFT;
+offset = virtual_addr & OFFSET_MASK;
 if (offset >= Bounds[segment])
   RaiseException(PROTECTION_FAULT);
-else
-  phyAddr = Base[segment] + offset;
-  register = AccessMemory(phyAddr);
+else {
+  phy_Addr = Base[segment] + offset;
+  register = AccessMemory(phy_Addr);
+}
 ```
