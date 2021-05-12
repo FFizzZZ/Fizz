@@ -41,6 +41,6 @@ else {
 ```
 typedef struct {
   int size;
-  int magic;    /* provide addtional integrity checking */
+  int magic;    /* provide additional integrity checking */
 } header_t;
 ```
