@@ -34,4 +34,5 @@ else {
 * The bounds check can be calculated by ensuring the absolute value of the negative offset is less than or equal to the segment’s current size.
 
 ## Free-Space Management
-
+#### Low-level Mechanisms
+* Splitting and Coalescing
