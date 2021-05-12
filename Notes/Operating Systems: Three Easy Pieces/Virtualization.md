@@ -32,3 +32,6 @@ else {
 * One critical difference: it grows backwards (i.e., towards lower addresses).
 * The first thing we need is a little extra hardware support. Insteadd of just base and bounds values, the hardware also needs to know which way the segment grows.
 * The bounds check can be calculated by ensuring the absolute value of the negative offset is less than or equal to the segment’s current size.
+
+## Free-Space Management
+
