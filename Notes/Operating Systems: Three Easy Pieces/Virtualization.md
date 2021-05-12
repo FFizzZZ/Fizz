@@ -28,3 +28,6 @@ else {
 }
 ```
 * In the *implicit* approach, the hardware determines the segment by noticing how the address was formed. If, for example, the address was generated from the program counter, then the address is within the coded segment; if the address is based off the stack or base pointer, it must be in the stack segment; any other address must be in the heap.
+#### What About the Stack?
+* One critical difference: it grows backwards (i.e., towards lower addresses).
+* The first thing we need is a little extra hardware support. Insteadd of just base and bounds values, the hardware also needs to know which way the segment grows.
