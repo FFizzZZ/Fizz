@@ -16,4 +16,4 @@
 * The idea is simple: instead of having just one base and bounds pair in our MTU, why not have a base and bouds pair per logical *sement* of the address space?
 
 #### Which Segment Are We Referring to?
-
+* One common approach, sometimes referred to as an *explicit* approach, is to chop up the address space into segments based on the top few bits of the virtual address.
