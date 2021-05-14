@@ -6,4 +6,5 @@
 
 
 ## Direct Execution
+##### Restricted Operations
 * To specify the exact system call, a *system-call number* is usually assigned to each system call. The user code is thus responsible for placing the desired system-call number in a register or at a specified location on the stack.
