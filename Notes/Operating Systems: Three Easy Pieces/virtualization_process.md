@@ -44,3 +44,6 @@ Rule 5: After some time period S, move all the jobs in the system to the topmost
 * Tickets represent your share. Lottery scheduling achieves this probabilistically by holding a lottery every so often (say, every time slice).
 
 ##### The Linux Completely Fair Scheduler (CFS)
+* Goal: to fairly divide a CPU evenly among all competing processes via **virtual runtime(vruntime)**.
+* **sched_latency**: CFS uses this value to determine how long one process should run before considering a switch.
+* **min_granularity**: CFS will never set the time slice of a process to less than this value, ensuring that not too much time is spent in scheduling overhead.
