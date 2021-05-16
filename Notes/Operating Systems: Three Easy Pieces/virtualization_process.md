@@ -40,5 +40,7 @@ Rule 5: After some time period S, move all the jobs in the system to the topmost
 
 ## Proportional Share (fair-share)
 * Instead of optimizing for turnaround or response time, a scheduler might instead try to guarantee that each job obtain a certain percentage of CPU time.
-###### Lottery Scheduling
-###### Stride Scheduling
+##### Lottery Scheduling
+* Tickets represent your share. Lottery scheduling achieves this probabilistically by holding a lottery every so often (say, every time slice).
+
+##### The Linux Completely Fair Scheduler (CFS)
