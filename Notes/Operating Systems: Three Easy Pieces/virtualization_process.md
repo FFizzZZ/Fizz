@@ -19,3 +19,8 @@ If a process is running on the CPU, this by definition means the OS is **not** r
 * Note that there are two types of register saves/restores that happen during this protocol. The first is when the timer interrupt occurs; in this case, the user registers of the running process are implicitly saved by the
 hardware, using the kernel stack of that process. The second is when the OS decides to switch from A to B; in this case, the kernel registers are explicitly saved by the software (i.e., the OS), but this time into memory in the process structure of the process. The latter action moves the system from running as if it just trapped into the kernel from A to as if it just trapped into the kernel from B.
 ![image](https://user-images.githubusercontent.com/46720890/118389274-be8b2000-b65b-11eb-833d-b3c2f6dfde99.png)
+
+## CPU Scheduling
+###### Shortest Time-to-Completion First (STCF)  
+* Any time a new job enters the system, the STCF scheduler determines which of the remaining jobs (including the new job) has the least time left, and schedules that one. 
+###### Round Robin (RR)
