@@ -23,8 +23,10 @@ hardware, using the kernel stack of that process. The second is when the OS deci
 ## CPU Scheduling
 ###### Shortest Time-to-Completion First (STCF)  
 * Any time a new job enters the system, the STCF scheduler determines which of the remaining jobs (including the new job) has the least time left, and schedules that one. 
+
 ###### Round Robin (RR)
 * Instead of running jobs to completion, RR runs a job for a **time slice** (sometimes called a **scheduling quantum**) and then switches to the next job in the run queue. It repeatedly does so until the jobs are finished.
+
 ###### Multi-level Feedback Queue (MLFQ)
 * The MLFQ has a number of distinct **queues**, each assigned a different **priority level**.
 ```
@@ -35,3 +37,6 @@ Rule 4: Once a job uses up its time allotment at a given level (regardless of ho
 Rule 5: After some time period S, move all the jobs in the system to the topmost queue.
 ```
 * The high-priority queues are usually given short time slices; they are comprised of interactive jobs. The low-priority queues, in contrast,contain long-running jobs that are CPU-bound; hence, longer time slices work well.
+
+###### Proportional Share (fair-share)
+* Instead of optimizing for turnaround or response time, a scheduler might instead try to guarantee that each job obtain a certain percentage of CPU time.
