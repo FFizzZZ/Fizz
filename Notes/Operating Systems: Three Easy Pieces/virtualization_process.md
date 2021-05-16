@@ -62,5 +62,6 @@ static const int prio_to_weight[40] = {
 /* 15 */ 36, 29, 23, 18, 15,
 };
 ```
+$$time_slice_{k}$$
 
 
