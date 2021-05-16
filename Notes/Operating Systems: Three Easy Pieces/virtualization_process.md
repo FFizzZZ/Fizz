@@ -34,4 +34,4 @@ Rule 3: When a job enters the system, it is replaced at the highest priority (th
 Rule 4: Once a job uses up its time allotment at a given level (regardless of how many times it has given up the CPU), its priority is reduced (i.e., it moves down one queue).
 Rule 5: After some time period S, move all the jobs in the system to the topmost queue.
 ```
-* The high-priority queues are usually given short time slices; they are comprised of interactive jobs.
+* The high-priority queues are usually given short time slices; they are comprised of interactive jobs. The low-priority queues, in contrast,contain long-running jobs that are CPU-bound; hence, longer time slices work well.
