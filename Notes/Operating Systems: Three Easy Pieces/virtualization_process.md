@@ -26,4 +26,7 @@ hardware, using the kernel stack of that process. The second is when the OS deci
 ###### Round Robin (RR)
 * Instead of running jobs to completion, RR runs a job for a **time slice** (sometimes called a **scheduling quantum**) and then switches to the next job in the run queue. It repeatedly does so until the jobs are finished.
 ###### Multi-level Feedback Queue (MLFQ)
-* af
+* The MLFQ has a number of distinct **queues**, each assigned a different **priority level**.
+```
+* R
+```
