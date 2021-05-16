@@ -30,4 +30,7 @@ hardware, using the kernel stack of that process. The second is when the OS deci
 ```
 Rule 1：If Priority(A) > Priority(B), A runs (B doesn't).
 Rule 2: If Priority(A) == Priority(B), A & B run in RR.
+Rule 3: When a job enters the system, it is replaced at the highest priority (the topmost queue).
+Rule 4a: If a job uses up an entire time slice while running its priority is reduced (i.e., it moves down one queue).
+Rule 4b: If a job gives up the CPU before the time slice is up, it stays at the *same* priority level.
 ```
