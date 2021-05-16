@@ -63,5 +63,7 @@ static const int prio_to_weight[40] = {
 };
 ```
 ![image](https://user-images.githubusercontent.com/46720890/118400376-f0b87400-b693-11eb-98ef-2a41dc20c67f.png)
+![image](https://user-images.githubusercontent.com/46720890/118404538-edc67f00-b6a5-11eb-90f2-738fcc990138.png)
+
 
 
