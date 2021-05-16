@@ -14,3 +14,5 @@ If a process is running on the CPU, this by definition means the OS is **not** r
 * In a cooperative scheduling system, the OS regains control of the CPU by waiting for a system call or an illegal operation of some kind to take place.
 ###### A Non-Cooperative Approach: The OS Takes Control
 * The answer turns out to be simple: a **timer interrupt**.
+###### Saving and Restoring Context
+* A context switch is conceptually simple: all the OS has to do is save a few register values for the currently-executing process (onto its kernel stack, for example) and restore a few for the soon-to-be-executing process (from its kernel stack).
