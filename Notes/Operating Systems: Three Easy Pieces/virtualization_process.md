@@ -1,5 +1,6 @@
 ## Process
-![image](https://user-images.githubusercontent.com/46720890/117984648-973a0780-b36a-11eb-9156-29aaa058a22f.png)
+![image](https://user-images.githubusercontent.com/46720890/118404780-f075a400-b6a6-11eb-9c07-bf9b594c9e95.png)
+
 
 ## Process API
 * control-c sends a SIGINT (interrupt) to the process (normally terminating it) and control-z sends a SIGTSTP (stop) signal thus pausing the process in mid-execution (you can resume it later with a command, e.g., the fg built-in command found in many shells).
@@ -19,6 +20,8 @@ If a process is running on the CPU, this by definition means the OS is **not** r
 * Note that there are two types of register saves/restores that happen during this protocol. The first is when the timer interrupt occurs; in this case, the user registers of the running process are implicitly saved by the
 hardware, using the kernel stack of that process. The second is when the OS decides to switch from A to B; in this case, the kernel registers are explicitly saved by the software (i.e., the OS), but this time into memory in the process structure of the process. The latter action moves the system from running as if it just trapped into the kernel from A to as if it just trapped into the kernel from B.
 ![image](https://user-images.githubusercontent.com/46720890/118389274-be8b2000-b65b-11eb-833d-b3c2f6dfde99.png)
+![image](https://user-images.githubusercontent.com/46720890/118404851-48aca600-b6a7-11eb-93bd-f529230a39ca.png)
+
 
 ## CPU Scheduling
 ###### Shortest Time-to-Completion First (STCF)  
