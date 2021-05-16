@@ -24,3 +24,4 @@ hardware, using the kernel stack of that process. The second is when the OS deci
 ###### Shortest Time-to-Completion First (STCF)  
 * Any time a new job enters the system, the STCF scheduler determines which of the remaining jobs (including the new job) has the least time left, and schedules that one. 
 ###### Round Robin (RR)
+* Instead of running jobs to completion, RR runs a job for a **time slice** (sometimes called a **scheduling quantum**) and then switches to the next job in the run queue. It repeatedly does so until the jobs are finished.
