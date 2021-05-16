@@ -38,7 +38,7 @@ Rule 5: After some time period S, move all the jobs in the system to the topmost
 ```
 * The high-priority queues are usually given short time slices; they are comprised of interactive jobs. The low-priority queues, in contrast,contain long-running jobs that are CPU-bound; hence, longer time slices work well.
 
-###### Proportional Share (fair-share)
+## Proportional Share (fair-share)
 * Instead of optimizing for turnaround or response time, a scheduler might instead try to guarantee that each job obtain a certain percentage of CPU time.
-####### Lottery Scheduling
-####### Stride Scheduling
+###### Lottery Scheduling
+###### Stride Scheduling
