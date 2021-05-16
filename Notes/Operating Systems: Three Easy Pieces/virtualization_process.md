@@ -66,5 +66,7 @@ static const int prio_to_weight[40] = {
 ![image](https://user-images.githubusercontent.com/46720890/118404556-00d94f00-b6a6-11eb-8e58-a6cac8e03135.png)
 ![image](https://user-images.githubusercontent.com/46720890/118404538-edc67f00-b6a5-11eb-90f2-738fcc990138.png)
 
+* One smart aspect of the construction of the table of weights above is that the table preserves CPU proportionality ratios when the difference in nice values is constant.
+* To deal with I/O and sleeping processes, CFS sets the *vruntime* of that job to the minimum value found in the tree when it wakes up.
 
 
