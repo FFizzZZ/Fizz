@@ -28,5 +28,6 @@ hardware, using the kernel stack of that process. The second is when the OS deci
 ###### Multi-level Feedback Queue (MLFQ)
 * The MLFQ has a number of distinct **queues**, each assigned a different **priority level**.
 ```
-* R
+Rule 1：If Priority(A) > Priority(B), A runs (B doesn't).
+Rule 2: If Priority(A) == Priority(B), A & B run in RR.
 ```
