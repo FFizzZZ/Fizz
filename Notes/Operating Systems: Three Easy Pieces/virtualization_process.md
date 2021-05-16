@@ -62,7 +62,8 @@ static const int prio_to_weight[40] = {
 /* 15 */ 36, 29, 23, 18, 15,
 };
 ```
-![image](https://user-images.githubusercontent.com/46720890/118400376-f0b87400-b693-11eb-98ef-2a41dc20c67f.png)
+
+![image](https://user-images.githubusercontent.com/46720890/118404556-00d94f00-b6a6-11eb-8e58-a6cac8e03135.png)
 ![image](https://user-images.githubusercontent.com/46720890/118404538-edc67f00-b6a5-11eb-90f2-738fcc990138.png)
 
 
