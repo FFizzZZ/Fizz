@@ -55,23 +55,23 @@ typedef struct {
 
 * Let's simply assume for now that a single **page-table base register** contains the physical address of the starting locatin of the page table. To find the location of the desired PTE, the hardware will thus perform the following functions:
 ```
-	// Extract the VPN from the virtual address
-	VPN = (VirtualAddress & VPN_MASK) >> SHIFT
+// Extract the VPN from the virtual address
+VPN = (VirtualAddress & VPN_MASK) >> SHIFT
 
-	// Form the address of the page-table entry (PTE)
-	PTEAddr = PTBR + (VPN * sizeof(PTE))
+// Form the address of the page-table entry (PTE)
+PTEAddr = PTBR + (VPN * sizeof(PTE))
 
-	// Fetch the PTE
-	PTE = AccessMemory(PTEAddr)
+// Fetch the PTE
+PTE = AccessMemory(PTEAddr)
 
-	// Check if process can access the page
-	if (PTE.Valid == False)
-		RaiseException(SEGMENTATION_FAULT)
-	else if (CanAccess(PTE.ProtectBits) == False)
-		RaiseException(PROTECTION_FAULT)
-	else
-	// Access is OK: form physical address and fetch it
-		offset = VirtualAddress & OFFSET_MASK
-		PhysAddr = (PTE.PFN << PFN_SHIFT) | offset
-		Register = AccessMemory(PhysAddr)
+// Check if process can access the page
+if (PTE.Valid == False)
+	RaiseException(SEGMENTATION_FAULT)
+else if (CanAccess(PTE.ProtectBits) == False)
+	RaiseException(PROTECTION_FAULT)
+else
+// Access is OK: form physical address and fetch it
+	offset = VirtualAddress & OFFSET_MASK
+	PhysAddr = (PTE.PFN << PFN_SHIFT) | offset
+	Register = AccessMemory(PhysAddr)
 ```
