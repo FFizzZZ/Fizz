@@ -44,3 +44,6 @@ typedef struct {
   int magic;    /* provide additional integrity checking */
 } header_t;
 ```
+
+## Paging
+* Instead of splitting up a process’s address space into some number of variable-sized logical segments (e.g., code, heap, stack), we divide it into fixed-sized units, each of which we call a **page**. Correspondingly, we view physical memory as an array of fixed-sized slots called **page frames**.
