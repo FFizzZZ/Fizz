@@ -57,4 +57,6 @@ typedef struct {
 ```
 VPN = (VirtualAddress & VPN_MASK) >> SHIFT
 PTEAddr = PageTableBaseRegister + (VPN * sizeof(PTE))
+offset = VirtualAddress & OFFSET_MASK
+PhysAddr = (PFN << SHIFT) | offset
 ```
