@@ -75,3 +75,5 @@ else
 	PhysAddr = (PTE.PFN << PFN_SHIFT) | offset
 	Register = AccessMemory(PhysAddr)
 ```
+
+## Translation lookaside buffer (TLB)
