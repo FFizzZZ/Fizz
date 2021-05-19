@@ -50,3 +50,5 @@ typedef struct {
 * To record where each virtual page of the address space is placed in physical memory, the operating system usually keeps a per-process data structure known as a **page table**. The major role of the page table is to store **address translations** for each of the virtual pages of the address space.
 
 ![image](https://user-images.githubusercontent.com/46720890/118747420-8b7ba300-b88c-11eb-98b5-4a3fb923373f.png)
+
+*  A **valid bit** is common to indicate whether the particular translation is valid. We also might have **protection bits**, indicating whether the page could be read from, written to, or executed from.
