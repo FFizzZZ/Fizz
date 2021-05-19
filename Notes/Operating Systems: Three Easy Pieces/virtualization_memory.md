@@ -52,3 +52,9 @@ typedef struct {
 ![image](https://user-images.githubusercontent.com/46720890/118747420-8b7ba300-b88c-11eb-98b5-4a3fb923373f.png)
 
 *  A **valid bit** is common to indicate whether the particular translation is valid. We also might have **protection bits**, indicating whether the page could be read from, written to, or executed from.
+
+* Let's simply assume for now that a single **page-table base register** contains the physical address of the starting locatin of the page table. To find the location of the desired PTE, the hardware will thus perform the following functions:
+```
+VPN = (VirtualAddress & VPN_MASK) >> SHIFT
+PTEAddr = PageTableBaseRegister + (VPN * sizeof(PTE))
+```
