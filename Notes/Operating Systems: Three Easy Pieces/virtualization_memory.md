@@ -83,5 +83,9 @@ else
 ## Multi-level Page Tables
 * The basic idea behind a multi-level page table is simple. First, chop up the page table into page-sized units; then, if an entire page of page-table entries (PTEs) is invalid, don’t allocate that page of the page table at all. To track whether a page of the page table is valid (and if valid, where it
 is in memory), use a new structure, called the **page directory**.
-![Uploading image.png…]()
+![image](https://user-images.githubusercontent.com/46720890/119233859-6e312800-bb5d-11eb-8ce1-b70aa1965499.png)
+
+* The multi-level table only allocates page-table space in proportion to the amount of address
+space you are using; thus it is generally compact and supports sparse address spaces.
+![image](https://user-images.githubusercontent.com/46720890/119233843-61accf80-bb5d-11eb-8ec4-2a87bd17af77.png)
 
