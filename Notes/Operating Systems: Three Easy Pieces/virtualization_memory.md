@@ -79,3 +79,9 @@ else
 ## Translation lookaside buffer (TLB)
 * In a page table, when a page-table entry (PTE) is marked invalid, it means that the page has not been allocated by the process, and should not be accessed by a correctly-working program. A TBL valid bit, in contrast, simply refers to whether a TLB entry has a valid translation within it.
 * T reduce overhead caused by context switch, some hardware systems provide an **address space identifier (ASID)** field in the TLB.
+
+## Multi-level Page Tables
+* The basic idea behind a multi-level page table is simple. First, chop up the page table into page-sized units; then, if an entire page of page-table entries (PTEs) is invalid, don’t allocate that page of the page table at all. To track whether a page of the page table is valid (and if valid, where it
+is in memory), use a new structure, called the **page directory**.
+![Uploading image.png…]()
+
