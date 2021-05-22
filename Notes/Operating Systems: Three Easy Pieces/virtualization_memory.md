@@ -49,7 +49,8 @@ typedef struct {
 * Instead of splitting up a process’s address space into some number of variable-sized logical segments (e.g., code, heap, stack), we divide it into fixed-sized units, each of which we call a **page**. Correspondingly, we view physical memory as an array of fixed-sized slots called **page frames**.
 * To record where each virtual page of the address space is placed in physical memory, the operating system usually keeps a per-process data structure known as a **page table**. The major role of the page table is to store **address translations** for each of the virtual pages of the address space.
 
-![image](https://user-images.githubusercontent.com/46720890/118747420-8b7ba300-b88c-11eb-98b5-4a3fb923373f.png)
+![image](https://user-images.githubusercontent.com/46720890/119234249-74c09f00-bb5f-11eb-81af-370ad8eb5a84.png)
+
 
 *  A **valid bit** is common to indicate whether the particular translation is valid. We also might have **protection bits**, indicating whether the page could be read from, written to, or executed from.
 
