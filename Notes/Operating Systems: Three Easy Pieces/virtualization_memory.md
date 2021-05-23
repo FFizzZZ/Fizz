@@ -104,3 +104,13 @@ for example to a bug in the program (Lines 13–14). In this case, no other
 bits in the PTE really matter; the hardware traps this invalid access, and
 the OS trap handler runs, likely terminating the offending process.
 
+![image](https://user-images.githubusercontent.com/46720890/119250283-8f336080-bbd1-11eb-82ed-d70333d7dfa1.png)
+* From the software control flow in Figure 21.3, we can see what the OS
+roughly must do in order to service the page fault. First, the OS must find
+a physical frame for the soon-to-be-faulted-in page to reside within; if
+there is no such page, we’ll have to wait for the replacement algorithm to
+run and kick some pages out of memory, thus freeing them for use here. With a physical frame in hand, the handler then issues the I/O request
+to read in the page from swap space. Finally, when that slow operation
+completes, the OS updates the page table and retries the instruction. The
+retry will result in a TLB miss, and then, upon another retry, a TLB hit, at
+which point the hardware will be able to access the desired item.
