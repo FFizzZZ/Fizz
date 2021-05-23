@@ -1,5 +1,5 @@
 ## I/O Devices
-![image](https://user-images.githubusercontent.com/46720890/119139664-da386100-ba75-11eb-94d0-9a35e01a71f0.png)
+![image](https://user-images.githubusercontent.com/46720890/119257790-7048c480-bbf9-11eb-8d17-2937554e2fa8.png)
 
 #### A Canonical Device
 ![image](https://user-images.githubusercontent.com/46720890/119143392-21c0ec00-ba7a-11eb-871e-2de4516fb269.png)
