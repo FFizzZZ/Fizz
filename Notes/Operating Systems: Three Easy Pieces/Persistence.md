@@ -10,3 +10,6 @@
 #### Methods of Device Interaction
 * **I/O instructions**: these instructions specify a way for the OS to send data to specific device registers and thus allow the construction of the protocol. Such instructions are usually **privileged**.
 * **memory-mapped I/O**: with this approach, the hardware makes device registers available if they were memory locations. To access a particular register, the OS issues a load (to read) or store (to write) the adress; the hardware then routes the load/store to the device instead of main memory.
+
+#### Fitting Into the OS: The Device Driver
+![image](https://user-images.githubusercontent.com/46720890/119258095-d6821700-bbfa-11eb-9ba3-07e80144b7bb.png)
