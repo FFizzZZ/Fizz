@@ -90,3 +90,17 @@ is in memory), use a new structure, called the **page directory**.
 space you are using; thus it is generally compact and supports sparse address spaces.
 ![image](https://user-images.githubusercontent.com/46720890/119233843-61accf80-bb5d-11eb-8ec4-2a87bd17af77.png)
 
+## Swapping
+![image](https://user-images.githubusercontent.com/46720890/119250249-5f845880-bbd1-11eb-8874-7479b33175f0.png)
+* From the hardware control flow diagram in Figure 21.2, notice that
+there are now three important cases to understand when a TLB miss occurs. First, that the page was both present and valid (Lines 18–21); in
+this case, the TLB miss handler can simply grab the PFN from the PTE,
+retry the instruction (this time resulting in a TLB hit), and thus continue
+as described (many times) before. In the second case (Lines 22–23), the
+page fault handler must be run; although this was a legitimate page for
+the process to access (it is valid, after all), it is not present in physical
+memory. Third (and finally), the access could be to an invalid page, due
+for example to a bug in the program (Lines 13–14). In this case, no other
+bits in the PTE really matter; the hardware traps this invalid access, and
+the OS trap handler runs, likely terminating the offending process.
+
