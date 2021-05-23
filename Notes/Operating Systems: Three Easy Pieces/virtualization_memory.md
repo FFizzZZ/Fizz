@@ -114,3 +114,8 @@ to read in the page from swap space. Finally, when that slow operation
 completes, the OS updates the page table and retries the instruction. The
 retry will result in a TLB miss, and then, upon another retry, a TLB hit, at
 which point the hardware will be able to access the desired item.
+
+#### Approximate LRU
+* Unfortunately, as the number of pages in a system grows, scanning a huge array of times just to find the absolute least-recently-used page is prohibitively expensive.
+* Whenever a page is referenced (i.e., read or written), the **use bit** is set by hardware to 1.
+* **clock algorithm**: Imagine all the pages of the system arranged in a circular list. A **clock hand** points to some particular page to begin with. When a replacement must occur, the OS checks if the currently-pointed to page P has a use bit of 1 or 0. If 1, this implies that page P was recently used and thus is *not* a good candidate for replacement. Thus, the use bit for P is set to 0, and the clock hand is incremented to the next page P + 1.
