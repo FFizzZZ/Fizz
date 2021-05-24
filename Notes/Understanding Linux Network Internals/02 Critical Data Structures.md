@@ -19,3 +19,6 @@ Unlike *len*, *data_len* accounts only for the size of the data in the fragments
 
 ##### unsigned int truesize
 This field represents the total size of the buffer, including the *sk_buff* structure itself (i.e., truesize = len + sizeof(sk_buff)).
+
+#### Management Functions
+![image](https://user-images.githubusercontent.com/46720890/119330128-79e53180-bcb8-11eb-8207-403a36b3d94f.png)
