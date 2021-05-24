@@ -23,3 +23,6 @@ This field represents the total size of the buffer, including the *sk_buff* stru
 
 ### Management Functions
 ![image](https://user-images.githubusercontent.com/46720890/119330128-79e53180-bcb8-11eb-8207-403a36b3d94f.png)
+
+### Cloning and Copying Buffers
+![image](https://user-images.githubusercontent.com/46720890/119339649-021d0400-bcc4-11eb-9b7e-77971f521e1a.png)
