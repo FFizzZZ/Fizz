@@ -55,3 +55,94 @@ class Trie(object):
             return True
         return False
 ```
+
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+typedef struct trie {
+    char c;
+    bool isWord;
+    struct trie *children[26];
+} Trie;
+
+/** Initialize your data structure here. */
+
+Trie* trieCreate() {
+    Trie *node = (Trie *)malloc(sizeof(Trie));
+    memset(node, 0, sizeof(*node));
+
+    return node;
+}
+
+/** Inserts a word into the trie. */
+void trieInsert(Trie* obj, char * word) {
+    Trie *node = obj;
+
+    while (*word) {
+        int idx = *word - 'a';
+
+        if (node->children[idx] == NULL) {
+            Trie *new = trieCreate();
+            new->c = *word;
+
+            node->children[idx] = new;
+        }
+
+        node = node->children[idx];
+        word++;
+    }
+
+    node->isWord = true;
+}
+
+/** Returns if the word is in the trie. */
+bool trieSearch(Trie* obj, char * word) {
+    Trie *node = obj;
+
+    while (*word) {
+        int idx = *word - 'a';
+
+        if (node->children[idx] == NULL)
+            return false;
+
+        node = node->children[idx];
+        word++;
+    }
+
+    return node->isWord;
+}
+
+/** Returns if there is any word in the trie that starts with the given prefix. */
+bool trieStartsWith(Trie* obj, char * prefix) {
+    Trie *node = obj;
+
+    while (*prefix) {
+        int idx = *prefix - 'a';
+
+        if (node->children[idx] == NULL)
+            return false;
+
+        node = node->children[idx];
+        prefix++;
+    }
+
+    return true;
+}
+
+void trieFree(Trie* obj) {
+    Trie *node = obj;
+    
+    for (int i = 0; i < 26; i++) {
+        if (node->children[i] == NULL)
+            continue;
+        
+        trieFree(node->children[i]);
+    }
+
+    free(node);
+}
+```
