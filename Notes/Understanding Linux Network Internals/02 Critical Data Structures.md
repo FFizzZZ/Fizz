@@ -26,3 +26,7 @@ This field represents the total size of the buffer, including the *sk_buff* stru
 
 ### Cloning and Copying Buffers
 ![image](https://user-images.githubusercontent.com/46720890/119339649-021d0400-bcc4-11eb-9b7e-77971f521e1a.png)
+
+* When a buffer is cloned, the contents of the data block cannot be modified. When someone needs to modify only the contents of the data in the area between skb->start and skb->end, he can use **pskb_copy** to clone just that area. When someone thinks he may need to modify the content of the fragment data blocks too, he must use **skb_copy**.
+
+![image](https://user-images.githubusercontent.com/46720890/119340137-ae5eea80-bcc4-11eb-9f86-9f75005ef691.png)
