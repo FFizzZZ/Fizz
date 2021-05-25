@@ -10,6 +10,4 @@
 * What the test-and-set instruction does is as follows. It returns the old value pointed to by the old ptr, and simultaneously updates said value to new. The key, of course, is that this sequence of operations is performed **atomically**.
 
 #### Evaluating
-* Correctness
-* Fairness
-* Performance
+* Correctness, Fairness, Performance
