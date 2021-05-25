@@ -4,3 +4,7 @@
 
 ![image](https://user-images.githubusercontent.com/46720890/119263462-b4e05a00-bc11-11eb-9fcd-82764f1de8dc.png)
 
+## Locks
+#### Building Working Spin Locks with Test-And-Set
+* Because simple approaches using loads and stores don't work, system designers started to invent hardware support for locking. The simplest bit of hardware support to understand is known as a **test-and-set** (or **atomic exchange1**) instruction. 
+* What the test-and-set instruction does is as follows. It returns the old value pointed to by the old ptr, and simultaneously updates said value to new. The key, of course, is that this sequence of operations is performed **atomically**.
