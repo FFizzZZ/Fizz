@@ -8,6 +8,7 @@
 #### Building Working Spin Locks with Test-And-Set
 * Because simple approaches using loads and stores don't work, system designers started to invent hardware support for locking. The simplest bit of hardware support to understand is known as a **test-and-set** (or **atomic exchange**) instruction. 
 * What the test-and-set instruction does is as follows. It returns the old value pointed to by the old ptr, and simultaneously updates said value to new. The key, of course, is that this sequence of operations is performed **atomically**.
+* Another hardware primitive that some systems provide is known as the **compare-and-swap** instruction, or **compare-and-exchange**.
 
 #### Evaluating
 * Correctness, Fairness, Performance
