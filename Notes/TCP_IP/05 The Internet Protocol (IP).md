@@ -14,3 +14,5 @@
 * The *Header Checksum* field is calculated *over the IPv4 header only*. Perhaps surprisingly, the IPv6 header does not have any checksum field. Note that when an IPv4 datagram passes through a router, its header checksum must change as a result of decrementing the *TTL* field.
 #### The Internet Checksum
 ![image](https://user-images.githubusercontent.com/46720890/119691507-3851b380-be7d-11eb-9bf0-b1ba8943f09a.png)
+
+## IP Forwarding
