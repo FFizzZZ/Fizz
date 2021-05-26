@@ -12,3 +12,5 @@
 * The *Total Length* field is required in the header because some lower-layer protocols that carry IPv4 datagrams do not (accurately) convey the size of encapsulated datagrams on their own. Ethernet, for example, pads small frames to be a minimum length.
 * The *Identification* field helps indentify each datagram sent by an IPv4 host. The sending host normally increments an internal counter by 1 each time a datagram is sent (from one of its IP address).
 * The *Header Checksum* field is calculated *over the IPv4 header only*. Perhaps surprisingly, the IPv6 header does not have any checksum field. Note that when an IPv4 datagram passes through a router, its header checksum must change as a result of decrementing the *TTL* field.
+#### The Internet Checksum
+![image](https://user-images.githubusercontent.com/46720890/119691015-cd07e180-be7c-11eb-83a5-7d8acfc63b03.png)
