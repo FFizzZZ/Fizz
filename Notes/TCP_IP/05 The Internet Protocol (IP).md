@@ -16,3 +16,17 @@
 ![image](https://user-images.githubusercontent.com/46720890/119691507-3851b380-be7d-11eb-9bf0-b1ba8943f09a.png)
 
 ## IP Forwarding
+*longest prefix match* algorithm
+* Search the table for all entries for which the following property holds:
+(D ^ mj) = dj, where mj is the value of the mask field associated with the forwarding
+entry ej having index j, and dj is the value of the destination field
+associated with ej. This means that the destination IP address D is bitwise
+ANDed with the mask in each forwarding table entry (mj), and the result is
+compared against the destination in the same forwarding table entry (dj).
+If the property holds, the entry (ej here) is a “match” for the destination IP
+address. When a match happens, the algorithm notes the entry index (j
+here) and how many bits in the mask mj were set to 1. The more bits set to
+1, the “better” the match.
+* The best matching entry ek (i.e., the one with the largest number of 1 bits in
+its mask mk) is selected, and its next-hop field nk is used as the next-hop IP
+address in forwarding the datagram.
