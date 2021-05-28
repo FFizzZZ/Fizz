@@ -30,3 +30,18 @@ here) and how many bits in the mask mj were set to 1. The more bits set to
 * The best matching entry ek (i.e., the one with the largest number of 1 bits in
 its mask mk) is selected, and its next-hop field nk is used as the next-hop IP
 address in forwarding the datagram.
+
+# Host Processing of IP Datagrams
+#### Host Models
+There are two host models, the strong
+host model and the weak host model. In the strong host model, a datagram is accepted
+for delivery to the local protocol stack only if the IP address contained in the Destination
+IP Address field matches one of those configured on the interface upon which
+the datagram arrived. In systems implementing the weak host model, the opposite
+is true—a datagram carrying a destination address matching any of the local
+addresses may arrive on any interface and is processed by the receiving protocol
+stack, irrespective of the network interface upon which it arrived.
+* Host models also
+apply to sending behavior. That is, a host using the strong host model sends datagrams
+from a particular interface only if one of the interface’s configured addresses
+matches the Source IP Address field in the datagram being sent.
