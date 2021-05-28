@@ -33,7 +33,7 @@ address in forwarding the datagram.
 
 # Host Processing of IP Datagrams
 #### Host Models
-There are two host models, the strong
+* There are two host models, the strong
 host model and the weak host model. In the strong host model, a datagram is accepted
 for delivery to the local protocol stack only if the IP address contained in the Destination
 IP Address field matches one of those configured on the interface upon which
