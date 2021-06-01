@@ -21,3 +21,8 @@
 
 * If one fragment is lost, the entire datagram is lost. To understand why this happens, realize that IP itself has no error
 correction mechanism of its own.When a fragment of a TCP segment is lost, TCP retransmits the entire TCP segment, which corresponds to an entire IP datagram. There is no way to resend only one fragment of a datagram. Indeed, if the fragmentation was done by an intermediate router, and not the originating system, there is no way for the originating system to know how the datagram was fragmented. For this reason, fragmentation is often avoided.
+
+### Reassembly Timeout
+* The IP layer must start a timer when any fragment of a datagram first arrives. The timer starts when any of the fragments is received and is not reset when new fragments arrive.
+
+## Path MTU Discovery with UDP
