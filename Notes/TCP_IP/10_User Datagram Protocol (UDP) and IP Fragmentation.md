@@ -11,3 +11,6 @@
 * UDP-Lite has its own IPv4 Protocol and IPv6 Next Header field value (136), so it effectively counts as a separate transport protocol.
 
 ![image](https://user-images.githubusercontent.com/46720890/120289273-b259c080-c2f3-11eb-8ef4-f1d203122aab.png)
+
+## IP Fragmentation
+* When an IP datagram is fragmented, it is not reassembled until it reaches its final destination. Two reasons for this. First, not performing reassembly within the network alleviates the forwarding software (or hardware) in routers. Second, it is possible for different fragments of the same datagram to follow different paths to their common destination.
