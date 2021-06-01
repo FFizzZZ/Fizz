@@ -9,3 +9,5 @@
 ## UDP-Lite
 * A *partial checksum* covers only a portion of the payload specified by the application.
 * UDP-Lite has its own IPv4 Protocol and IPv6 Next Header field value (136), so it effectively counts as a separate transport protocol.
+
+![image](https://user-images.githubusercontent.com/46720890/120289273-b259c080-c2f3-11eb-8ef4-f1d203122aab.png)
