@@ -16,3 +16,5 @@
 * When an IP datagram is fragmented, it is not reassembled until it reaches its final destination. Two reasons for this. First, not performing reassembly within the network alleviates the forwarding software (or hardware) in routers. Second, it is possible for different fragments of the same datagram to follow different paths to their common destination.
 
 ![image](https://user-images.githubusercontent.com/46720890/120296257-868e0900-c2fa-11eb-8b51-14fa11550c68.png)
+
+* The *identification* field value (set by the original sender) is copied to each fragment and is used to group them together when they arrive. The *Fragment Offset* field gives the offset of the first byte of the fragment payload byte in the original IPv4 datagram (in 8-byte units).
