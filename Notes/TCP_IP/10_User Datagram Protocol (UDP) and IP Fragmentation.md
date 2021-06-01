@@ -1,9 +1,11 @@
 ## UDP Header
-![image](https://user-images.githubusercontent.com/46720890/120106638-7ce89200-c190-11eb-991e-7bae91ffb22d.png)
+![image](https://user-images.githubusercontent.com/46720890/120315691-35d4db00-c30f-11eb-910e-a2d32d5dfd7f.png)
 
 ## UDP Checksum
 * It covers the UDP header, the UDP data, and a pseudo-header. Computed at the initial sender and checked at the final destination, it is not modified in transit (except when it passes through a NAT).
-![image](https://user-images.githubusercontent.com/46720890/120107250-e10c5580-c192-11eb-88e3-ee36de23ec99.png)
+
+![image](https://user-images.githubusercontent.com/46720890/120315627-20f84780-c30f-11eb-8c0a-be27f09ec5f2.png)
+
 * With UDP, the checksum is optional (although strongly suggested), while with the others it is mandatory. If the sender *did* compute a checksum and the receiver detects a checksum error, the UDP datagram is sliently discarded.
 
 ## UDP-Lite
