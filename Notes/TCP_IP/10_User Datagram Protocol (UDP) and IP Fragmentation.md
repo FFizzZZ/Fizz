@@ -28,3 +28,6 @@ correction mechanism of its own.When a fragment of a TCP segment is lost, TCP re
 * The IP layer must start a timer when any fragment of a datagram first arrives. The timer starts when any of the fragments is received and is not reset when new fragments arrive.
 
 ## Path MTU Discovery with UDP
+## UDP Server Design
+![C4145E9D-0355-4BC1-B730-13F650F9B5E2](https://user-images.githubusercontent.com/46720890/120923272-3818aa00-c700-11eb-9e86-c4f10296a1d0.png)
+
