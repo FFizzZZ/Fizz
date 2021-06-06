@@ -2,6 +2,9 @@
 #### Windows of Packets and Sliding Windows
 ![BC80CB36-ED7C-4EA0-B947-1263493BA3B1](https://user-images.githubusercontent.com/46720890/120923452-30a5d080-c701-11eb-927b-36ed049a7cb2.png)
 
+This window structure is kept at both the sender and the receiver.
+* At the sender, it keeps track of what packets can be released, what packets are awaiting ACKs, and what packets cannot yet be sent.
+* At the receiver, it keeps track of what packets have already been received and acknowledged, what packets are expected (and how much memory has been allocated to hold them), and which packets, even if received, will not be kept because of limited memory.
 
 Question  
 18.6.2 平静时间的概念
