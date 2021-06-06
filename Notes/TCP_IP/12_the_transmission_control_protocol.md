@@ -1,6 +1,6 @@
 ## Introduction
 #### Windows of Packets and Sliding Windows
-
+![BC80CB36-ED7C-4EA0-B947-1263493BA3B1](https://user-images.githubusercontent.com/46720890/120923452-30a5d080-c701-11eb-927b-36ed049a7cb2.png)
 
 
 Question  
